@@ -97,6 +97,10 @@ const order = {
         maxWidth: "500px",
         margin: "0 auto",
         padding: "20px",
+        background: "#c7c7c7",
+        minHeight: "100vh",
+        color: "#d1cdcdfa",
+       
       }}
     >
       <div
