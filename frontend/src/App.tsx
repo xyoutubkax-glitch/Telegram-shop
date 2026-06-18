@@ -49,6 +49,8 @@ function App() {
 const user = tg?.initDataUnsafe?.user;
 console.log("TG:", tg);
 console.log("USER:", user);
+alert(JSON.stringify(user));
+
 
 
 const order = {
