@@ -9,11 +9,15 @@ type Product = {
 };
 
 function App() {
+const [tab, setTab] = useState("shop");
+const tg = (window as any).Telegram?.WebApp;
+const user = tg?.initDataUnsafe?.user;
+const isAdmin = user?.id === 7130132807;
   const [cart, setCart] = useState<Product[]>(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
-  
+
 
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -39,21 +43,13 @@ function App() {
   const clearCart = () => {
     setCart([]);
   };
-
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price,
     0
   );
-
   const checkout = async () => {
-  const tg = (window as any).Telegram?.WebApp;
-const user = tg?.initDataUnsafe?.user;
 console.log("TG:", tg);
 console.log("USER:", user);
-
-
-
-
 const order = {
   customer: name,
   comment,
@@ -122,9 +118,32 @@ const order = {
         >
           Корзина: {cart.length}
         </div>
+        
       </div>
+<div
+  style={{
+    display: "flex",
+    gap: "10px",
+    marginTop: "20px",
+    marginBottom: "20px",
+  }}
+>
+  <button onClick={() => setTab("shop")}>
+    🛒 Магазин
+  </button>
 
-      {products.map((product) => (
+  <button onClick={() => setTab("cart")}>
+    🛒 Корзина
+  </button>
+
+  {isAdmin && (
+    <button onClick={() => setTab("admin")}>
+      ⚙️ Админ-Панель
+    </button>
+  )}
+</div>
+      {tab === "shop" &&
+  products.map((product) => (
         <div
           key={product.id}
           style={{
@@ -181,7 +200,36 @@ const order = {
         </div>
       ))}
 
-      {cart.length > 0 && (
+      {tab === "admin" && isAdmin && (
+  <div
+    style={{
+      marginTop: "20px",
+      background: "#fff",
+      padding: "20px",
+      borderRadius: "15px",
+    }}
+  >
+    <h2>⚙️ Панель администратора</h2>
+
+    <button style={{ width: "100%", marginBottom: "10px" }}>
+      ➕ Добавить товар
+    </button>
+
+    <button style={{ width: "100%", marginBottom: "10px" }}>
+      ✏️ Редактировать товар
+    </button>
+
+    <button style={{ width: "100%", marginBottom: "10px" }}>
+      🗑 Удалить товар
+    </button>
+
+    <button style={{ width: "100%" }}>
+      📦 Изменить количество
+    </button>
+  </div>
+)}
+      {tab === "cart" && ( 
+
         <div
           style={{
             marginTop: "30px",
