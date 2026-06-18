@@ -47,6 +47,9 @@ function App() {
   const checkout = async () => {
   const tg = (window as any).Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
+console.log("TG:", tg);
+console.log("USER:", user);
+
 
 const order = {
   customer: name,
