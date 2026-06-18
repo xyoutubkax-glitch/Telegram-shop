@@ -64,7 +64,7 @@ const order = {
 
   try {
     const response = await fetch(
-      "http://localhost:3001/order",
+      "https://telegram-shop-4.onrender.com/order/order",
       {
         method: "POST",
         headers: {
