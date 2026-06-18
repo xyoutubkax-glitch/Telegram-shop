@@ -97,9 +97,9 @@ const order = {
         maxWidth: "500px",
         margin: "0 auto",
         padding: "20px",
-        background: "#313131b0",
+        background: "#0e0e0eb0",
         minHeight: "100vh",
-        color: "#000000",
+        color: "#ffffff",
        
       }}
     >
