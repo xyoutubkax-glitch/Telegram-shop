@@ -13,6 +13,7 @@ function App() {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
+  
 
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -49,7 +50,7 @@ function App() {
 const user = tg?.initDataUnsafe?.user;
 console.log("TG:", tg);
 console.log("USER:", user);
-alert(JSON.stringify(user));
+
 
 
 
