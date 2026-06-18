@@ -12,9 +12,7 @@ const BOT_TOKEN = "8850387826:AAFQU6xhdJWED_o4WFtYvbU8LLpfRkAizCc";
 const ADMIN_CHAT_ID = 7130132807;
 const GROUP_CHAT_ID = -1003788971538;
 
-const bot = new TelegramBot(BOT_TOKEN, {
-  polling: true,
-});
+const bot = new TelegramBot(BOT_TOKEN);
 
 app.post("/order", async (req, res) => {
   try {
