@@ -475,8 +475,20 @@ padding: 0,
       fontSize: "24px",
     }}
   >
-    🛒
-  </button>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M7 4H3v2h2l2.6 7.6-1 1.8c-.2.3-.3.7-.3 1.1
+      0 1.1.9 2 2 2h12v-2H8.4c-.1 0-.2-.1-.2-.2v-.1l.9-1.7h7.4
+      c.8 0 1.5-.4 1.8-1.2L21 7H8.2L7.3 4zM9 20
+      c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 0
+      c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+  </svg>
+</button>
 
   {cart.length > 0 && (
     <div
