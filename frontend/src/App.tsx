@@ -154,7 +154,7 @@ const order = {
           <div style={{ padding: "16px" }}>
             <h2>{product.name}</h2>
 
-            <p style={{ color: "#010101" }}>
+            <p style={{ color: "#cbd5e1" }}>
               {product.description}
             </p>
 
@@ -279,6 +279,8 @@ const order = {
   <div
     style={{
       background: "rgba(255,255,255,0.9)",
+      color: "#fff",
+      border: "1px solid #334155",
       backdropFilter: "blur(12px)",
       borderRadius: "25px",
       padding: "20px",
@@ -427,7 +429,7 @@ const order = {
   style={{
     border: "none",
     background:
-  tab === "cart"
+  tab === "shop"
     ? "linear-gradient(135deg,#229ED9,#0088cc)"
     : "transparent",
     color: tab === "shop" ? "#fff" : "#555",
@@ -520,7 +522,7 @@ padding: 0,
   style={{
     border: "none",
     background:
-  tab === "cart"
+  tab === "profile"
     ? "linear-gradient(135deg,#229ED9,#0088cc)"
     : "transparent",
     color: tab === "profile" ? "#fff" : "#555",
