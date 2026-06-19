@@ -93,16 +93,16 @@ const order = {
 
   return (
     <div
-      style={{
-        maxWidth: "500px",
-        margin: "0 auto",
-        padding: "20px",
-        background: "#ffffffb0",
-        minHeight: "100vh",
-        color: "#060606",
-       
-      }}
-    >
+  style={{
+    maxWidth: "500px",
+    margin: "0 auto",
+    padding: "20px",
+    paddingBottom: "100px",
+    background: "#ffffffb0",
+    minHeight: "100vh",
+    color: "#060606",
+  }}
+>
       <div
         style={{
           display: "flex",
@@ -210,76 +210,81 @@ const order = {
     </button>
   </div>
 )}
-{tab === "admin" && isAdmin && (
-  <div>
-    ...
-  </div>
-)}
-
 {tab === "profile" && (
   <div
-    style={{
-      marginTop: "20px",
-      background: "#fff",
-      padding: "20px",
-      borderRadius: "15px",
-    }}
-  >
-    <div
   style={{
-    textAlign: "center",
-    marginBottom: "20px",
+    marginTop: "20px",
   }}
 >
   <div
     style={{
-      width: "80px",
-      height: "80px",
-      borderRadius: "50%",
-      background: "#0088cc",
-      color: "#fff",
-      fontSize: "32px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      margin: "0 auto",
+      background: "#fff",
+      borderRadius: "25px",
+      padding: "25px",
+      textAlign: "center",
+      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
     }}
   >
-    👤
+    <div
+      style={{
+        width: "90px",
+        height: "90px",
+        borderRadius: "50%",
+        background: "#0088cc",
+        color: "#fff",
+        fontSize: "40px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        margin: "0 auto 15px",
+        fontWeight: "bold",
+      }}
+    >
+      {user?.first_name?.charAt(0) || "👤"}
+    </div>
+
+    <h2>{user?.first_name || "Пользователь"}</h2>
+
+    <p style={{ color: "#777" }}>
+      @{user?.username || "username"}
+    </p>
   </div>
 
-  <h2>{user?.first_name}</h2>
+  <div
+    style={{
+      background: "#fff",
+      borderRadius: "25px",
+      padding: "20px",
+      marginTop: "15px",
+      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+    }}
+  >
+    <p>🆔 ID: {user?.id}</p>
+
+    <p>🛒 Товаров в корзине: {cart.length}</p>
+
+    <p>💰 Сумма корзины: €{totalPrice}</p>
+  </div>
+
+  {isAdmin && (
+    <button
+      onClick={() => setTab("admin")}
+      style={{
+        width: "100%",
+        marginTop: "15px",
+        padding: "15px",
+        border: "none",
+        borderRadius: "20px",
+        background: "#0088cc",
+        color: "#fff",
+        fontSize: "18px",
+        fontWeight: "bold",
+      }}
+    >
+      ⚙️ Админ-панель
+    </button>
+  )}
 </div>
-<p>Имя: {user?.first_name}</p>
-<p>Username: @{user?.username}</p>
-<p>ID: {user?.id}</p>
-
-<p>Товаров в корзине: {cart.length}</p>
-<p>Сумма заказа: €{totalPrice}</p>
-
-    {isAdmin && (
-      <button
-        onClick={() => setTab("admin")}
-        style={{
-          width: "100%",
-          padding: "12px",
-          border: "none",
-          borderRadius: "12px",
-          background: "#0088cc",
-          color: "#fff",
-          marginTop: "10px",
-        }}
-      >
-        ⚙️ Админ-панель
-      </button>
-    )}
-  </div>
-)}
-
-{tab === "cart" && (
-  <div>
-    ...
-  </div>
 )}
       {tab === "cart" && ( 
 
@@ -369,6 +374,54 @@ const order = {
           </button>
         </div>
       )}
+      <div
+  style={{
+    position: "fixed",
+    bottom: "15px",
+    left: "15px",
+    right: "15px",
+    background: "#ffffff",
+    borderRadius: "25px",
+    display: "flex",
+    justifyContent: "space-around",
+    padding: "12px",
+    boxShadow: "0 5px 25px rgba(0,0,0,0.15)",
+    zIndex: 999,
+  }}
+>
+  <button
+    onClick={() => setTab("shop")}
+    style={{
+      border: "none",
+      background: "none",
+      fontSize: "24px",
+    }}
+  >
+    🏠
+  </button>
+
+  <button
+    onClick={() => setTab("cart")}
+    style={{
+      border: "none",
+      background: "none",
+      fontSize: "24px",
+    }}
+  >
+    🛒
+  </button>
+
+  <button
+    onClick={() => setTab("profile")}
+    style={{
+      border: "none",
+      background: "none",
+      fontSize: "24px",
+    }}
+  >
+    👤
+  </button>
+</div>
     </div>
     
   );
