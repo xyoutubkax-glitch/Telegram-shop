@@ -124,28 +124,6 @@ const order = {
         </div>
         
       </div>
-<div
-  style={{
-    display: "flex",
-    gap: "10px",
-    marginTop: "20px",
-    marginBottom: "20px",
-  }}
->
-  <button onClick={() => setTab("shop")}>
-    🛒 Магазин
-  </button>
-
-  <button onClick={() => setTab("cart")}>
-    🛒 Корзина
-  </button>
-
-  {isAdmin && (
-    <button onClick={() => setTab("admin")}>
-      ⚙️ Админ-Панель
-    </button>
-  )}
-</div>
       {tab === "shop" &&
   products.map((product) => (
         <div
@@ -230,6 +208,77 @@ const order = {
     <button style={{ width: "100%" }}>
       📦 Изменить количество
     </button>
+  </div>
+)}
+{tab === "admin" && isAdmin && (
+  <div>
+    ...
+  </div>
+)}
+
+{tab === "profile" && (
+  <div
+    style={{
+      marginTop: "20px",
+      background: "#fff",
+      padding: "20px",
+      borderRadius: "15px",
+    }}
+  >
+    <div
+  style={{
+    textAlign: "center",
+    marginBottom: "20px",
+  }}
+>
+  <div
+    style={{
+      width: "80px",
+      height: "80px",
+      borderRadius: "50%",
+      background: "#0088cc",
+      color: "#fff",
+      fontSize: "32px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "0 auto",
+    }}
+  >
+    👤
+  </div>
+
+  <h2>{user?.first_name}</h2>
+</div>
+<p>Имя: {user?.first_name}</p>
+<p>Username: @{user?.username}</p>
+<p>ID: {user?.id}</p>
+
+<p>Товаров в корзине: {cart.length}</p>
+<p>Сумма заказа: €{totalPrice}</p>
+
+    {isAdmin && (
+      <button
+        onClick={() => setTab("admin")}
+        style={{
+          width: "100%",
+          padding: "12px",
+          border: "none",
+          borderRadius: "12px",
+          background: "#0088cc",
+          color: "#fff",
+          marginTop: "10px",
+        }}
+      >
+        ⚙️ Админ-панель
+      </button>
+    )}
+  </div>
+)}
+
+{tab === "cart" && (
+  <div>
+    ...
   </div>
 )}
       {tab === "cart" && ( 
@@ -321,6 +370,7 @@ const order = {
         </div>
       )}
     </div>
+    
   );
 }
 
