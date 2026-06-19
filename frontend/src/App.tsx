@@ -110,7 +110,12 @@ const order = {
           alignItems: "center",
         }}
       >
-        <h1>🚀 VERSION</h1>
+       <div>
+  <h1 style={{ margin: 0 }}>4enko Shop</h1>
+  <p style={{ color: "#666", marginTop: "5px" }}>
+    Магазин товаров
+  </p>
+</div>
 
         <div
           style={{
@@ -377,50 +382,71 @@ const order = {
       <div
   style={{
     position: "fixed",
-    bottom: "15px",
+    bottom: "20px",
     left: "15px",
     right: "15px",
-    background: "#ffffff",
-    borderRadius: "25px",
+
+    background: "#fff",
+    borderRadius: "24px",
+
     display: "flex",
     justifyContent: "space-around",
-    padding: "12px",
-    boxShadow: "0 5px 25px rgba(0,0,0,0.15)",
+    alignItems: "center",
+
+    padding: "14px 10px",
+
+    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+
     zIndex: 999,
   }}
 >
   <button
-    onClick={() => setTab("shop")}
-    style={{
-      border: "none",
-      background: "none",
-      fontSize: "24px",
-    }}
-  >
-    🏠
-  </button>
+  onClick={() => setTab("shop")}
+  style={{
+    border: "none",
+    background: tab === "shop" ? "#0088cc" : "transparent",
+    color: tab === "shop" ? "#fff" : "#555",
+    width: "55px",
+    height: "55px",
+    borderRadius: "50%",
+    fontSize: "26px",
+    cursor: "pointer",
+  }}
+>
+  🏠
+</button>
 
   <button
-    onClick={() => setTab("cart")}
-    style={{
-      border: "none",
-      background: "none",
-      fontSize: "24px",
-    }}
-  >
-    🛒
-  </button>
+  onClick={() => setTab("cart")}
+  style={{
+    border: "none",
+    background: tab === "cart" ? "#0088cc" : "transparent",
+    color: tab === "cart" ? "#fff" : "#555",
+    width: "55px",
+    height: "55px",
+    borderRadius: "50%",
+    fontSize: "26px",
+    cursor: "pointer",
+  }}
+>
+  🛒
+</button>
 
   <button
-    onClick={() => setTab("profile")}
-    style={{
-      border: "none",
-      background: "none",
-      fontSize: "24px",
-    }}
-  >
-    👤
-  </button>
+  onClick={() => setTab("profile")}
+  style={{
+    border: "none",
+    background: tab === "profile" ? "#0088cc" : "transparent",
+    color: tab === "profile" ? "#fff" : "#555",
+    width: "55px",
+    height: "55px",
+    borderRadius: "50%",
+    fontSize: "26px",
+    cursor: "pointer",
+  }}
+>
+  👤
+</button>
 </div>
     </div>
     
