@@ -98,9 +98,9 @@ const order = {
     margin: "0 auto",
     padding: "20px",
     paddingBottom: "100px",
-    background: "#ffffffb0",
+    background: "#0f172a",
     minHeight: "100vh",
-    color: "#060606",
+    color: "#ffffff",
   }}
 >
       <div
@@ -134,7 +134,7 @@ const order = {
         <div
           key={product.id}
           style={{
-            background: "#e5e5e5bf",
+            background: "#1e293b",
             borderRadius: "20px",
             overflow: "hidden",
             boxShadow: "0 4px 20px rgba(92, 89, 89, 0.96)",
@@ -193,7 +193,7 @@ const order = {
   <div
     style={{
       marginTop: "20px",
-      background: "#fff",
+      background: "#1e293b",
       padding: "20px",
       borderRadius: "15px",
     }}
@@ -320,7 +320,7 @@ const order = {
     <div
           style={{
             marginTop: "30px",
-            background: "#ffffff",
+            background: "#1e293b",
             padding: "15px",
             borderRadius: "15px",
           }}
@@ -411,17 +411,14 @@ const order = {
     left: "15px",
     right: "15px",
 
-    background: "#fff",
+    background: "#1e293b",
+    border: "1px solid #334155",
     borderRadius: "24px",
-
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-
     padding: "14px 10px",
-
     boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-
     zIndex: 999,
   }}
 >
@@ -429,7 +426,10 @@ const order = {
   onClick={() => setTab("shop")}
   style={{
     border: "none",
-    background: tab === "shop" ? "#0088cc" : "transparent",
+    background:
+  tab === "cart"
+    ? "linear-gradient(135deg,#229ED9,#0088cc)"
+    : "transparent",
     color: tab === "shop" ? "#fff" : "#555",
     width: "55px",
     height: "55px",
@@ -461,7 +461,10 @@ padding: 0,
     onClick={() => setTab("cart")}
     style={{
       border: "none",
-      background: tab === "cart" ? "#0088cc" : "transparent",
+      background:
+      tab === "cart"
+    ? "linear-gradient(135deg,#229ED9,#0088cc)"
+    : "transparent",
       color: tab === "cart" ? "#fff" : "#555",
       width: "55px",
       height: "55px",
@@ -516,7 +519,10 @@ padding: 0,
   onClick={() => setTab("profile")}
   style={{
     border: "none",
-    background: tab === "profile" ? "#0088cc" : "transparent",
+    background:
+  tab === "cart"
+    ? "linear-gradient(135deg,#229ED9,#0088cc)"
+    : "transparent",
     color: tab === "profile" ? "#fff" : "#555",
     width: "55px",
     height: "55px",
