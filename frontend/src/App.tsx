@@ -129,8 +129,9 @@ const order = {
         </div>
         
       </div>
-      {tab === "shop" &&
-  products.map((product) => (
+      {tab === "shop" && (
+  <div className="page">
+    {products.map((product) => (
         <div
           key={product.id}
           style={{
@@ -186,6 +187,8 @@ const order = {
           </div>
         </div>
       ))}
+      </div>
+      )}
 
       {tab === "admin" && isAdmin && (
   <div
@@ -216,11 +219,12 @@ const order = {
   </div>
 )}
 {tab === "profile" && (
-  <div
-  style={{
-    marginTop: "20px",
-  }}
->
+  <div className="page">
+    <div
+      style={{
+        marginTop: "20px",
+      }}
+    >
   <div
     style={{
       background: "#fff",
@@ -290,10 +294,11 @@ const order = {
     </button>
   )}
 </div>
+</div>
 )}
-      {tab === "cart" && ( 
-
-        <div
+      {tab === "cart" && (
+  <div className="page">
+    <div
           style={{
             marginTop: "30px",
             background: "#ffffff",
@@ -377,6 +382,7 @@ const order = {
           >
             Очистить корзину
           </button>
+        </div>
         </div>
       )}
       <div
