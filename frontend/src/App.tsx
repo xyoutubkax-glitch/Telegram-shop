@@ -226,14 +226,18 @@ const order = {
       }}
     >
   <div
-    style={{
-      background: "#fff",
-      borderRadius: "25px",
-      padding: "25px",
-      textAlign: "center",
-      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-    }}
-  >
+  style={{
+    background:
+      "linear-gradient(135deg, #0088cc 0%, #00c6ff 100%)",
+    borderRadius: "30px",
+    padding: "30px",
+    textAlign: "center",
+    color: "#fff",
+    boxShadow: "0 10px 30px rgba(0,136,204,0.35)",
+    position: "relative",
+    overflow: "hidden",
+  }}
+>
     <div
       style={{
         width: "90px",
@@ -252,16 +256,31 @@ const order = {
       {user?.first_name?.charAt(0) || "👤"}
     </div>
 
-    <h2>{user?.first_name || "Пользователь"}</h2>
+    <h2
+  style={{
+    margin: 0,
+    fontSize: "28px",
+    fontWeight: "700",
+    color: "#fff",
+  }}
+>
+  {user?.first_name || "Пользователь"}
+</h2>
 
-    <p style={{ color: "#777" }}>
+    <p
+  style={{
+    color: "rgba(255,255,255,0.8)",
+    marginTop: "8px",
+  }}
+>
       @{user?.username || "username"}
     </p>
   </div>
 
   <div
     style={{
-      background: "#fff",
+      background: "rgba(255,255,255,0.9)",
+      backdropFilter: "blur(12px)",
       borderRadius: "25px",
       padding: "20px",
       marginTop: "15px",
@@ -282,10 +301,11 @@ const order = {
         width: "100%",
         marginTop: "15px",
         padding: "15px",
-        border: "none",
         borderRadius: "20px",
-        background: "#0088cc",
+        background: "rgba(255,255,255,0.25)",
+        backdropFilter: "blur(10px)",
         color: "#fff",
+        border: "3px solid rgba(255,255,255,0.4)",
         fontSize: "18px",
         fontWeight: "bold",
       }}
