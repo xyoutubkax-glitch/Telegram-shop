@@ -110,7 +110,7 @@ const order = {
           alignItems: "center",
         }}
       >
-        <h1>🛒 Мой магазин</h1>
+        <h1>🚀 VERSION</h1>
 
         <div
           style={{
