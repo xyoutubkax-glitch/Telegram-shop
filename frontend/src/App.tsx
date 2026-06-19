@@ -278,21 +278,30 @@ const order = {
 
   <div
     style={{
-      background: "rgba(255,255,255,0.9)",
-      color: "#fff",
-      border: "1px solid #334155",
-      backdropFilter: "blur(12px)",
-      borderRadius: "25px",
-      padding: "20px",
-      marginTop: "15px",
-      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-    }}
+  background: "#1e293b",
+  border: "1px solid #334155",
+  borderRadius: "25px",
+  padding: "20px",
+  marginTop: "15px",
+  boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+}}
   >
-    <p>🆔 ID: {user?.id}</p>
+    <p style={{ color: "#cbd5e1" }}>
+  🆔 ID: {user?.id}
+</p>
 
-    <p>🛒 Товаров в корзине: {cart.length}</p>
+<p style={{ color: "#cbd5e1" }}>
+  🛒 Товаров в корзине: {cart.length}
+</p>
 
-    <p>💰 Сумма корзины: €{totalPrice}</p>
+<p
+  style={{
+    color: "#38bdf8",
+    fontWeight: "bold",
+  }}
+>
+  💰 Сумма корзины: €{totalPrice}
+</p>
   </div>
 
   {isAdmin && (
