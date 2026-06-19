@@ -410,6 +410,10 @@ const order = {
     height: "55px",
     borderRadius: "50%",
     cursor: "pointer",
+    display: "flex",
+alignItems: "center",
+justifyContent: "center",
+padding: 0,
   }}
 >
   <svg
@@ -433,6 +437,10 @@ const order = {
     height: "55px",
     borderRadius: "50%",
     cursor: "pointer",
+    display: "flex",
+alignItems: "center",
+justifyContent: "center",
+padding: 0,
   }}
 >
   <svg
@@ -461,6 +469,10 @@ const order = {
     height: "55px",
     borderRadius: "50%",
     cursor: "pointer",
+    display: "flex",
+alignItems: "center",
+justifyContent: "center",
+padding: 0,
   }}
 >
   <svg
