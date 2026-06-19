@@ -409,11 +409,18 @@ const order = {
     width: "55px",
     height: "55px",
     borderRadius: "50%",
-    fontSize: "26px",
     cursor: "pointer",
   }}
 >
-  🏠
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M12 3L3 10h2v10h5v-6h4v6h5V10h2z"/>
+  </svg>
 </button>
 
   <button
@@ -425,11 +432,23 @@ const order = {
     width: "55px",
     height: "55px",
     borderRadius: "50%",
-    fontSize: "26px",
     cursor: "pointer",
   }}
 >
-  🛒
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 
+             2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2
+             s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.2 14h9.9
+             c.8 0 1.5-.5 1.8-1.2l3-6.8H6.2L5.3 4H2v2h2
+             l3.6 7.6-1.4 2.5c-.1.2-.2.5-.2.9
+             0 1.1.9 2 2 2h12v-2H8.4l.8-1z"/>
+  </svg>
 </button>
 
   <button
@@ -441,11 +460,20 @@ const order = {
     width: "55px",
     height: "55px",
     borderRadius: "50%",
-    fontSize: "26px",
     cursor: "pointer",
   }}
 >
-  👤
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M12 12c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5
+             2.2 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3
+             c0-3.3-6.7-5-10-5z"/>
+  </svg>
 </button>
 </div>
     </div>
