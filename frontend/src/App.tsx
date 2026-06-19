@@ -125,7 +125,6 @@ const order = {
             borderRadius: "20px",
           }}
         >
-          Корзина: {cart.length}
         </div>
         
       </div>
