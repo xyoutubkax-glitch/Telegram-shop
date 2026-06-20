@@ -407,7 +407,7 @@ onTouchEnd={(e) => {
         Пока нет заказов
       </div>
     ) : (
-      orders.map((order, index) => (
+      orders.map((_orders, index) => (
         <div key={index}>
           ...
         </div>
