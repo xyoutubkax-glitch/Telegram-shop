@@ -627,22 +627,20 @@ padding: 0,
   style={{
     border: "none",
     background:
-  tab === "profile"
-    ? "linear-gradient(135deg,#229ED9,#0088cc)"
-    : "transparent",
+      tab === "profile"
+        ? "linear-gradient(135deg,#229ED9,#0088cc)"
+        : "transparent",
     color: tab === "profile" ? "#fff" : "#555",
     width: "55px",
     height: "55px",
     borderRadius: "50%",
     cursor: "pointer",
     display: "flex",
-alignItems: "center",
-justifyContent: "center",
-padding: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 0,
   }}
-  >
-    ◀️Назад
-    </button>
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -654,8 +652,7 @@ padding: 0,
              2.2 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3
              c0-3.3-6.7-5-10-5z"/>
   </svg>
-  <button>
-  </button>
+</button>
 </div>
 </div>
 );
