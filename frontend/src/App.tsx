@@ -132,15 +132,18 @@ const order = {
   <div className="page">
     {products.map((product) => (
         <div
-          key={product.id}
-          style={{
-            background: "#1e293b",
-            borderRadius: "20px",
-            overflow: "hidden",
-            boxShadow: "0 4px 20px rgba(92, 89, 89, 0.96)",
-            marginTop: "20px",
-          }}
-        >
+  key={product.id}
+  className="product-card"
+  style={{
+    background: "#1e293b",
+    borderRadius: "20px",
+    overflow: "hidden",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+    marginTop: "20px",
+    transition: "all 0.3s ease",
+    animation: "fadeUp 0.5s ease",
+  }}
+>
           <img
             src={product.image}
             alt={product.name}
@@ -179,6 +182,8 @@ const order = {
                 color: "white",
                 fontSize: "16px",
                 cursor: "pointer",
+                transition: "0.2s",
+                transform: "scale(1)",
               }}
             >
               Добавить в корзину
