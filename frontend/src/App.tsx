@@ -363,7 +363,6 @@ onTouchEnd={(e) => {
     cursor: "pointer",
   }}
 >
-  
   📦 История заказов
 </button>
 
@@ -391,8 +390,12 @@ onTouchEnd={(e) => {
 )}
 {tab === "orders" && (
   <div className="page">
+    <button
+    onClick={() => setTab("profile")}
+    >
+    ◀️ Назад
+    </button>
     <h2>📦 История заказов</h2>
-
     {orders.length === 0 ? (
       <div
         style={{
@@ -615,7 +618,11 @@ padding: 0,
       }}
     >
       {cart.length}
-<button
+
+    </div>
+  )}
+</div>
+  <button
   onClick={() => setTab("profile")}
   style={{
     border: "none",
@@ -634,6 +641,8 @@ justifyContent: "center",
 padding: 0,
   }}
   >
+    ◀️Назад
+    </button>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -645,11 +654,9 @@ padding: 0,
              2.2 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3
              c0-3.3-6.7-5-10-5z"/>
   </svg>
-</button>
-    </div>
-  )}
+  <button>
+  </button>
 </div>
-  </div>
 </div>
 );
 }
