@@ -257,22 +257,44 @@ onTouchEnd={(e) => {
   }}
 >
     <div
+  style={{
+    width: "100px",
+    height: "100px",
+    borderRadius: "50%",
+    overflow: "hidden",
+    margin: "0 auto 15px",
+    border: "4px solid rgba(255,255,255,0.3)",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+  }}
+>
+  {user?.photo_url ? (
+    <img
+      src={user.photo_url}
+      alt="avatar"
       style={{
-        width: "90px",
-        height: "90px",
-        borderRadius: "50%",
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      }}
+    />
+  ) : (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
         background: "#0088cc",
         color: "#fff",
-        fontSize: "40px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        margin: "0 auto 15px",
+        fontSize: "40px",
         fontWeight: "bold",
       }}
     >
       {user?.first_name?.charAt(0) || "👤"}
     </div>
+  )}
+</div>
 
     <h2
   style={{
