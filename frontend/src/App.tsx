@@ -362,6 +362,7 @@ onTouchEnd={(e) => {
     cursor: "pointer",
   }}
 >
+  
   📦 История заказов
 </button>
 
@@ -647,6 +648,27 @@ justifyContent: "center",
 padding: 0,
   }}
 >
+  {tab === "orders" && (
+  <div className="page">
+    <h2>📦 История заказов</h2>
+
+    <div
+      style={{
+        background: "#1e293b",
+        borderRadius: "20px",
+        padding: "20px",
+        marginTop: "15px",
+      }}
+    >
+      <h3>Заказ #1001</h3>
+      <p>LED гирлянда</p>
+      <p>€29</p>
+      <p style={{ color: "#22c55e" }}>
+        Выполнен
+      </p>
+    </div>
+  </div>
+)}
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
