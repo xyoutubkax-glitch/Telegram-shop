@@ -98,7 +98,7 @@ const order = {
     margin: "0 auto",
     padding: "20px",
     paddingBottom: "100px",
-    background: "#0f172a",
+    background: "linear-gradient(135deg, #0f172a 0%, #111827 50%, #1e293b 100%)",
     minHeight: "100vh",
     color: "#ffffff",
   }}
@@ -135,14 +135,17 @@ const order = {
   key={product.id}
   className="product-card"
   style={{
-    background: "#1e293b",
-    borderRadius: "20px",
-    overflow: "hidden",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
-    marginTop: "20px",
-    transition: "all 0.3s ease",
-    animation: "fadeUp 0.5s ease",
-  }}
+  background: "rgba(255,255,255,0.08)",
+  backdropFilter: "blur(18px)",
+  WebkitBackdropFilter: "blur(18px)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: "24px",
+  overflow: "hidden",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+  marginTop: "20px",
+
+  transition: "all 0.3s ease",
+}}
 >
           <img
             src={product.image}
@@ -198,9 +201,13 @@ const order = {
   <div
     style={{
       marginTop: "20px",
-      background: "#1e293b",
+      background: "rgba(255,255,255,0.08)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: "25px",
       padding: "20px",
-      borderRadius: "15px",
+    
     }}
   >
     <h2>⚙️ Панель администратора</h2>
@@ -283,8 +290,10 @@ const order = {
 
   <div
     style={{
-  background: "#1e293b",
-  border: "1px solid #334155",
+  background: "rgba(30,41,59,0.7)",
+  backdropFilter: "blur(20px)",
+  WebkitBackdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.08)",
   borderRadius: "25px",
   padding: "20px",
   marginTop: "15px",
@@ -336,9 +345,10 @@ const order = {
     <div
           style={{
             marginTop: "30px",
-            background: "#1e293b",
-            padding: "15px",
-            borderRadius: "15px",
+           background: "rgba(255,255,255,0.08)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          border: "1px solid rgba(255,255,255,0.1)",
           }}
         >
           <h2>Корзина</h2>
