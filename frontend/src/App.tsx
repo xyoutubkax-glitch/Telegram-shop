@@ -615,11 +615,7 @@ padding: 0,
       }}
     >
       {cart.length}
-    </div>
-  )}
-</div>
-  </div>
-  <button
+<button
   onClick={() => setTab("profile")}
   style={{
     border: "none",
@@ -650,6 +646,10 @@ padding: 0,
              c0-3.3-6.7-5-10-5z"/>
   </svg>
 </button>
+    </div>
+  )}
+</div>
+  </div>
 </div>
 );
 }
