@@ -132,6 +132,13 @@ const order = {
   <div className="page">
     {products.map((product) => (
         <div
+        onTouchStart={(e) => {
+  e.currentTarget.style.transform = "scale(0.98)";
+}}
+
+onTouchEnd={(e) => {
+  e.currentTarget.style.transform = "scale(1)";
+}}
   key={product.id}
   className="product-card"
   style={{
