@@ -9,7 +9,10 @@ type Product = {
 };
 
 function App() {
-const [orders] = useState<any[]>([]);
+const [orders, setOrders] = useState<any[]>(() => {
+  const saved = localStorage.getItem("orders");
+  return saved ? JSON.parse(saved) : [];
+});
 const [tab, setTab] = useState("shop");
 const tg = (window as any).Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
@@ -82,6 +85,22 @@ const order = {
     }
 
     alert("Заказ отправлен!");
+    const newOrder = {
+  id: Date.now(),
+  total: totalPrice,
+  date: new Date().toLocaleString(),
+  items: cart,
+  status: "В обработке",
+};
+
+const updatedOrders = [...orders, newOrder];
+
+setOrders(updatedOrders);
+
+localStorage.setItem(
+  "orders",
+  JSON.stringify(updatedOrders)
+);
 
     setCart([]);
     setName("");
@@ -411,11 +430,29 @@ onTouchEnd={(e) => {
       </div>
     ) : (
      orders.map((order, index) => (
-  <div key={index}>
-    <h3>Заказ #{index + 1}</h3>
+  <div
+  key={index}
+  style={{
+    background: "rgba(255,255,255,0.06)",
+    backdropFilter: "blur(12px)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: "20px",
+    padding: "20px",
+    marginTop: "15px",
+  }}
+>
+    <h3>Заказ #{order.id}</h3>
 
     <p>💰 Сумма: €{order.total}</p>
     <p>📅 {order.date}</p>
+    <p
+    style={{
+      color:"#22c55e",
+      fontWeight: "bold",
+    }}
+    >
+    {order.status}
+    </p>
   </div>
 ))
     )}
