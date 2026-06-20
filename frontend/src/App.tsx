@@ -407,11 +407,14 @@ onTouchEnd={(e) => {
         Пока нет заказов
       </div>
     ) : (
-      orders.map((_orders, index) => (
-        <div key={index}>
-          ...
-        </div>
-      ))
+     orders.map((order, index) => (
+  <div key={index}>
+    <h3>Заказ #{index + 1}</h3>
+
+    <p>💰 Сумма: €{order.total}</p>
+    <p>📅 {order.date}</p>
+  </div>
+))
     )}
   </div>
 )}
