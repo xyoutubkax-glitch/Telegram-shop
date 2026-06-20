@@ -149,7 +149,12 @@ localStorage.setItem(
         
       </div>
       {tab === "shop" && (
-  <div className="page">
+<div
+  className="page"
+  style={{
+    animation: "fadeIn 0.35s ease",
+  }}
+>
     {products.map((product) => (
         <div
         onTouchStart={(e) => {
@@ -257,7 +262,12 @@ onTouchEnd={(e) => {
   </div>
 )}
 {tab === "profile" && (
-  <div className="page">
+  <div
+  className="page"
+  style={{
+    animation: "fadeIn 0.35s ease",
+  }}
+>
     <div
       style={{
         marginTop: "20px",
@@ -408,7 +418,12 @@ onTouchEnd={(e) => {
 </div>
 )}
 {tab === "orders" && (
-  <div className="page">
+  <div
+  className="page"
+  style={{
+    animation: "fadeIn 0.35s ease",
+  }}
+>
     <button
     onClick={() => setTab("profile")}
     >
@@ -459,7 +474,12 @@ onTouchEnd={(e) => {
   </div>
 )}
       {tab === "cart" && (
-  <div className="page">
+  <div
+  className="page"
+  style={{
+    animation: "fadeIn 0.35s ease",
+  }}
+>
     <div
           style={{
             marginTop: "30px",
@@ -574,6 +594,15 @@ onTouchEnd={(e) => {
   tab === "shop"
     ? "linear-gradient(135deg,#229ED9,#0088cc)"
     : "transparent",
+    boxShadow:
+  tab === "shop"
+    ? "0 0 20px rgba(34,158,217,0.7)"
+    : "none",
+    transition: "all 0.3s ease",
+    transform: 
+    tab === "shop"
+    ? "scale(1.05)"
+    : "scale(1)",
     color: tab === "shop" ? "#fff" : "#555",
     width: "55px",
     height: "55px",
@@ -609,6 +638,15 @@ padding: 0,
       tab === "cart"
     ? "linear-gradient(135deg,#229ED9,#0088cc)"
     : "transparent",
+    boxShadow:
+  tab === "cart"
+    ? "0 0 20px rgba(34,158,217,0.7)"
+    : "none",
+    transition: "all 0.3s ease",
+    transform: 
+    tab === "cart"
+    ? "scale(1.05)"
+    : "scale(1)",
       color: tab === "cart" ? "#fff" : "#555",
       width: "55px",
       height: "55px",
@@ -667,6 +705,15 @@ padding: 0,
       tab === "profile"
         ? "linear-gradient(135deg,#229ED9,#0088cc)"
         : "transparent",
+        boxShadow:
+  tab === "profile"
+    ? "0 0 20px rgba(34,158,217,0.7)"
+    : "none",
+    transition: "all 0.3s ease",
+    transform: 
+    tab === "profile"
+    ? "scale(1.05)"
+    : "scale(1)",
     color: tab === "profile" ? "#fff" : "#555",
     width: "55px",
     height: "55px",
