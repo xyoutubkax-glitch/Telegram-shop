@@ -9,7 +9,7 @@ type Product = {
 };
 
 function App() {
-const [orders, setOrders] = useState<any[]>([]);
+const [orders] = useState<any[]>([]);
 const [tab, setTab] = useState("shop");
 const tg = (window as any).Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
