@@ -9,6 +9,7 @@ type Product = {
 };
 
 function App() {
+const [orders, setOrders] = useState<any[]>([]);
 const [tab, setTab] = useState("shop");
 const tg = (window as any).Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
@@ -346,6 +347,23 @@ onTouchEnd={(e) => {
   💰 Сумма корзины: €{totalPrice}
 </p>
   </div>
+  <button
+  onClick={() => setTab("orders")}
+  style={{
+    width: "100%",
+    marginTop: "15px",
+    padding: "14px",
+    border: "none",
+    borderRadius: "18px",
+    background: "linear-gradient(135deg,#229ED9,#0088cc)",
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: "16px",
+    cursor: "pointer",
+  }}
+>
+  📦 История заказов
+</button>
 
   {isAdmin && (
     <button
@@ -569,6 +587,46 @@ padding: 0,
     </div>
   )}
 </div>
+{tab === "orders" && (
+  <div className="page">
+    <h2>📦 История заказов</h2>
+
+    {orders.length === 0 ? (
+      <div
+        style={{
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: "20px",
+          padding: "20px",
+          textAlign: "center",
+          marginTop: "15px",
+        }}
+      >
+        Пока нет заказов
+      </div>
+    ) : (
+      orders.map((order, index) => (
+        <div
+          key={index}
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "20px",
+            padding: "20px",
+            marginTop: "15px",
+          }}
+        >
+          <h3>Заказ #{index + 1}</h3>
+
+          <p>💰 Сумма: €{order.total}</p>
+
+          <p>📅 {order.date}</p>
+        </div>
+      ))
+    )}
+  </div>
+)}
 
   <button
   onClick={() => setTab("profile")}
