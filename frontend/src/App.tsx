@@ -40,8 +40,10 @@ const [selectedCategory, setSelectedCategory] =
   useState("Все");
 const [orders, setOrders] = useState<any[]>(() => {
   const saved = localStorage.getItem("orders");
+
   return saved ? JSON.parse(saved) : [];
 });
+
 const [tab, setTab] = useState("shop");
 const tg = (window as any).Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
@@ -154,6 +156,33 @@ const adminButton = {
   backdropFilter: "blur(10px)",
   transition: "all 0.3s ease",
 };
+const categories = [
+  {
+    id: 1,
+    name: "🧪 Жидкости",
+    image: "/images/categories/liquid.jpg",
+  },
+  {
+    id: 2,
+    name: "💨 Одноразки",
+    image: "/images/categories/disposable.jpg",
+  },
+  {
+    id: 3,
+    name: "🔋 Под-системы",
+    image: "/images/categories/pod.jpg",
+  },
+  {
+    id: 4,
+    name: "⚙️ Испарители",
+    image: "/images/categories/coils.jpg",
+  },
+  {
+    id: 5,
+    name: "Никотиновые паучи(снюс)",
+    image: "/images/categories/accessories.jpg",
+  },
+];
 const filteredProducts =
   selectedCategory === "Все"
     ? products
@@ -214,43 +243,95 @@ const filteredProducts =
     paddingBottom: "10px",
   }}
 >
-  <button
-    onClick={() => setSelectedCategory("Все")}
+  {categories.map((category) => (
+  <div
+    key={category.id}
+    onClick={() => setSelectedCategory(category.name)}
     style={{
-      minWidth: "120px",
-      padding: "10px",
-      borderRadius: "16px",
-      border: "none",
-      background:
-        selectedCategory === "Все"
-          ? "#229ED9"
-          : "#1e293b",
-      color: "#fff",
+      minWidth: "160px",
+      height: "180px",
+      borderRadius: "24px",
+      overflow: "hidden",
+      position: "relative",
+      cursor: "pointer",
+      border:
+        selectedCategory === category.name
+          ? "3px solid #229ED9"
+          : "2px solid rgba(255,255,255,0.08)",
     }}
   >
-    Все
-  </button>
-
-  {categories.map((category) => (
-    <button
-      key={category.id}
-      onClick={() =>
-        setSelectedCategory(category.name)
-      }
+    <img
+      src={category.image}
+      alt={category.name}
       style={{
-        minWidth: "140px",
-        padding: "10px",
-        borderRadius: "16px",
-        border: "none",
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      }}
+    />
+
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: "12px",
         background:
-          selectedCategory === category.name
-            ? "#229ED9"
-            : "#1e293b",
+          "linear-gradient(transparent, rgba(0,0,0,0.8))",
         color: "#fff",
+        fontWeight: "700",
+        fontSize: "18px",
       }}
     >
       {category.name}
-    </button>
+    </div>
+  </div>
+))}
+  {categories.map((category) => (
+    <div
+      key={category.id}
+      onClick={() => setSelectedCategory(category.name)}
+      style={{
+        minWidth: "160px",
+        height: "180px",
+        borderRadius: "24px",
+        overflow: "hidden",
+        position: "relative",
+        cursor: "pointer",
+        border:
+          selectedCategory === category.name
+            ? "3px solid #229ED9"
+            : "2px solid rgba(255,255,255,0.08)",
+      }}
+    >
+      <img
+        src={category.image}
+        alt={category.name}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          padding: "12px",
+          background:
+            "linear-gradient(transparent, rgba(0,0,0,0.8))",
+          color: "#fff",
+          fontWeight: "700",
+          fontSize: "18px",
+        }}
+      >
+        {category.name}
+      </div>
+    </div>
   ))}
 </div>
     {filteredProducts.map((product) => (
