@@ -216,55 +216,33 @@ const filteredProducts =
     paddingBottom: "10px",
   }}
 >
-  {categories.map((category) => (
   <div
-    key={category.id}
-    onClick={() => setSelectedCategory(category.name)}
+    onClick={() => setSelectedCategory("Все")}
     style={{
       minWidth: "160px",
       height: "180px",
       borderRadius: "24px",
-      overflow: "hidden",
-      position: "relative",
-      cursor: "pointer",
+      background: "#1e293b",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#fff",
+      fontWeight: "bold",
       border:
-        selectedCategory === category.name
+        selectedCategory === "Все"
           ? "3px solid #229ED9"
           : "2px solid rgba(255,255,255,0.08)",
     }}
   >
-    <img
-      src={category.image}
-      alt={category.name}
-      style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-      }}
-    />
-
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        padding: "12px",
-        background:
-          "linear-gradient(transparent, rgba(0,0,0,0.8))",
-        color: "#fff",
-        fontWeight: "700",
-        fontSize: "18px",
-      }}
-    >
-      {category.name}
-    </div>
+    Все товары
   </div>
-))}
+
   {categories.map((category) => (
     <div
       key={category.id}
-      onClick={() => setSelectedCategory(category.name)}
+      onClick={() =>
+        setSelectedCategory(category.name)
+      }
       style={{
         minWidth: "160px",
         height: "180px",
@@ -299,7 +277,6 @@ const filteredProducts =
             "linear-gradient(transparent, rgba(0,0,0,0.8))",
           color: "#fff",
           fontWeight: "700",
-          fontSize: "18px",
         }}
       >
         {category.name}
