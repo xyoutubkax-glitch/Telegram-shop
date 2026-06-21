@@ -208,12 +208,14 @@ const filteredProducts =
   }}
 >
   <div
-  style={{
+  className="categories-scroll"
+  style={{ 
     display: "flex",
-    gap: "12px",
+    gap: "10px",
     overflowX: "auto",
     marginTop: "20px",
     paddingBottom: "10px",
+    scrollbarWidth: "none",
   }}
 >
   <div
@@ -236,7 +238,46 @@ const filteredProducts =
   >
     Все товары
   </div>
+<div
+  onClick={() => setSelectedCategory("Все")}
+  style={{
+    minWidth: "110px",
+    height: "130px",
+    borderRadius: "20px",
+    cursor: "pointer",
 
+    background:
+      selectedCategory === "Все"
+        ? "linear-gradient(135deg,#229ED9,#00c6ff)"
+        : "linear-gradient(135deg,#1e293b,#0f172a)",
+
+    border:
+      selectedCategory === "Все"
+        ? "3px solid #38bdf8"
+        : "1px solid rgba(255,255,255,0.08)",
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+
+    color: "#fff",
+    fontWeight: "700",
+  }}
+>
+  <div
+    style={{
+      fontSize: "42px",
+      marginBottom: "8px",
+    }}
+  >
+    🛍
+  </div>
+
+  <div>
+    Все товары
+  </div>
+</div>
   {categories.map((category) => (
     <div
       key={category.id}

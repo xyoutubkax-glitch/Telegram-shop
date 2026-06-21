@@ -41,3 +41,6 @@
     transform: translateY(0);
   }
 }
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
