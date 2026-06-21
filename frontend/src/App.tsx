@@ -110,9 +110,21 @@ localStorage.setItem(
     alert("Ошибка отправки заказа");
   }
 };
-
+const adminButton = {
+  width: "100%",
+  padding: "18px",
+  borderRadius: "18px",
+  border: "1px solid rgba(255,255,255,0.08)",
+  background: "rgba(255,255,255,0.05)",
+  color: "#fff",
+  fontSize: "16px",
+  fontWeight: "600",
+  cursor: "pointer",
+  backdropFilter: "blur(10px)",
+  transition: "all 0.3s ease",
+};
   return (
-    <div
+  <div
   style={{
     maxWidth: "500px",
     margin: "0 auto",
@@ -230,35 +242,86 @@ onTouchEnd={(e) => {
       )}
 
       {tab === "admin" && isAdmin && (
-  <div
-    style={{
-      marginTop: "20px",
-      background: "rgba(255,255,255,0.08)",
-      backdropFilter: "blur(20px)",
-      WebkitBackdropFilter: "blur(20px)",
-      border: "1px solid rgba(255,255,255,0.08)",
-      borderRadius: "25px",
-      padding: "20px",
-    
-    }}
-  >
-    <h2>⚙️ Панель администратора</h2>
+  <div className="page">
+    <div
+      style={{
+        background: "rgba(255,255,255,0.08)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "30px",
+        padding: "25px",
+        marginTop: "20px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+      }}
+    >
+      <h2
+        style={{
+          marginTop: 0,
+          marginBottom: "20px",
+          textAlign: "center",
+        }}
+      >
+        ⚙️ Панель администратора
+      </h2>
 
-    <button style={{ width: "100%", marginBottom: "10px" }}>
-      ➕ Добавить товар
-    </button>
+      <div
+        style={{
+          display: "grid",
+          gap: "12px",
+        }}
+      >
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          ➕ Добавить товар
+        </button>
 
-    <button style={{ width: "100%", marginBottom: "10px" }}>
-      ✏️ Редактировать товар
-    </button>
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          ✏️ Редактировать товар
+        </button>
 
-    <button style={{ width: "100%", marginBottom: "10px" }}>
-      🗑 Удалить товар
-    </button>
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          🗑 Удалить товар
+        </button>
 
-    <button style={{ width: "100%" }}>
-      📦 Изменить количество
-    </button>
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          📦 Изменить количество
+        </button>
+
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          📑 Заказы
+        </button>
+      </div>
+    </div>
   </div>
 )}
 {tab === "profile" && (
