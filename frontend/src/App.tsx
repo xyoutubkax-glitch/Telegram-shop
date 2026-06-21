@@ -29,6 +29,19 @@ const isAdmin = user?.id === 7130132807;
 
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [newProductName, setNewProductName] =
+  useState("");
+
+const [newProductPrice, setNewProductPrice] =
+  useState("");
+
+const [newProductDescription, setNewProductDescription] =
+  useState("");
+
+const [newProductCategory, setNewProductCategory] =
+  useState("Жидкости");
+  const [newProductImage, setNewProductImage] =
+  useState("");
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -394,14 +407,15 @@ onTouchEnd={(e) => {
         }}
       >
         <button
-          style={{
-            ...adminButton,
-            background:
-              "linear-gradient(135deg,#229ED9,#0088cc)",
-          }}
-        >
-          ➕ Добавить товар
-        </button>
+  onClick={() => setTab("add-product")}
+  style={{
+    ...adminButton,
+    background:
+      "linear-gradient(135deg,#229ED9,#0088cc)",
+  }}
+>
+  ➕ Добавить товар
+</button>
 
         <button
           style={{
@@ -444,6 +458,94 @@ onTouchEnd={(e) => {
         </button>
       </div>
     </div>
+  </div>
+)}
+{tab === "add-product" && isAdmin && (
+  <div className="page">
+
+    <button
+      onClick={() => setTab("admin")}
+    >
+      ◀️ Назад
+    </button>
+
+    <h2>Добавить товар</h2>
+
+    <input
+      placeholder="Название"
+      value={newProductName}
+      onChange={(e) =>
+        setNewProductName(e.target.value)
+      }
+    />
+<input
+  type="file"
+  accept="image/*"
+  onChange={(e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setNewProductImage(
+        reader.result as string
+      );
+    };
+
+    reader.readAsDataURL(file);
+  }}
+/>
+<select
+  value={newProductCategory}
+  onChange={(e) =>
+    setNewProductCategory(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginTop: "10px",
+    borderRadius: "12px",
+  }}
+>
+  <option>Жидкости</option>
+  <option>Одноразки</option>
+  <option>Под-системы</option>
+  <option>Испарители</option>
+  <option>Никотиновые паучи(снюс)</option>
+</select>
+{newProductImage && (
+  <img
+    src={newProductImage}
+    alt="preview"
+    style={{
+      width: "100%",
+      maxHeight: "250px",
+      objectFit: "cover",
+      borderRadius: "20px",
+      marginTop: "15px",
+    }}
+  />
+)}
+    <input
+      placeholder="Цена"
+      value={newProductPrice}
+      onChange={(e) =>
+        setNewProductPrice(e.target.value)
+      }
+    />
+
+    <textarea
+      placeholder="Описание"
+      value={newProductDescription}
+      onChange={(e) =>
+        setNewProductDescription(
+          e.target.value
+        )
+      }
+    />
+
   </div>
 )}
 {tab === "profile" && (
