@@ -218,26 +218,6 @@ const filteredProducts =
     scrollbarWidth: "none",
   }}
 >
-  <div
-    onClick={() => setSelectedCategory("Все")}
-    style={{
-      minWidth: "110px",
-      height: "130px",
-      borderRadius: "24px",
-      background: "#1e293b",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "#fff",
-      fontWeight: "bold",
-      border:
-        selectedCategory === "Все"
-          ? "3px solid #229ED9"
-          : "2px solid rgba(255,255,255,0.08)",
-    }}
-  >
-    Все товары
-  </div>
 <div
   onClick={() => setSelectedCategory("Все")}
   style={{
@@ -286,7 +266,7 @@ const filteredProducts =
       }
       style={{
         minWidth: "110px",
-        height: "130",
+        height: "130px",
         borderRadius: "24px",
         overflow: "hidden",
         position: "relative",
