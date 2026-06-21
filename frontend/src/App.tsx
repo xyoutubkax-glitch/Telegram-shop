@@ -31,7 +31,7 @@ const categories = [
   },
   {
     id: 5,
-    name: "Комплектующие",
+    name: "Никотиновые паучи(снюс)",
     image: "/categories/parts.jpg",
   },
 ];
