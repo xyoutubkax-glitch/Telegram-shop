@@ -47,17 +47,27 @@ const [newProductCategory, setNewProductCategory] =
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "Красная LED гирлянда",
-      price: 29,
-      image: "/images/miside.jpg",
-      description: "Яркая декоративная подсветка для комнаты",
-      category: "Одноразки",
+  const [products, setProducts] = useState<Product[]>(
+  () => {
+    const saved =
+      localStorage.getItem("products");
 
-    },
-  ];
+    if (saved) {
+      return JSON.parse(saved);
+    }
+
+    return [
+      {
+        id: 1,
+        name: "Тестовый товар",
+        price: 10,
+        image: "/images/test.jpg",
+        description: "Описание",
+        category: "Одноразки",
+      },
+    ];
+  }
+);
 
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
@@ -169,13 +179,42 @@ const categories = [
     image: "/images/categories/accessories.jpg",
   },
 ];
+const saveProduct = () => {
+  const product: Product = {
+    id: Date.now(),
+    name: newProductName,
+    price: Number(newProductPrice),
+    image: newProductImage,
+    description: newProductDescription,
+    category: newProductCategory,
+  };
+
+  const updatedProducts = [
+    ...products,
+    product,
+  ];
+
+  setProducts(updatedProducts);
+
+  localStorage.setItem(
+    "products",
+    JSON.stringify(updatedProducts)
+  );
+
+  alert("Товар добавлен");
+
+  setNewProductName("");
+  setNewProductPrice("");
+  setNewProductDescription("");
+  setNewProductImage("");
+};
 const filteredProducts =
   selectedCategory === "Все"
     ? products
     : products.filter(
         (product) =>
           product.category === selectedCategory
-      );
+      );  
   return (
   <div
   style={{
@@ -186,6 +225,7 @@ const filteredProducts =
     background: "linear-gradient(135deg, #0f172a 0%, #111827 50%, #1e293b 100%)",
     minHeight: "100vh",
     color: "#ffffff",
+    
   }}
 >
       <div
@@ -545,6 +585,24 @@ onTouchEnd={(e) => {
         )
       }
     />
+    <button
+  onClick={saveProduct}
+  style={{
+    width: "100%",
+    padding: "14px",
+    marginTop: "15px",
+    border: "none",
+    borderRadius: "16px",
+    background:
+      "linear-gradient(135deg,#22c55e,#16a34a)",
+    color: "#fff",
+    fontSize: "16px",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  ✅ Сохранить товар
+</button>
 
   </div>
 )}
