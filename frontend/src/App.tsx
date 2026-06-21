@@ -6,9 +6,38 @@ type Product = {
   price: number;
   image: string;
   description: string;
+  category: string;
 };
-
+const categories = [
+  {
+    id: 1,
+    name: "Жидкости",
+    image: "/categories/liquids.jpg",
+  },
+  {
+    id: 2,
+    name: "Одноразки",
+    image: "/categories/disposable.jpg",
+  },
+  {
+    id: 3,
+    name: "Под-системы",
+    image: "/categories/pods.jpg",
+  },
+  {
+    id: 4,
+    name: "Испарители",
+    image: "/categories/coils.jpg",
+  },
+  {
+    id: 5,
+    name: "Комплектующие",
+    image: "/categories/parts.jpg",
+  },
+];
 function App() {
+const [selectedCategory, setSelectedCategory] =
+  useState("Все");
 const [orders, setOrders] = useState<any[]>(() => {
   const saved = localStorage.getItem("orders");
   return saved ? JSON.parse(saved) : [];
@@ -37,6 +66,8 @@ const isAdmin = user?.id === 7130132807;
       price: 29,
       image: "/images/miside.jpg",
       description: "Яркая декоративная подсветка для комнаты",
+      category: "Одноразки",
+
     },
   ];
 
@@ -123,6 +154,13 @@ const adminButton = {
   backdropFilter: "blur(10px)",
   transition: "all 0.3s ease",
 };
+const filteredProducts =
+  selectedCategory === "Все"
+    ? products
+    : products.filter(
+        (product) =>
+          product.category === selectedCategory
+      );
   return (
   <div
   style={{
@@ -167,7 +205,55 @@ const adminButton = {
     animation: "fadeIn 0.35s ease",
   }}
 >
-    {products.map((product) => (
+  <div
+  style={{
+    display: "flex",
+    gap: "12px",
+    overflowX: "auto",
+    marginTop: "20px",
+    paddingBottom: "10px",
+  }}
+>
+  <button
+    onClick={() => setSelectedCategory("Все")}
+    style={{
+      minWidth: "120px",
+      padding: "10px",
+      borderRadius: "16px",
+      border: "none",
+      background:
+        selectedCategory === "Все"
+          ? "#229ED9"
+          : "#1e293b",
+      color: "#fff",
+    }}
+  >
+    Все
+  </button>
+
+  {categories.map((category) => (
+    <button
+      key={category.id}
+      onClick={() =>
+        setSelectedCategory(category.name)
+      }
+      style={{
+        minWidth: "140px",
+        padding: "10px",
+        borderRadius: "16px",
+        border: "none",
+        background:
+          selectedCategory === category.name
+            ? "#229ED9"
+            : "#1e293b",
+        color: "#fff",
+      }}
+    >
+      {category.name}
+    </button>
+  ))}
+</div>
+    {filteredProducts.map((product) => (
         <div
         onTouchStart={(e) => {
   e.currentTarget.style.transform = "scale(0.98)";
