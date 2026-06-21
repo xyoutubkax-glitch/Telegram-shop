@@ -132,27 +132,27 @@ const adminButton = {
 const categories = [
   {
     id: 1,
-    name: "",
+    name: "Жидкости",
     image: "/images/categories/liquid.jpg",
   },
   {
     id: 2,
-    name: "",
+    name: "Одноразки",
     image: "/images/categories/disposable.jpg",
   },
   {
     id: 3,
-    name: "",
+    name: "Под-Системы",
     image: "/images/categories/pod.jpg",
   },
   {
     id: 4,
-    name: "",
+    name: "Испарители",
     image: "/images/categories/coils.jpg",
   },
   {
     id: 5,
-    name: "",
+    name: "Никотиновые паучи",
     image: "/images/categories/accessories.jpg",
   },
 ];
