@@ -219,8 +219,8 @@ const filteredProducts =
   <div
     onClick={() => setSelectedCategory("Все")}
     style={{
-      minWidth: "160px",
-      height: "180px",
+      minWidth: "110px",
+      height: "130px",
       borderRadius: "24px",
       background: "#1e293b",
       display: "flex",
@@ -244,8 +244,8 @@ const filteredProducts =
         setSelectedCategory(category.name)
       }
       style={{
-        minWidth: "160px",
-        height: "180px",
+        minWidth: "110px",
+        height: "130",
         borderRadius: "24px",
         overflow: "hidden",
         position: "relative",
@@ -265,22 +265,6 @@ const filteredProducts =
           objectFit: "cover",
         }}
       />
-
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: 0,
-          padding: "12px",
-          background:
-            "linear-gradient(transparent, rgba(0,0,0,0.8))",
-          color: "#fff",
-          fontWeight: "700",
-        }}
-      >
-        {category.name}
-      </div>
     </div>
   ))}
 </div>
