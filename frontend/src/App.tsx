@@ -8,33 +8,6 @@ type Product = {
   description: string;
   category: string;
 };
-const categories = [
-  {
-    id: 1,
-    name: "Жидкости",
-    image: "/categories/liquids.jpg",
-  },
-  {
-    id: 2,
-    name: "Одноразки",
-    image: "/categories/disposable.jpg",
-  },
-  {
-    id: 3,
-    name: "Под-системы",
-    image: "/categories/pods.jpg",
-  },
-  {
-    id: 4,
-    name: "Испарители",
-    image: "/categories/coils.jpg",
-  },
-  {
-    id: 5,
-    name: "Никотиновые паучи(снюс)",
-    image: "/categories/parts.jpg",
-  },
-];
 function App() {
 const [selectedCategory, setSelectedCategory] =
   useState("Все");
