@@ -13,6 +13,7 @@ type Product = {
   resistance?: string;
   nicotine?: string;
   strength?: string;
+  selectedFlavor?: string;
 };
 function App() {
 const [selectedCategory, setSelectedCategory] =
@@ -60,6 +61,8 @@ const [newProductCategory, setNewProductCategory] =
   const [newProductImage, setNewProductImage] =
   useState("");
   const [newProductFlavors, setNewProductFlavors] =
+  useState("");
+  const [selectedFlavor, setSelectedFlavor] =
   useState("");
 
   useEffect(() => {
@@ -414,6 +417,37 @@ onTouchEnd={(e) => {
             <p style={{ color: "#cbd5e1" }}>
               {product.description}
             </p>
+            {product.flavors &&
+ product.flavors.length > 0 && (
+  <select
+    value={selectedFlavor}
+    onChange={(e) =>
+      setSelectedFlavor(e.target.value)
+    }
+    style={{
+      width: "100%",
+      padding: "12px",
+      borderRadius: "12px",
+      marginTop: "10px",
+      background: "#1e293b",
+      color: "#fff",
+      border: "1px solid #334155",
+    }}
+  >
+    <option value="">
+      Выберите вкус
+    </option>
+
+    {product.flavors.map((flavor) => (
+      <option
+        key={flavor}
+        value={flavor}
+      >
+        {flavor}
+      </option>
+    ))}
+  </select>
+)}
             {product.flavors && (
   <p>🍓 Вкус: {product.flavors}</p>
 )}
@@ -445,7 +479,12 @@ onTouchEnd={(e) => {
             </div>
 
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => {
+  addToCart({
+    ...product,
+    selectedFlavor,
+  });
+}}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -955,7 +994,15 @@ onTouchEnd={(e) => {
                 marginBottom: "10px",
               }}
             >
-              <span>{item.name}</span>
+              <div>
+  <div>{item.name}</div>
+
+  {item.selectedFlavor && (
+    <small>
+      🍓 {item.selectedFlavor}
+    </small>
+  )}
+</div>
               <span>€{item.price}</span>
             </div>
           ))}
