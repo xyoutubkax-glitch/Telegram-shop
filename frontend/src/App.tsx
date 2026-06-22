@@ -7,6 +7,12 @@ type Product = {
   image: string;
   description: string;
   category: string;
+
+  flavor?: string;
+  color?: string;
+  resistance?: string;
+  nicotine?: string;
+  strength?: string;
 };
 function App() {
 const [selectedCategory, setSelectedCategory] =
@@ -36,6 +42,19 @@ const [newProductPrice, setNewProductPrice] =
   useState("");
 
 const [newProductDescription, setNewProductDescription] =
+  useState("");
+  const [newProductFlavor, setNewProductFlavor] =
+  useState("");
+
+const [newProductColor, setNewProductColor] =
+  useState("");
+
+const [newProductResistance, setNewProductResistance] =
+  useState("");
+
+const [newProductNicotine, setNewProductNicotine] =
+  useState("");
+  const [newProductStrength, setNewProductStrength] =
   useState("");
 
 const [newProductCategory, setNewProductCategory] =
@@ -181,13 +200,18 @@ const categories = [
 ];
 const saveProduct = () => {
   const product: Product = {
-    id: Date.now(),
-    name: newProductName,
-    price: Number(newProductPrice),
-    image: newProductImage,
-    description: newProductDescription,
-    category: newProductCategory,
-  };
+  id: Date.now(),
+  name: newProductName,
+  price: Number(newProductPrice),
+  image: newProductImage,
+  description: newProductDescription,
+  category: newProductCategory,
+  flavor: newProductFlavor,
+  color: newProductColor,
+  resistance: newProductResistance,
+  nicotine: newProductNicotine,
+  strength: newProductStrength,
+};
 
   const updatedProducts = [
     ...products,
@@ -207,6 +231,11 @@ const saveProduct = () => {
   setNewProductPrice("");
   setNewProductDescription("");
   setNewProductImage("");
+  setNewProductFlavor("");
+setNewProductColor("");
+setNewProductResistance("");
+setNewProductNicotine("");
+setNewProductStrength("");
 };
 const filteredProducts =
   selectedCategory === "Все"
@@ -382,6 +411,25 @@ onTouchEnd={(e) => {
             <p style={{ color: "#cbd5e1" }}>
               {product.description}
             </p>
+            {product.flavor && (
+  <p>🍓 Вкус: {product.flavor}</p>
+)}
+
+{product.color && (
+  <p>🎨 Цвет: {product.color}</p>
+)}
+
+{product.resistance && (
+  <p>⚡ Сопротивление: {product.resistance}</p>
+)}
+
+{product.nicotine && (
+  <p>💨 Никотин: {product.nicotine}</p>
+)}
+
+{product.strength && (
+  <p>🔥 Крепость: {product.strength}</p>
+)}
 
             <div
               style={{
@@ -575,7 +623,44 @@ onTouchEnd={(e) => {
         setNewProductPrice(e.target.value)
       }
     />
+    <input
+  placeholder="Вкус"
+  value={newProductFlavor}
+  onChange={(e) =>
+    setNewProductFlavor(e.target.value)
+  }
+/>
 
+<input
+  placeholder="Цвет"
+  value={newProductColor}
+  onChange={(e) =>
+    setNewProductColor(e.target.value)
+  }
+/>
+
+<input
+  placeholder="Сопротивление"
+  value={newProductResistance}
+  onChange={(e) =>
+    setNewProductResistance(e.target.value)
+  }
+/>
+
+<input
+  placeholder="Никотин"
+  value={newProductNicotine}
+  onChange={(e) =>
+    setNewProductNicotine(e.target.value)
+  }
+/>
+<input
+  placeholder="Крепость"
+  value={newProductStrength}
+  onChange={(e) =>
+    setNewProductStrength(e.target.value)
+  }
+/>
     <textarea
       placeholder="Описание"
       value={newProductDescription}
