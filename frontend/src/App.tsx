@@ -8,7 +8,7 @@ type Product = {
   description: string;
   category: string;
 
-  flavor?: string;
+  flavors?: string[];
   color?: string;
   resistance?: string;
   nicotine?: string;
@@ -43,8 +43,6 @@ const [newProductPrice, setNewProductPrice] =
 
 const [newProductDescription, setNewProductDescription] =
   useState("");
-  const [newProductFlavor, setNewProductFlavor] =
-  useState("");
 
 const [newProductColor, setNewProductColor] =
   useState("");
@@ -60,6 +58,8 @@ const [newProductNicotine, setNewProductNicotine] =
 const [newProductCategory, setNewProductCategory] =
   useState("Жидкости");
   const [newProductImage, setNewProductImage] =
+  useState("");
+  const [newProductFlavors, setNewProductFlavors] =
   useState("");
 
   useEffect(() => {
@@ -206,7 +206,9 @@ const saveProduct = () => {
   image: newProductImage,
   description: newProductDescription,
   category: newProductCategory,
-  flavor: newProductFlavor,
+  flavors: newProductFlavors
+  .split(",")
+  .map((f) => f.trim()),
   color: newProductColor,
   resistance: newProductResistance,
   nicotine: newProductNicotine,
@@ -231,7 +233,7 @@ const saveProduct = () => {
   setNewProductPrice("");
   setNewProductDescription("");
   setNewProductImage("");
-  setNewProductFlavor("");
+  setNewProductFlavors("");
 setNewProductColor("");
 setNewProductResistance("");
 setNewProductNicotine("");
@@ -243,6 +245,7 @@ const filteredProducts =
     : products.filter(
         (product) =>
           product.category === selectedCategory
+
       );  
   return (
   <div
@@ -411,8 +414,8 @@ onTouchEnd={(e) => {
             <p style={{ color: "#cbd5e1" }}>
               {product.description}
             </p>
-            {product.flavor && (
-  <p>🍓 Вкус: {product.flavor}</p>
+            {product.flavors && (
+  <p>🍓 Вкус: {product.flavors}</p>
 )}
 
 {product.color && (
@@ -597,6 +600,28 @@ onTouchEnd={(e) => {
     borderRadius: "12px",
   }}
 >
+  <select
+  value={newProductCategory}
+  onChange={(e) =>
+    setNewProductCategory(e.target.value)
+  }
+>
+  ...
+</select>
+
+<input
+  placeholder="Введите вкусы через запятую"
+  value={newProductFlavors}
+  onChange={(e) =>
+    setNewProductFlavors(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginTop: "10px",
+    borderRadius: "12px",
+  }}
+/>
   <option>Жидкости</option>
   <option>Одноразки</option>
   <option>Под-системы</option>
@@ -625,9 +650,9 @@ onTouchEnd={(e) => {
     />
     <input
   placeholder="Вкус"
-  value={newProductFlavor}
+  value={newProductFlavors}
   onChange={(e) =>
-    setNewProductFlavor(e.target.value)
+    setNewProductFlavors(e.target.value)
   }
 />
 
