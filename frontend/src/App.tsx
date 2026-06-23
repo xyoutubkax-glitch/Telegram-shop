@@ -983,29 +983,28 @@ onTouchEnd={(e) => {
 
     <h3>€{selectedProduct.price}</h3>
 
-    {selectedProduct?.flavors?.length ? (
-      <>
-        <h4>Вкус</h4>
+    {selectedProduct.flavors &&
+selectedProduct.flavors.length > 0 && (
+  <>
+    <h4>Вкус</h4>
 
-        <select
-          value={selectedFlavor}
-          onChange={(e) =>
-            setSelectedFlavor(e.target.value) 
-          }
+    <select
+      value={selectedFlavor}
+      onChange={(e) =>
+        setSelectedFlavor(e.target.value)
+      }
+    >
+      {selectedProduct.flavors.map((flavor, index) => (
+        <option
+          key={index}
+          value={flavor}
         >
-          {selectedProduct.flavors.map(
-            (flavor) => (
-              <option
-               key={flavor}
-               value={flavor}
-                >
-                {flavor}
-              </option>
-            )
-          )}
-        </select>
-      </>
-    ) : null }
+          {flavor}
+        </option>
+      ))}
+    </select>
+  </>
+)}
 
     <div
       style={{
@@ -1041,10 +1040,11 @@ onTouchEnd={(e) => {
   }
 
   setSelectedProduct(null);
-}}
+}} 
     >
       Добавить в корзину
     </button>
+
   </div>
 )}
       {tab === "cart" && (
