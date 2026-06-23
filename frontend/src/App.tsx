@@ -431,39 +431,10 @@ onTouchEnd={(e) => {
             <p style={{ color: "#cbd5e1" }}>
               {product.description}
             </p>
-            {product.flavors &&
- product.flavors.length > 0 && (
-  <select
-    value={selectedFlavor}
-    onChange={(e) =>
-      setSelectedFlavor(e.target.value)
-    }
-    style={{
-      width: "100%",
-      padding: "12px",
-      borderRadius: "12px",
-      marginTop: "10px",
-      background: "#1e293b",
-      color: "#fff",
-      border: "1px solid #334155",
-    }}
-  >
-    <option value="">
-      Выберите вкус
-    </option>
-
-    {product.flavors.map((flavor) => (
-      <option
-        key={flavor}
-        value={flavor}
-      >
-        {flavor}
-      </option>
-    ))}
-  </select>
-)}
             {product.flavors && (
-  <p>🍓 Вкус: {product.flavors}</p>
+  <p>
+  🍓 Вкусы: {product.flavors.join(", ")}
+</p>
 )}
 
 {product.color && (
@@ -493,27 +464,25 @@ onTouchEnd={(e) => {
             </div>
 
             <button
-              onClick={() => {
-  addToCart({
-    ...product,
-    selectedFlavor,
-  });
-}}
-              style={{
-                width: "100%",
-                padding: "12px",
-                border: "none",
-                borderRadius: "12px",
-                background: "#0088cc",
-                color: "white",
-                fontSize: "16px",
-                cursor: "pointer",
-                transition: "0.2s",
-                transform: "scale(1)",
-              }}
-            >
-              Добавить в корзину
-            </button>
+  onClick={(e) => {
+    e.stopPropagation();
+
+    addToCart({
+      ...product,
+      selectedFlavor,
+    });
+  }}
+  style={{
+    width: "100%",
+    padding: "12px",
+    border: "none",
+    borderRadius: "12px",
+    background: "#0088cc",
+    color: "white",
+  }}
+>
+  Добавить в корзину
+</button>
           </div>
         </div>
       ))}
