@@ -8,7 +8,9 @@ type Product = {
   description: string;
   category: string;
 
+  flavor?: string;
   flavors?: string[];
+
   color?: string;
   resistance?: string;
   nicotine?: string;
@@ -64,6 +66,11 @@ const [newProductCategory, setNewProductCategory] =
   useState("");
   const [selectedFlavor, setSelectedFlavor] =
   useState("");
+  const [selectedProduct, setSelectedProduct] =
+  useState<Product | null>(null);
+
+const [quantity, setQuantity] =
+  useState(1);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -379,6 +386,13 @@ const filteredProducts =
 </div>
     {filteredProducts.map((product) => (
         <div
+        onClick={() => {
+  setSelectedProduct(product);
+
+  if (product.flavors?.length) {
+    setSelectedFlavor(product.flavors[0]);
+  }
+}}
         onTouchStart={(e) => {
   e.currentTarget.style.transform = "scale(0.98)";
 }}
@@ -965,6 +979,107 @@ onTouchEnd={(e) => {
   </div>
 ))
     )}
+  </div>
+)}
+{selectedProduct && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "#0f172a",
+      zIndex: 9999,
+      overflowY: "auto",
+      padding: "20px",
+    }}
+  >
+    <button
+      onClick={() =>
+        setSelectedProduct(null)
+      }
+    >
+      ◀ Назад
+    </button>
+
+    <img
+      src={selectedProduct.image}
+      style={{
+        width: "100%",
+        borderRadius: "20px",
+      }}
+    />
+
+    <h2>{selectedProduct.name}</h2>
+
+    <p>{selectedProduct.description}</p>
+
+    <h3>€{selectedProduct.price}</h3>
+
+    {selectedProduct?.flavors?.length ? (
+      <>
+        <h4>Вкус</h4>
+
+        <select
+          value={selectedFlavor}
+          onChange={(e) =>
+            setSelectedFlavor(e.target.value) 
+          }
+        >
+          {selectedProduct.flavors.map(
+            (flavor) => (
+              <option
+               key={flavor}
+               value={flavor}
+                >
+                {flavor}
+              </option>
+            )
+          )}
+        </select>
+      </>
+    ) : null}
+
+    <div
+      style={{
+        marginTop: "15px",
+      }}
+    >
+      <h4>Количество</h4>
+
+      <input
+        type="number"
+        min="1"
+        value={quantity}
+        onChange={(e) =>
+          setQuantity(
+            Number(e.target.value)
+          )
+        }
+      />
+    </div>
+
+    <button
+      style={{
+        width: "100%",
+        marginTop: "20px",
+        padding: "15px",
+      }}
+      onClick={() => {
+        for (
+          let i = 0;
+          i < quantity;
+          i++
+        ) {
+          addToCart({
+            ...selectedProduct,
+            flavor: selectedFlavor,
+          });
+        }
+
+        setSelectedProduct(null);
+      }}
+    >
+      Добавить в корзину
+    </button>
   </div>
 )}
       {tab === "cart" && (
