@@ -1036,7 +1036,7 @@ onTouchEnd={(e) => {
           )}
         </select>
       </>
-    ) : null}
+    ) : null }
 
     <div
       style={{
@@ -1063,20 +1063,16 @@ onTouchEnd={(e) => {
         marginTop: "20px",
         padding: "15px",
       }}
-      onClick={() => {
-        for (
-          let i = 0;
-          i < quantity;
-          i++
-        ) {
-          addToCart({
-            ...selectedProduct,
-            flavor: selectedFlavor,
-          });
-        }
+     onClick={() => {
+  for (let i = 0; i < quantity; i++) {
+    addToCart({
+      ...selectedProduct,
+      selectedFlavor: selectedFlavor,
+    });
+  }
 
-        setSelectedProduct(null);
-      }}
+  setSelectedProduct(null);
+}}
     >
       Добавить в корзину
     </button>
