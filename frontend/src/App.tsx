@@ -237,6 +237,8 @@ const categories = [
 ];
 const saveProduct = async () => {
 
+  console.log("Отправляем товар");
+
   const product: Product = {
     id: Date.now(),
     name: newProductName,
@@ -253,7 +255,9 @@ const saveProduct = async () => {
     strength: newProductStrength,
   };
 
-  await fetch(
+  console.log(product);
+
+  const response = await fetch(
     "https://telegram-shop-4.onrender.com/products",
     {
       method: "POST",
@@ -263,7 +267,9 @@ const saveProduct = async () => {
       body: JSON.stringify(product),
     }
   );
-setProducts((prev) => [...prev, product]);
+
+  console.log(await response.json());
+
   alert("Товар добавлен");
 };
 const filteredProducts =
