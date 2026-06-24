@@ -72,6 +72,8 @@ const [newProductCategory, setNewProductCategory] =
 const [quantity, setQuantity] =
   useState(1);
 
+
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -134,7 +136,23 @@ const order = {
     last_name: user?.last_name,
   },
 };
+useEffect(() => {
+  const loadProducts = async () => {
+    try {
+      const response = await fetch(
+        "https://telegram-shop-4.onrender.com/products"
+      );
 
+      const data = await response.json();
+
+      setProducts(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  loadProducts();
+}, []);
   try {
     const response = await fetch(
   "https://telegram-shop-4.onrender.com/order",
@@ -245,7 +263,7 @@ const saveProduct = async () => {
       body: JSON.stringify(product),
     }
   );
-
+setProducts((prev) => [...prev, product]);
   alert("Товар добавлен");
 };
 const filteredProducts =
