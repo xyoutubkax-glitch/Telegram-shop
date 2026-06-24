@@ -13,16 +13,10 @@ const ADMIN_CHAT_ID = 7130132807;
 const GROUP_CHAT_ID = -1003788971538;
 
 const bot = new TelegramBot(BOT_TOKEN);
-let products = [
-  {
-    id: 1,
-    name: "Тест",
-    price: 10,
-    image: "",
-    description: "Описание",
-    category: "Жидкости"
-  }
-];
+let products = [];
+app.get("/products", (req, res) => {
+  res.json(products);
+});
 app.post("/products", (req, res) => {
   const product = req.body;
 
