@@ -243,7 +243,7 @@ const categories = [
 ];
 const saveProduct = async () => {
 
-  console.log("Отправляем товар");
+  console.log("SAVE CLICK");
 
   const product: Product = {
     id: Date.now(),
