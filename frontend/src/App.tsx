@@ -110,8 +110,14 @@ useEffect(() => {
   useState<Product[]>([]);
 
   const addToCart = (product: Product) => {
-    setCart([...cart, product]);
+
+  const productWithoutImage = {
+    ...product,
+    image: "",
   };
+
+  setCart([...cart, productWithoutImage]);
+};
 
   const clearCart = () => {
     setCart([]);
