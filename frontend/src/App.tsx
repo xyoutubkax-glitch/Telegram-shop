@@ -75,28 +75,37 @@ const [quantity, setQuantity] =
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+  useEffect(() => {
+  fetch(
+    "https://telegram-shop-4.onrender.com/products"
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      setProducts(data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}, []);
+useEffect(() => {
+  const loadProducts = async () => {
+    try {
+      const response = await fetch(
+        "https://telegram-shop-4.onrender.com/products"
+      );
 
-  const [products] = useState<Product[]>(
-  () => {
-    const saved =
-      localStorage.getItem("products");
+      const data = await response.json();
 
-    if (saved) {
-      return JSON.parse(saved);
+      setProducts(data);
+    } catch (error) {
+      console.error("Ошибка загрузки товаров", error);
     }
+  };
 
-    return [
-      {
-        id: 1,
-        name: "Тестовый товар",
-        price: 10,
-        image: "/images/test.jpg",
-        description: "Описание",
-        category: "Одноразки",
-      },
-    ];
-  }
-);
+  loadProducts();
+}, []);
+ const [products, setProducts] =
+  useState<Product[]>([]);
 
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
