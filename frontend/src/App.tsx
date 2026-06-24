@@ -76,7 +76,7 @@ const [quantity, setQuantity] =
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const [products, setProducts] = useState<Product[]>(
+  const [products] = useState<Product[]>(
   () => {
     const saved =
       localStorage.getItem("products");
@@ -208,46 +208,36 @@ const categories = [
     image: "/images/categories/accessories.jpg",
   },
 ];
-const saveProduct = () => {
+const saveProduct = async () => {
+
   const product: Product = {
-  id: Date.now(),
-  name: newProductName,
-  price: Number(newProductPrice),
-  image: newProductImage,
-  description: newProductDescription,
-  category: newProductCategory,
-  flavors: newProductFlavors
-  .split(",")
-  .map((f) => f.trim()),
-  color: newProductColor,
-  resistance: newProductResistance,
-  nicotine: newProductNicotine,
-  strength: newProductStrength,
-};
+    id: Date.now(),
+    name: newProductName,
+    price: Number(newProductPrice),
+    image: newProductImage,
+    description: newProductDescription,
+    category: newProductCategory,
+    flavors: newProductFlavors
+      .split(",")
+      .map((f) => f.trim()),
+    color: newProductColor,
+    resistance: newProductResistance,
+    nicotine: newProductNicotine,
+    strength: newProductStrength,
+  };
 
-  const updatedProducts = [
-    ...products,
-    product,
-  ];
-
-  setProducts(updatedProducts);
-
-  localStorage.setItem(
-    "products",
-    JSON.stringify(updatedProducts)
+  await fetch(
+    "https://telegram-shop-4.onrender.com/products",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    }
   );
 
   alert("Товар добавлен");
-
-  setNewProductName("");
-  setNewProductPrice("");
-  setNewProductDescription("");
-  setNewProductImage("");
-  setNewProductFlavors("");
-setNewProductColor("");
-setNewProductResistance("");
-setNewProductNicotine("");
-setNewProductStrength("");
 };
 const filteredProducts =
   selectedCategory === "Все"
@@ -651,17 +641,23 @@ onTouchEnd={(e) => {
   <option>Никотиновые паучи(снюс)</option>
 </select>
 {newProductImage && (
-  <img
-    src={newProductImage}
-    alt="preview"
-    style={{
-      width: "100%",
-      maxHeight: "250px",
-      objectFit: "cover",
-      borderRadius: "20px",
-      marginTop: "15px",
-    }}
-  />
+  <>
+    <p>
+      Размер: {newProductImage.length}
+    </p>
+
+    <img
+      src={newProductImage}
+      alt="preview"
+      style={{
+        width: "100%",
+        maxHeight: "250px",
+        objectFit: "cover",
+        borderRadius: "20px",
+        marginTop: "15px",
+      }}
+    />
+  </>
 )}
     <input
       placeholder="Цена"
@@ -950,6 +946,7 @@ onTouchEnd={(e) => {
     )}
   </div>
 )}
+console.log(selectedProduct);
 {selectedProduct && (
   <div
     style={{
