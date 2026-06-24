@@ -1063,26 +1063,31 @@ selectedProduct.flavors.length > 0 && (
           <h2>Корзина</h2>
 
           {cart.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "10px",
-              }}
-            >
-              <div>
-  <div>{item.name}</div>
+  <div
+    key={index}
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "10px",
+    }}
+  >
+    <div>
+      <div>{item.name}</div>
 
-  {item.selectedFlavor && (
-    <small>
-      🍓 {item.selectedFlavor}
-    </small>
-  )}
-</div>
-              <span>€{item.price}</span>
-            </div>
-          ))}
+      <p>
+        Размер картинки: {item.image?.length}
+      </p>
+
+      {item.selectedFlavor && (
+        <small>
+          🍓 {item.selectedFlavor}
+        </small>
+      )}
+    </div>
+
+    <span>€{item.price}</span>
+  </div>
+))}
 
           <hr />
 
