@@ -127,6 +127,7 @@ useEffect(() => {
     0
   );
   const checkout = async () => {
+    console.log("Отправляем заказ")
 console.log("TG:", tg);
 console.log("USER:", user);
 const order = {
@@ -631,10 +632,22 @@ onTouchEnd={(e) => {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setNewProductImage(
-        reader.result as string
-      );
-    };
+  const img = reader.result as string;
+
+  console.log(
+    "Размер картинки:",
+    img.length
+  );
+
+  if (img.length > 500000) {
+    alert(
+      "Фото слишком большое. Сожмите изображение."
+    );
+    return;
+  }
+
+  setNewProductImage(img);
+};
 
     reader.readAsDataURL(file);
   }}
