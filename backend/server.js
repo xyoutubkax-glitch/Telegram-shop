@@ -14,19 +14,7 @@ const GROUP_CHAT_ID = -1003788971538;
 
 const bot = new TelegramBot(BOT_TOKEN);
 let products = [];
-app.get("/products", (req, res) => {
-  res.json(products);
-});
-app.post("/products", (req, res) => {
-  const product = req.body;
 
-  products.push(product);
-
-  res.json({
-    success: true,
-    products,
-  });
-});
 
 app.post("/order", async (req, res) => {
   try {
