@@ -143,23 +143,6 @@ const order = {
     last_name: user?.last_name,
   },
 };
-useEffect(() => {
-  const loadProducts = async () => {
-    try {
-      const response = await fetch(
-        "https://telegram-shop-4.onrender.com/products"
-      );
-
-      const data = await response.json();
-
-      setProducts(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  loadProducts();
-}, []);
   try {
     const response = await fetch(
   "https://telegram-shop-4.onrender.com/order",
