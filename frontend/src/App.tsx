@@ -226,6 +226,28 @@ const categories = [
     image: "/images/categories/accessories.jpg",
   },
 ];
+const uploadImage = async (file: File) => {
+  const formData = new FormData();
+
+  formData.append("file", file);
+  formData.append("upload_preset", "telegram-shop");
+
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dqn5ejfft/image/upload",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Ошибка загрузки");
+  }
+
+  const data = await response.json();
+
+  return data.secure_url;
+};
 const saveProduct = async () => {
 
   console.log("SAVE CLICK");
@@ -608,32 +630,25 @@ onTouchEnd={(e) => {
 <input
   type="file"
   accept="image/*"
-  onChange={(e) => {
+  onChange={async (e) => {
     const file = e.target.files?.[0];
 
     if (!file) return;
 
-    const reader = new FileReader();
+    try {
+      alert("Загружаем изображение...");
 
-    reader.onloadend = () => {
-  const img = reader.result as string;
+      const imageUrl = await uploadImage(file);
 
-  console.log(
-    "Размер картинки:",
-    img.length
-  );
+      console.log(imageUrl);
 
-  if (img.length > 500000) {
-    alert(
-      "Фото слишком большое. Сожмите изображение."
-    );
-    return;
-  }
+      setNewProductImage(imageUrl);
 
-  setNewProductImage(img);
-};
-
-    reader.readAsDataURL(file);
+      alert("Фото загружено!");
+    } catch (error) {
+      console.error(error);
+      alert("Ошибка загрузки изображения");
+    }
   }}
 />
 <select
