@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductModal from "./components/ProductModal";
 
 type Product = {
   id: number;
@@ -439,16 +440,13 @@ onTouchEnd={(e) => {
   key={product.id}
   className="product-card"
   style={{
-  background: "rgba(255,255,255,0.08)",
-  backdropFilter: "blur(18px)",
-  WebkitBackdropFilter: "blur(18px)",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "24px",
+  background: "linear-gradient(180deg,#1f2937,#111827)",
+  borderRadius: "26px",
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-  marginTop: "20px",
-
-  transition: "all 0.3s ease",
+  border: "1px solid rgba(255,255,255,.08)",
+  boxShadow: "0 10px 30px rgba(0,0,0,.35)",
+  marginTop: "22px",
+  transition: ".25s",
 }}
 >
           <img
@@ -456,22 +454,64 @@ onTouchEnd={(e) => {
             alt={product.name}
             style={{
               width: "100%",
-              height: "350px",
+              height: "280px",
               objectFit: "cover",
+              display: "block",
             }}
           />
+          <div
+  style={{
+    position: "relative",
+    top: 15,
+    left: 15,
+    background: "#22c55e",
+    color: "#fff",
+    padding: "6px 12px",
+    borderRadius: "20px",
+    fontWeight: "bold",
+    fontSize: "13px",
+  }}
+>
+  🔥 HOT
+</div>
 
           <div style={{ padding: "16px" }}>
-            <h2>{product.name}</h2>
+            <h2
+  style={{
+    fontSize: "22px",
+    marginBottom: "8px",
+    fontWeight: 700,
+  }}
+>
+  {product.name}
+</h2>
 
             <p style={{ color: "#cbd5e1" }}>
               {product.description}
             </p>
-            {product.flavors && (
-  <p>
-  🍓 Вкусы: {product.flavors.join(", ")}
-</p>
-)}
+  <div
+style={{
+display:"flex",
+flexWrap:"wrap",
+gap:"8px",
+marginTop:"15px"
+}}
+>
+
+{product.flavors?.map(flavor=>(
+<div
+key={flavor}
+style={{
+padding:"6px 12px",
+background:"#1e293b",
+borderRadius:"20px",
+fontSize:"13px"
+}}
+>
+🍓 {flavor}
+</div>
+))}
+</div>
 
 {product.color && (
   <p>🎨 Цвет: {product.color}</p>
@@ -490,14 +530,41 @@ onTouchEnd={(e) => {
 )}
 
             <div
-              style={{
-                fontSize: "24px",
-                fontWeight: "bold",
-                margin: "15px 0",
-              }}
-            >
-              €{product.price}
-            </div>
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "15px",
+  }}
+>
+  <div
+    style={{
+      fontSize: "28px",
+      fontWeight: "bold",
+      color: "#38bdf8",
+    }}
+  >
+    €{product.price}
+  </div>
+  <p
+style={{
+color:"#22c55e",
+marginTop:"8px",
+fontWeight:"600"
+}}
+>
+В наличии
+</p>
+
+  <div
+    style={{
+      color: "#94a3b8",
+      fontSize: "14px",
+    }}
+  >
+    ⭐ 4.9
+  </div>
+</div>
 
             <button
   onClick={(e) => {
@@ -509,12 +576,12 @@ onTouchEnd={(e) => {
     });
   }}
   style={{
-    width: "100%",
-    padding: "12px",
-    border: "none",
-    borderRadius: "12px",
-    background: "#0088cc",
-    color: "white",
+background:"linear-gradient(135deg,#229ED9,#00c6ff)",
+fontWeight:"bold",
+fontSize:"17px",
+borderRadius:"16px",
+marginTop:"18px",
+boxShadow:"0 0 20px rgba(34,158,217,.35)",
   }}
 >
   Добавить в корзину
@@ -999,103 +1066,26 @@ onTouchEnd={(e) => {
 )}
 console.log(selectedProduct);
 {selectedProduct && (
-  <div
-    style={{
-      position: "fixed",
-      inset: 0,
-      background: "#0f172a",
-      zIndex: 9999,
-      overflowY: "auto",
-      padding: "20px",
+  <ProductModal
+    product={selectedProduct}
+    selectedFlavor={selectedFlavor}
+    setSelectedFlavor={setSelectedFlavor}
+    quantity={quantity}
+    setQuantity={setQuantity}
+    onClose={() => setSelectedProduct(null)}
+    onAdd={() => {
+      for (let i = 0; i < quantity; i++) {
+        addToCart({
+          ...selectedProduct,
+          selectedFlavor,
+        });
+      }
+
+      setSelectedProduct(null);
     }}
-  >
-    <button
-      onClick={() =>
-        setSelectedProduct(null)
-      }
-    >
-      ◀ Назад
-    </button>
-
-    <img
-      src={selectedProduct.image}
-      style={{
-        width: "100%",
-        borderRadius: "20px",
-      }}
-    />
-
-    <h2>{selectedProduct.name}</h2>
-
-    <p>{selectedProduct.description}</p>
-
-    <h3>€{selectedProduct.price}</h3>
-
-    {selectedProduct.flavors &&
-selectedProduct.flavors.length > 0 && (
-  <>
-    <h4>Вкус</h4>
-
-    <select
-      value={selectedFlavor}
-      onChange={(e) =>
-        setSelectedFlavor(e.target.value)
-      }
-    >
-      {selectedProduct.flavors.map((flavor, index) => (
-        <option
-          key={index}
-          value={flavor}
-        >
-          {flavor}
-        </option>
-      ))}
-    </select>
-  </>
+  />
 )}
-
-    <div
-      style={{
-        marginTop: "15px",
-      }}
-    >
-      <h4>Количество</h4>
-
-      <input
-        type="number"
-        min="1"
-        value={quantity}
-        onChange={(e) =>
-          setQuantity(
-            Number(e.target.value)
-          )
-        }
-      />
-    </div>
-
-    <button
-      style={{
-        width: "100%",
-        marginTop: "20px",
-        padding: "15px",
-      }}
-     onClick={() => {
-  for (let i = 0; i < quantity; i++) {
-    addToCart({
-      ...selectedProduct,
-      selectedFlavor: selectedFlavor,
-    });
-  }
-
-  setSelectedProduct(null);
-}} 
-    >
-      Добавить в корзину
-    </button>
-
-  </div>
-)}
-      {tab === "cart" && (
+      {tab === "cart" && ( 
   <div
   className="page"
   style={{
