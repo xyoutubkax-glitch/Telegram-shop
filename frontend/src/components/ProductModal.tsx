@@ -1,5 +1,6 @@
+
 type Product = {
-  id: number;
+ id: number;
   name: string;
   price: number;
   image: string;
@@ -12,7 +13,8 @@ nicotine?: string;
 strength?: string;
 color?: string;
 };
-
+const [selectedFlavor,] = useState("");
+import { useState } from "react";
 type Props = {
   product: Product;
   selectedFlavor: string;
@@ -269,14 +271,15 @@ export default function ProductModal({
       {product.flavors?.length ? (
   <>
     <h3
-      style={{
-        marginTop: "25px",
-        marginBottom: "15px",
-        color: "#fff",
-      }}
-    >
-      Выберите вкус
-    </h3>
+  style={{
+    color: "#fff",
+    fontSize: "22px",
+    marginTop: "35px",
+    marginBottom: "18px",
+  }}
+>
+  🍓 Выберите вкус
+</h3>
 
     <div
       style={{
@@ -290,30 +293,48 @@ export default function ProductModal({
           key={flavor}
           onClick={() => setSelectedFlavor(flavor)}
           style={{
-            padding: "12px 18px",
-            borderRadius: "999px",
-            cursor: "pointer",
-            border:
-              selectedFlavor === flavor
-                ? "2px solid #38bdf8"
-                : "1px solid #334155",
+  padding: "12px 18px",
+  borderRadius: "18px",
+  cursor: "pointer",
+  border:
+    selectedFlavor === flavor
+      ? "2px solid #3b82f6"
+      : "1px solid #2e3a4d",
 
-            background:
-              selectedFlavor === flavor
-                ? "#0f3b68"
-                : "#1e293b",
+  background:
+    selectedFlavor === flavor
+      ? "linear-gradient(135deg,#1d4ed8,#2563eb)"
+      : "#1b2432",
 
-            color: "#fff",
+  color: "#fff",
 
-            transition: ".25s",
+  fontWeight: 600,
 
-            fontWeight: 600,
-          }}
+  transition: "all .25s",
+
+  minWidth: "120px",
+
+  boxShadow:
+    selectedFlavor === flavor
+      ? "0 0 18px rgba(59,130,246,.35)"
+      : "none",
+}}
         >
           🍓 {flavor}
         </button>
       ))}
     </div>
+    {!selectedFlavor && (
+  <p
+    style={{
+      color: "#f59e0b",
+      marginTop: "12px",
+      fontSize: "14px",
+    }}
+  >
+    Выберите вкус, чтобы добавить товар в корзину.
+  </p>
+)}
   </>
 ) : null}
 <div
@@ -393,6 +414,7 @@ export default function ProductModal({
         }}
       >
         🛒 Добавить в корзину
+        disabled={!selectedFlavor}
       </button>
     </div>
   );
@@ -415,6 +437,10 @@ export default function ProductModal({
         borderRadius: "16px",
         padding: "14px 18px",
         border: "1px solid #334155",
+        opacity: selectedFlavor ? 1 : 0.5,
+        cursor: selectedFlavor
+  ? "pointer"
+  : "not-allowed",
       }}
     >
       <div
