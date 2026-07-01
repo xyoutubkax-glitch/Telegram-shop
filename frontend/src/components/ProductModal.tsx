@@ -168,22 +168,6 @@ export default function ProductModal({
 
   {/* HOT */}
 
-  <div
-    style={{
-      position: "absolute",
-      left: 18,
-      bottom: 18,
-      padding: "8px 18px",
-      borderRadius: "999px",
-      background: "linear-gradient(90deg,#ff5f6d,#ffc371)",
-      color: "#fff",
-      fontWeight: 700,
-      fontSize: "14px",
-      boxShadow: "0 0 20px rgba(255,120,120,.4)",
-    }}
-  >
-    🔥 HOT
-  </div>
 
   {/* Фото */}
 
@@ -202,62 +186,70 @@ export default function ProductModal({
     1 / 1
   </div>
 </div>
-      <h1
+      <h2
   style={{
     color: "#fff",
-    fontSize: "32px",
+    fontSize: "34px",
     fontWeight: 700,
     marginBottom: "6px",
   }}
 >
   {product.name}
-</h1>
+</h2>
 
-<div
+<p
   style={{
-    color: "#94a3b8",
-    fontSize: "17px",
-    marginBottom: "18px",
+    color: "#8b9cb7",
+    marginBottom: "25px",
+    fontSize: "18px",
   }}
 >
   {product.category}
-</div>
+</p>
 
 <div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    marginBottom: "20px",
-    color: "#fbbf24",
-    fontWeight: 600,
-  }}
->
-  ⭐⭐⭐⭐⭐
-  <span
-    style={{
-      color: "#94a3b8",
-      fontSize: "14px",
-    }}
-  >
-    Пока нет отзывов
-  </span>
-</div>
-
-      <div
   style={{
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: "20px",
-    marginBottom: "20px",
+    marginBottom: "25px",
   }}
 >
   <div
     style={{
-      fontSize: "34px",
+      color: "#9ca3af",
+      fontSize: "15px",
+    }}
+  >
+    ⭐ — Нет оценок
+  </div>
+
+  <div
+    style={{
+      color: "#6b7280",
+      fontSize: "14px",
+      textAlign: "right",
+    }}
+  >
+    Отзывы станут доступны
+    <br />
+    после покупки 🔒
+  </div>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "30px",
+  }}
+>
+  <div
+    style={{
+      color: "#20b8ff",
+      fontSize: "42px",
       fontWeight: 700,
-      color: "#38bdf8",
     }}
   >
     €{product.price}
@@ -265,10 +257,8 @@ export default function ProductModal({
 
   <div
     style={{
-      padding: "8px 16px",
-      borderRadius: "999px",
-      background: "#14532d",
-      color: "#86efac",
+      color: "#22c55e",
+      fontSize: "20px",
       fontWeight: 600,
     }}
   >
