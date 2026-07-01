@@ -39,57 +39,225 @@ export default function ProductModal({
         padding: "20px",
       }}
     >
-      <button onClick={onClose}>
-        ◀ Назад
-      </button>
+     <div
+  style={{
+    position: "relative",
+    marginBottom: "24px",
+  }}
+>
+  <img
+    src={product.image}
+    style={{
+      width: "100%",
+      height: "380px",
+      objectFit: "cover",
+      borderRadius: "28px",
+    }}
+  />
 
-      <img
-        src={product.image}
-        style={{
-          width: "100%",
-          borderRadius: "20px",
-          marginTop: "15px",
-        }}
-      />
+  {/* Назад */}
 
-      <h2>{product.name}</h2>
+  <button
+    onClick={onClose}
+    style={{
+      position: "absolute",
+      top: 18,
+      left: 18,
+      width: 46,
+      height: 46,
+      borderRadius: "50%",
+      border: "none",
+      background: "rgba(0,0,0,.45)",
+      backdropFilter: "blur(10px)",
+      color: "#fff",
+      fontSize: "22px",
+      cursor: "pointer",
+    }}
+  >
+    ✕
+  </button>
 
-      <p>{product.description}</p>
+  {/* Избранное */}
 
-      <h2
-        style={{
-          color: "#38bdf8",
-        }}
-      >
-        €{product.price}
-      </h2>
+  <button
+    style={{
+      position: "absolute",
+      top: 18,
+      right: 18,
+      width: 46,
+      height: 46,
+      borderRadius: "50%",
+      border: "none",
+      background: "rgba(0,0,0,.45)",
+      backdropFilter: "blur(10px)",
+      color: "#fff",
+      fontSize: "22px",
+      cursor: "pointer",
+    }}
+  >
+    ♡
+  </button>
+
+  {/* HOT */}
+
+  <div
+    style={{
+      position: "absolute",
+      left: 18,
+      bottom: 18,
+      padding: "8px 18px",
+      borderRadius: "999px",
+      background: "linear-gradient(90deg,#ff5f6d,#ffc371)",
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: "14px",
+      boxShadow: "0 0 20px rgba(255,120,120,.4)",
+    }}
+  >
+    🔥 HOT
+  </div>
+
+  {/* Фото */}
+
+  <div
+    style={{
+      position: "absolute",
+      right: 18,
+      bottom: 18,
+      padding: "8px 14px",
+      borderRadius: "999px",
+      background: "rgba(0,0,0,.45)",
+      color: "#fff",
+      backdropFilter: "blur(10px)",
+    }}
+  >
+    1 / 1
+  </div>
+</div>
+      <h1
+  style={{
+    color: "#fff",
+    fontSize: "32px",
+    fontWeight: 700,
+    marginBottom: "6px",
+  }}
+>
+  {product.name}
+</h1>
+
+<div
+  style={{
+    color: "#94a3b8",
+    fontSize: "17px",
+    marginBottom: "18px",
+  }}
+>
+  {product.category}
+</div>
+
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    marginBottom: "20px",
+    color: "#fbbf24",
+    fontWeight: 600,
+  }}
+>
+  ⭐⭐⭐⭐⭐
+  <span
+    style={{
+      color: "#94a3b8",
+      fontSize: "14px",
+    }}
+  >
+    Пока нет отзывов
+  </span>
+</div>
+
+      <div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "20px",
+    marginBottom: "20px",
+  }}
+>
+  <div
+    style={{
+      fontSize: "34px",
+      fontWeight: 700,
+      color: "#38bdf8",
+    }}
+  >
+    €{product.price}
+  </div>
+
+  <div
+    style={{
+      padding: "8px 16px",
+      borderRadius: "999px",
+      background: "#14532d",
+      color: "#86efac",
+      fontWeight: 600,
+    }}
+  >
+    ✔ В наличии
+  </div>
+</div>
 
       {product.flavors?.length ? (
-        <>
-          <h4>Вкус</h4>
+  <>
+    <h3
+      style={{
+        marginTop: "25px",
+        marginBottom: "15px",
+        color: "#fff",
+      }}
+    >
+      Выберите вкус
+    </h3>
 
-          <select
-            value={selectedFlavor}
-            onChange={(e) =>
-              setSelectedFlavor(e.target.value)
-            }
-            style={{
-              width: "100%",
-              padding: "12px",
-              borderRadius: "12px",
-            }}
-          >
-            {product.flavors.map((flavor) => (
-              <option
-                key={flavor}
-                value={flavor}
-              >
-                {flavor}
-              </option>
-            ))}
-          </select>
-        </>
-      ) : null}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "12px",
+      }}
+    >
+      {product.flavors.map((flavor) => (
+        <button
+          key={flavor}
+          onClick={() => setSelectedFlavor(flavor)}
+          style={{
+            padding: "12px 18px",
+            borderRadius: "999px",
+            cursor: "pointer",
+            border:
+              selectedFlavor === flavor
+                ? "2px solid #38bdf8"
+                : "1px solid #334155",
+
+            background:
+              selectedFlavor === flavor
+                ? "#0f3b68"
+                : "#1e293b",
+
+            color: "#fff",
+
+            transition: ".25s",
+
+            fontWeight: 600,
+          }}
+        >
+          🍓 {flavor}
+        </button>
+      ))}
+    </div>
+  </>
+) : null}
 
       <h4
         style={{
