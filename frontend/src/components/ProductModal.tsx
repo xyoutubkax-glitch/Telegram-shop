@@ -1,6 +1,5 @@
-
 type Product = {
- id: number;
+  id: number;
   name: string;
   price: number;
   image: string;
@@ -13,8 +12,7 @@ nicotine?: string;
 strength?: string;
 color?: string;
 };
-const [selectedFlavor,] = useState("");
-import { useState } from "react";
+
 type Props = {
   product: Product;
   selectedFlavor: string;
@@ -437,10 +435,7 @@ export default function ProductModal({
         borderRadius: "16px",
         padding: "14px 18px",
         border: "1px solid #334155",
-        opacity: selectedFlavor ? 1 : 0.5,
-        cursor: selectedFlavor
-  ? "pointer"
-  : "not-allowed",
+        
       }}
     >
       <div
