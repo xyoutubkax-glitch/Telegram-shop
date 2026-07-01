@@ -49,15 +49,79 @@ export default function ProductModal({
     marginBottom: "24px",
   }}
 >
+  <div
+  style={{
+    position: "relative",
+    marginBottom: "25px",
+  }}
+>
   <img
     src={product.image}
     style={{
       width: "100%",
-      height: "380px",
-      objectFit: "cover",
-      borderRadius: "28px",
+      borderRadius: "24px",
+      display: "block",
     }}
   />
+
+  {/* HOT */}
+
+  <div
+    style={{
+      position: "absolute",
+      top: "18px",
+      left: "18px",
+      padding: "8px 18px",
+      borderRadius: "999px",
+      border: "2px solid #ff4d7a",
+      background: "rgba(255,0,90,.15)",
+      color: "#fff",
+      fontWeight: 700,
+      boxShadow:
+        "0 0 15px rgba(255,70,120,.6)",
+      backdropFilter: "blur(10px)",
+    }}
+  >
+    🔥 HOT
+  </div>
+
+  {/* Избранное */}
+
+  <button
+    style={{
+      position: "absolute",
+      right: "18px",
+      top: "18px",
+      width: "52px",
+      height: "52px",
+      borderRadius: "50%",
+      background: "rgba(0,0,0,.45)",
+      border: "1px solid #444",
+      color: "#fff",
+      fontSize: "24px",
+      cursor: "pointer",
+    }}
+  >
+    ♡
+  </button>
+
+  {/* Фото */}
+
+  <div
+    style={{
+      position: "absolute",
+      right: "18px",
+      bottom: "18px",
+      padding: "8px 15px",
+      borderRadius: "20px",
+      background: "rgba(0,0,0,.55)",
+      color: "#fff",
+      fontWeight: 600,
+    }}
+  >
+    1 / 5
+  </div>
+</div>
 
   {/* Назад */}
 
