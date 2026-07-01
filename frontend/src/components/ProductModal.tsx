@@ -7,6 +7,10 @@ type Product = {
   category: string;
   flavors?: string[];
   selectedFlavor?: string;
+  resistance?: string;
+nicotine?: string;
+strength?: string;
+color?: string;
 };
 
 type Props = {
@@ -258,6 +262,44 @@ export default function ProductModal({
     </div>
   </>
 ) : null}
+<div
+  style={{
+    marginTop: "30px",
+  }}
+>
+  <h3
+    style={{
+      marginBottom: "18px",
+      color: "#fff",
+    }}
+  >
+    Характеристики
+  </h3>
+
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "12px",
+    }}
+  >
+    {product.resistance && (
+      <SpecRow icon="⚡" title="Сопротивление" value={product.resistance} />
+    )}
+
+    {product.nicotine && (
+      <SpecRow icon="💧" title="Никотин" value={product.nicotine} />
+    )}
+
+    {product.strength && (
+      <SpecRow icon="🔥" title="Крепость" value={product.strength} />
+    )}
+
+    {product.color && (
+      <SpecRow icon="🎨" title="Цвет" value={product.color} />
+    )}
+  </div>
+</div>
 
       <h4
         style={{
@@ -298,6 +340,49 @@ export default function ProductModal({
       >
         🛒 Добавить в корзину
       </button>
+    </div>
+  );
+}function SpecRow({
+  icon,
+  title,
+  value,
+}: {
+  icon: string;
+  title: string;
+  value: string;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        background: "#1e293b",
+        borderRadius: "16px",
+        padding: "14px 18px",
+        border: "1px solid #334155",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          color: "#cbd5e1",
+        }}
+      >
+        <span style={{ fontSize: "20px" }}>{icon}</span>
+        <span>{title}</span>
+      </div>
+
+      <span
+        style={{
+          color: "#fff",
+          fontWeight: 600,
+        }}
+      >
+        {value}
+      </span>
     </div>
   );
 }
