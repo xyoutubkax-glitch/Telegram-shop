@@ -44,8 +44,22 @@ export default function ProductModal({
       }}
     >
      <div
+  style={{
+    position: "relative",
+    marginBottom: "30px",
+  }}
 >
-  {/* Назад */}
+  <img
+    src={product.image}
+    alt={product.name}
+    style={{
+      width: "100%",
+      height: "340px",
+      objectFit: "cover",
+      borderRadius: "24px",
+      display: "block",
+    }}
+  />
 
   <button
     onClick={onClose}
@@ -66,7 +80,42 @@ export default function ProductModal({
   >
     ✕
   </button>
-  {/* Избранное */}
+
+  <div
+    style={{
+      position: "absolute",
+      top: 18,
+      left: 80,
+      padding: "8px 18px",
+      borderRadius: "999px",
+      border: "2px solid #ff4d7a",
+      background: "rgba(255,0,90,.15)",
+      color: "#fff",
+      fontWeight: 700,
+      boxShadow: "0 0 15px rgba(255,70,120,.6)",
+    }}
+  >
+    🔥 HOT
+  </div>
+
+  <button
+    style={{
+      position: "absolute",
+      top: 18,
+      right: 18,
+      width: 46,
+      height: 46,
+      borderRadius: "50%",
+      background: "rgba(0,0,0,.45)",
+      border: "none",
+      color: "#fff",
+      fontSize: "22px",
+      cursor: "pointer",
+    }}
+  >
+    ♡
+  </button>
+
   <div
     style={{
       position: "absolute",
@@ -76,102 +125,12 @@ export default function ProductModal({
       borderRadius: "999px",
       background: "rgba(0,0,0,.45)",
       color: "#fff",
-      backdropFilter: "blur(10px)",
     }}
   >
     1 / 1
   </div>
 </div>
-     <h1
-  style={{
-    color: "#fff",
-    fontSize: 32,
-    fontWeight: 700,
-    marginBottom: 6,
-  }}
->
-  {product.name}
-</h1>
-
-<p
-  style={{
-    color: "#94a3b8",
-    fontSize: 17,
-    marginBottom: 18,
-  }}
->
-  {product.category}
-</p>
-
-<div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 25,
-  }}
->
-  <div
-    style={{
-      color: "#fbbf24",
-      fontWeight: 600,
-    }}
-  >
-    ⭐⭐⭐⭐⭐
-    <span
-      style={{
-        color: "#94a3b8",
-        marginLeft: 10,
-        fontSize: 14,
-      }}
-    >
-      Нет отзывов
-    </span>
-  </div>
-
-  <div
-    style={{
-      color: "#64748b",
-      fontSize: 13,
-      textAlign: "right",
-    }}
-  >
-    Отзывы доступны
-    <br />
-    после покупки 🔒
-  </div>
-</div>
-
-<div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 28,
-  }}
->
-  <div
-    style={{
-      color: "#38bdf8",
-      fontSize: 36,
-      fontWeight: 700,
-    }}
-  >
-    €{product.price}
-  </div>
-
-  <div
-    style={{
-      background: "#14532d",
-      color: "#86efac",
-      padding: "8px 16px",
-      borderRadius: 999,
-      fontWeight: 600,
-    }}
-  >
-    ✔ В наличии
-  </div>
-</div>
+     
       {product.flavors?.length ? (
   <>
     <h3
