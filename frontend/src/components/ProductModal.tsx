@@ -86,8 +86,8 @@ export default function ProductModal({
   <div
     style={{
       position: "absolute",
-      top: 28,
-      left: 80,
+      top: 32,
+      left: 22,
       padding: "8px 18px",
       borderRadius: "999px",
       border: "2px solid #ff4d7a",
