@@ -461,15 +461,17 @@ onTouchEnd={(e) => {
           />
           <div
   style={{
-    position: "relative",
-    top: 15,
-    left: 15,
-    background: "#22c55e",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "10px 22px",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg,#ff4d6d,#ff006e)",
     color: "#fff",
-    padding: "6px 12px",
-    borderRadius: "20px",
-    fontWeight: "bold",
-    fontSize: "13px",
+    fontWeight: 700,
+    fontSize: "16px",
+    boxShadow: "0 0 20px rgba(255,60,120,.45)",
+    marginBottom: "20px",
   }}
 >
   🔥 HOT
@@ -567,14 +569,7 @@ fontWeight:"600"
 </div>
 
             <button
-  onClick={(e) => {
-    e.stopPropagation();
-
-    addToCart({
-      ...product,
-      selectedFlavor,
-    });
-  }}
+  onClick={() => setSelectedProduct(product)}
   style={{
 background:"linear-gradient(135deg,#229ED9,#00c6ff)",
 fontWeight:"bold",
@@ -584,7 +579,7 @@ marginTop:"18px",
 boxShadow:"0 0 20px rgba(34,158,217,.35)",
   }}
 >
-  Добавить в корзину
+  Подробнее
 </button>
           </div>
         </div>
