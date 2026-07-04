@@ -1,3 +1,4 @@
+
 type Product = {
   id: number;
   name: string;
@@ -11,6 +12,7 @@ type Product = {
 nicotine?: string;
 strength?: string;
 color?: string;
+draws?: string;
 };
 
 type Props = {
@@ -84,7 +86,7 @@ export default function ProductModal({
   <div
     style={{
       position: "absolute",
-      top: 18,
+      top: 28,
       left: 80,
       padding: "8px 18px",
       borderRadius: "999px",
@@ -141,7 +143,7 @@ export default function ProductModal({
     marginBottom: "18px",
   }}
 >
-  🍓 Выберите вкус
+   Выберите вкус
 </h3>
 
     <div
@@ -183,7 +185,7 @@ export default function ProductModal({
       : "none",
 }}
         >
-          🍓 {flavor}
+           {flavor}
         </button>
       ))}
     </div>

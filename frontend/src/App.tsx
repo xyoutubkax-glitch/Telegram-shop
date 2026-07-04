@@ -571,13 +571,19 @@ fontWeight:"600"
             <button
   onClick={() => setSelectedProduct(product)}
   style={{
-background:"linear-gradient(135deg,#229ED9,#00c6ff)",
-fontWeight:"bold",
-fontSize:"17px",
-borderRadius:"16px",
-marginTop:"18px",
-boxShadow:"0 0 20px rgba(34,158,217,.35)",
-  }}
+  width: "100%",
+  marginTop: "18px",
+  padding: "16px 20px",
+  borderRadius: "18px",
+  border: "none",
+  background: "linear-gradient(135deg,#2563eb,#3b82f6)",
+  color: "#fff",
+  fontSize: "17px",
+  fontWeight: 700,
+  cursor: "pointer",
+  transition: "0.25s",
+  boxShadow: "0 8px 24px rgba(37,99,235,.35)",
+}}
 >
   Подробнее
 </button>
