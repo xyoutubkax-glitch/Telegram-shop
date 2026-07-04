@@ -464,14 +464,15 @@ onTouchEnd={(e) => {
     display: "inline-flex",
     alignItems: "center",
     gap: "8px",
-    padding: "10px 22px",
+    padding: "6px 16px",
     borderRadius: "999px",
     background: "linear-gradient(90deg,#ff4d6d,#ff006e)",
     color: "#fff",
     fontWeight: 700,
-    fontSize: "16px",
+    fontSize: "13px",
     boxShadow: "0 0 20px rgba(255,60,120,.45)",
-    marginBottom: "20px",
+    marginBottom: "12px",
+    marginTop: "18px",
   }}
 >
   🔥 HOT
@@ -510,7 +511,7 @@ borderRadius:"20px",
 fontSize:"13px"
 }}
 >
-🍓 {flavor}
+ {flavor}
 </div>
 ))}
 </div>
@@ -1122,7 +1123,7 @@ console.log(selectedProduct);
 
       {item.selectedFlavor && (
         <small>
-          🍓 {item.selectedFlavor}
+           {item.selectedFlavor}
         </small>
       )}
     </div>
