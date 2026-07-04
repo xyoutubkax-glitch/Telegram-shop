@@ -44,85 +44,7 @@ export default function ProductModal({
       }}
     >
      <div
-  style={{
-    position: "relative",
-    marginBottom: "24px",
-  }}
 >
-  <div
-  style={{
-    position: "relative",
-    marginBottom: "25px",
-  }}
->
-  <img
-    src={product.image}
-    style={{
-      width: "100%",
-      borderRadius: "24px",
-      display: "block",
-    }}
-  />
-
-  {/* HOT */}
-
-  <div
-    style={{
-      position: "absolute",
-      top: "18px",
-      left: "18px",
-      padding: "8px 18px",
-      borderRadius: "999px",
-      border: "2px solid #ff4d7a",
-      background: "rgba(255,0,90,.15)",
-      color: "#fff",
-      fontWeight: 700,
-      boxShadow:
-        "0 0 15px rgba(255,70,120,.6)",
-      backdropFilter: "blur(10px)",
-    }}
-  >
-    🔥 HOT
-  </div>
-
-  {/* Избранное */}
-
-  <button
-    style={{
-      position: "absolute",
-      right: "18px",
-      top: "18px",
-      width: "52px",
-      height: "52px",
-      borderRadius: "50%",
-      background: "rgba(0,0,0,.45)",
-      border: "1px solid #444",
-      color: "#fff",
-      fontSize: "24px",
-      cursor: "pointer",
-    }}
-  >
-    ♡
-  </button>
-
-  {/* Фото */}
-
-  <div
-    style={{
-      position: "absolute",
-      right: "18px",
-      bottom: "18px",
-      padding: "8px 15px",
-      borderRadius: "20px",
-      background: "rgba(0,0,0,.55)",
-      color: "#fff",
-      fontWeight: 600,
-    }}
-  >
-    1 / 5
-  </div>
-</div>
-
   {/* Назад */}
 
   <button
@@ -144,33 +66,7 @@ export default function ProductModal({
   >
     ✕
   </button>
-
   {/* Избранное */}
-
-  <button
-    style={{
-      position: "absolute",
-      top: 18,
-      right: 18,
-      width: 46,
-      height: 46,
-      borderRadius: "50%",
-      border: "none",
-      background: "rgba(0,0,0,.45)",
-      backdropFilter: "blur(10px)",
-      color: "#fff",
-      fontSize: "22px",
-      cursor: "pointer",
-    }}
-  >
-    ♡
-  </button>
-
-  {/* HOT */}
-
-
-  {/* Фото */}
-
   <div
     style={{
       position: "absolute",
@@ -186,22 +82,22 @@ export default function ProductModal({
     1 / 1
   </div>
 </div>
-      <h2
+     <h1
   style={{
     color: "#fff",
-    fontSize: "34px",
+    fontSize: 32,
     fontWeight: 700,
-    marginBottom: "6px",
+    marginBottom: 6,
   }}
 >
   {product.name}
-</h2>
+</h1>
 
 <p
   style={{
-    color: "#8b9cb7",
-    marginBottom: "25px",
-    fontSize: "18px",
+    color: "#94a3b8",
+    fontSize: 17,
+    marginBottom: 18,
   }}
 >
   {product.category}
@@ -212,26 +108,35 @@ export default function ProductModal({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "25px",
+    marginBottom: 25,
   }}
 >
   <div
     style={{
-      color: "#9ca3af",
-      fontSize: "15px",
+      color: "#fbbf24",
+      fontWeight: 600,
     }}
   >
-    ⭐ — Нет оценок
+    ⭐⭐⭐⭐⭐
+    <span
+      style={{
+        color: "#94a3b8",
+        marginLeft: 10,
+        fontSize: 14,
+      }}
+    >
+      Нет отзывов
+    </span>
   </div>
 
   <div
     style={{
-      color: "#6b7280",
-      fontSize: "14px",
+      color: "#64748b",
+      fontSize: 13,
       textAlign: "right",
     }}
   >
-    Отзывы станут доступны
+    Отзывы доступны
     <br />
     после покупки 🔒
   </div>
@@ -242,13 +147,13 @@ export default function ProductModal({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "30px",
+    marginBottom: 28,
   }}
 >
   <div
     style={{
-      color: "#20b8ff",
-      fontSize: "42px",
+      color: "#38bdf8",
+      fontSize: 36,
       fontWeight: 700,
     }}
   >
@@ -257,15 +162,16 @@ export default function ProductModal({
 
   <div
     style={{
-      color: "#22c55e",
-      fontSize: "20px",
+      background: "#14532d",
+      color: "#86efac",
+      padding: "8px 16px",
+      borderRadius: 999,
       fontWeight: 600,
     }}
   >
     ✔ В наличии
   </div>
 </div>
-
       {product.flavors?.length ? (
   <>
     <h3
@@ -412,7 +318,7 @@ export default function ProductModal({
         }}
       >
         🛒 Добавить в корзину
-        disabled={!selectedFlavor}
+        
       </button>
     </div>
   );
@@ -435,7 +341,6 @@ export default function ProductModal({
         borderRadius: "16px",
         padding: "14px 18px",
         border: "1px solid #334155",
-        
       }}
     >
       <div
