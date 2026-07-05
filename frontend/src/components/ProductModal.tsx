@@ -55,12 +55,13 @@ export default function ProductModal({
     src={product.image}
     alt={product.name}
     style={{
-      width: "100%",
-      height: "340px",
-      objectFit: "cover",
-      borderRadius: "24px",
-      display: "block",
-    }}
+  width: "100%",
+  height: "380px",
+  objectFit: "cover",
+  borderRadius: "26px",
+  display: "block",
+  boxShadow: "0 10px 35px rgba(0,0,0,.35)",
+}}
   />
 
   <button
@@ -102,32 +103,35 @@ export default function ProductModal({
 
   <button
     style={{
-      position: "absolute",
-      top: 18,
-      right: 18,
-      width: 46,
-      height: 46,
-      borderRadius: "50%",
-      background: "rgba(0,0,0,.45)",
-      border: "none",
-      color: "#fff",
-      fontSize: "22px",
-      cursor: "pointer",
-    }}
+  position: "absolute",
+  right: "18px",
+  top: "18px",
+  width: "54px",
+  height: "54px",
+  borderRadius: "50%",
+  background: "rgba(0,0,0,.45)",
+  backdropFilter: "blur(14px)",
+  border: "1px solid rgba(255,255,255,.08)",
+  color: "#fff",
+  fontSize: "24px",
+  cursor: "pointer",
+}}
   >
     ♡
   </button>
 
   <div
     style={{
-      position: "absolute",
-      right: 18,
-      bottom: 18,
-      padding: "8px 14px",
-      borderRadius: "999px",
-      background: "rgba(0,0,0,.45)",
-      color: "#fff",
-    }}
+  position: "absolute",
+  right: "18px",
+  bottom: "18px",
+  padding: "10px 16px",
+  borderRadius: "999px",
+  background: "rgba(0,0,0,.45)",
+  backdropFilter: "blur(14px)",
+  color: "#fff",
+  fontWeight: 700,
+}}
   >
     1 / 1
   </div>
