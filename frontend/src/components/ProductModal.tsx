@@ -239,29 +239,79 @@ export default function ProductModal({
       <SpecRow icon="🎨" title="Цвет" value={product.color} />
     )}
   </div>
+  </div>
+<div
+  style={{
+    marginTop: "28px",
+  }}
+>
+  <h3
+    style={{
+      color: "#fff",
+      marginBottom: "14px",
+    }}
+  >
+    Количество
+  </h3>
+
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "170px",
+      background: "#1b2432",
+      borderRadius: "18px",
+      padding: "8px",
+    }}
+  >
+    <button
+      onClick={() =>
+        quantity > 1 && setQuantity(quantity - 1)
+      }
+      style={{
+        width: "42px",
+        height: "42px",
+        border: "none",
+        borderRadius: "12px",
+        background: "#293548",
+        color: "#fff",
+        fontSize: "22px",
+        cursor: "pointer",
+      }}
+    >
+      −
+    </button>
+
+    <span
+      style={{
+        color: "#fff",
+        fontSize: "20px",
+        fontWeight: 700,
+      }}
+    >
+      {quantity}
+    </span>
+
+    <button
+      onClick={() =>
+        setQuantity(quantity + 1)
+      }
+      style={{
+        width: "42px",
+        height: "42px",
+        border: "none",
+        borderRadius: "12px",
+        background: "#2563eb",
+        color: "#fff",
+        fontSize: "22px",
+        cursor: "pointer",
+      }}
+    >
+      +
+    </button>
+  </div>
 </div>
-
-      <h4
-        style={{
-          marginTop: "20px",
-        }}
-      >
-        Количество
-      </h4>
-
-      <input
-        type="number"
-        min={1}
-        value={quantity}
-        onChange={(e) =>
-          setQuantity(Number(e.target.value))
-        }
-        style={{
-          width: "100%",
-          padding: "12px",
-          borderRadius: "12px",
-        }}
-      />
 
       <button
         onClick={onAdd}
