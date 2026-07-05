@@ -312,25 +312,59 @@ export default function ProductModal({
     </button>
   </div>
 </div>
+<div
+  style={{
+    position: "sticky",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    marginTop: "40px",
+    padding: "20px",
+    background: "#0f172a",
+    borderTop: "1px solid #243041",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }}
+>
+  <div>
+    <div
+      style={{
+        color: "#94a3b8",
+        fontSize: "13px",
+      }}
+    >
+      Итого
+    </div>
 
-      <button
-        onClick={onAdd}
-        style={{
-          width: "100%",
-          marginTop: "20px",
-          padding: "15px",
-          borderRadius: "18px",
-          border: "none",
-          background:
-            "linear-gradient(135deg,#229ED9,#0088cc)",
-          color: "#fff",
-          fontSize: "18px",
-          fontWeight: "bold",
-        }}
-      >
-        🛒 Добавить в корзину
-        
-      </button>
+    <div
+      style={{
+        color: "#fff",
+        fontSize: "26px",
+        fontWeight: 700,
+      }}
+    >
+      €{(product.price * quantity).toFixed(2)}
+    </div>
+  </div>
+
+  <button
+    onClick={onAdd}
+    style={{
+      padding: "16px 34px",
+      border: "none",
+      borderRadius: "18px",
+      background: "linear-gradient(135deg,#2563eb,#3b82f6)",
+      color: "#fff",
+      fontSize: "17px",
+      fontWeight: 700,
+      cursor: "pointer",
+      boxShadow: "0 10px 25px rgba(37,99,235,.35)",
+    }}
+  >
+    Добавить
+  </button>
+</div>
     </div>
   );
 }function SpecRow({
@@ -365,6 +399,7 @@ export default function ProductModal({
         <span style={{ fontSize: "20px" }}>{icon}</span>
         <span>{title}</span>
       </div>
+      
 
       <span
         style={{
