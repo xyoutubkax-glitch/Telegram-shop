@@ -314,55 +314,64 @@ export default function ProductModal({
 </div>
 <div
   style={{
-    position: "sticky",
-    bottom: 0,
-    left: 0,
-    right: 0,
     marginTop: "40px",
-    padding: "20px",
-    background: "#0f172a",
-    borderTop: "1px solid #243041",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    paddingTop: "24px",
+    borderTop: "1px solid rgba(255,255,255,.08)",
   }}
 >
-  <div>
-    <div
-      style={{
-        color: "#94a3b8",
-        fontSize: "13px",
-      }}
-    >
-      Итого
-    </div>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "20px",
+    }}
+  >
+    <div>
+      <div
+        style={{
+          color: "#7f8ca3",
+          fontSize: "14px",
+        }}
+      >
+        Итого
+      </div>
 
-    <div
-      style={{
-        color: "#fff",
-        fontSize: "26px",
-        fontWeight: 700,
-      }}
-    >
-      €{(product.price * quantity).toFixed(2)}
+      <div
+        style={{
+          color: "#fff",
+          fontSize: "34px",
+          fontWeight: 700,
+        }}
+      >
+        €{(product.price * quantity).toFixed(2)}
+      </div>
     </div>
   </div>
 
   <button
     onClick={onAdd}
     style={{
-      padding: "16px 34px",
+      width: "100%",
+      height: "64px",
       border: "none",
-      borderRadius: "18px",
-      background: "linear-gradient(135deg,#2563eb,#3b82f6)",
-      color: "#fff",
-      fontSize: "17px",
-      fontWeight: 700,
+      borderRadius: "20px",
       cursor: "pointer",
-      boxShadow: "0 10px 25px rgba(37,99,235,.35)",
+
+      background:
+        "linear-gradient(135deg,#2997ff,#2563eb)",
+
+      color: "#fff",
+
+      fontSize: "20px",
+
+      fontWeight: 700,
+
+      boxShadow:
+        "0 12px 30px rgba(41,151,255,.35)",
     }}
   >
-    Добавить
+    🛒 Добавить в корзину
   </button>
 </div>
     </div>
