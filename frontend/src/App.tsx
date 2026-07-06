@@ -1150,36 +1150,82 @@ setSelectedColor={setSelectedColor}
   <div
     key={index}
     style={{
-      display: "flex",
-      justifyContent: "space-between",
-      marginBottom: "10px",
+      background: "#1e293b",
+      borderRadius: "18px",
+      padding: "18px",
+      marginBottom: "16px",
+      border: "1px solid #334155",
     }}
   >
-    <div>
-      <div>{item.name}</div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+      }}
+    >
+      <div>
+        <h3
+          style={{
+            color: "#fff",
+            margin: 0,
+            marginBottom: "12px",
+            fontSize: "20px",
+          }}
+        >
+          {item.name}
+        </h3>
 
-      <p>
-        Размер картинки: {item.image?.length}
-      </p>
+        {item.selectedFlavor && (
+          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
+            🍓 Вкус: <b>{item.selectedFlavor}</b>
+          </p>
+        )}
 
-      {item.selectedFlavor && (
-        <small>
-           {item.selectedFlavor}
-        </small>
-      )}
+        {item.selectedResistance && (
+          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
+            ⚡ Сопротивление: <b>{item.selectedResistance}</b>
+          </p>
+        )}
+
+        {item.selectedStrength && (
+          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
+            🔥 Крепость: <b>{item.selectedStrength}</b>
+          </p>
+        )}
+
+        {item.selectedNicotine && (
+          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
+            💧 Никотин: <b>{item.selectedNicotine}</b>
+          </p>
+        )}
+
+        {item.selectedColor && (
+          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
+            🎨 Цвет: <b>{item.selectedColor}</b>
+          </p>
+        )}
+      </div>
+
+      <div
+        style={{
+          color: "#38bdf8",
+          fontWeight: 700,
+          fontSize: "22px",
+        }}
+      >
+        €{item.price}
+      </div>
     </div>
-
-    <span>€{item.price}</span>
   </div>
 ))}
-
           <hr />
 
           <h3>Итого: €{totalPrice}</h3>
 
           <input
             type="text"
-            placeholder="Ваше имя"
+            placeholder="Ваше имя(необязательно)"
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={{
@@ -1191,7 +1237,7 @@ setSelectedColor={setSelectedColor}
           />
 
           <textarea
-            placeholder="Комментарий"
+            placeholder="Местопположение(Район)"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             style={{
