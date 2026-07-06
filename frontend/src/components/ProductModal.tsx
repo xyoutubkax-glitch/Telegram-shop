@@ -22,16 +22,16 @@ type Props = {
   setSelectedFlavor: (value: string) => void;
 
   selectedResistance: string;
-  setSelectedResistance: (value: string) => void;
+setSelectedResistance: (v: string) => void;
 
-  selectedNicotine: string;
-  setSelectedNicotine: (value: string) => void;
+selectedNicotine: string;
+setSelectedNicotine: (v: string) => void;
 
-  selectedStrength: string;
-  setSelectedStrength: (value: string) => void;
+selectedStrength: string;
+setSelectedStrength: (v: string) => void;
 
-  selectedColor: string;
-  setSelectedColor: (value: string) => void;
+selectedColor: string;
+setSelectedColor: (v: string) => void;
 
   quantity: number;
   setQuantity: (value: number) => void;
@@ -244,7 +244,7 @@ export default function ProductModal({
   <OptionSelector
   title="Сопротивление"
   icon="⚡"
-  options={["Маленькое", "Среднее", "Большое"]}
+  options={product.resistance ?? []}
   value={selectedResistance}
   onChange={setSelectedResistance}
 />
@@ -252,7 +252,7 @@ export default function ProductModal({
 <OptionSelector
   title="Никотин"
   icon="💧"
-  options={["0%", "2%", "5%"]}
+  options={product.nicotine ?? []}
   value={selectedNicotine}
   onChange={setSelectedNicotine}
 />
@@ -260,7 +260,7 @@ export default function ProductModal({
 <OptionSelector
   title="Крепость"
   icon="🔥"
-  options={["20mg", "30mg", "50mg"]}
+  options={product.strength ?? []}
   value={selectedStrength}
   onChange={setSelectedStrength}
 />
@@ -268,7 +268,7 @@ export default function ProductModal({
 <OptionSelector
   title="Цвет"
   icon="🎨"
-  options={["Черный", "Синий", "Фиолетовый"]}
+  options={product.color ?? []}
   value={selectedColor}
   onChange={setSelectedColor}
 />

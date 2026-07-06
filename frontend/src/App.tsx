@@ -16,7 +16,13 @@ type Product = {
   resistance?: string[];
   nicotine?: string[];
   strength?: string[];
-  selectedFlavor?: string;
+selectedFlavor?: string;
+
+selectedResistance?: string;
+selectedNicotine?: string;
+selectedStrength?: string;
+selectedColor?: string;
+
 };
 function App() {
 const [selectedCategory, setSelectedCategory] =
@@ -1108,9 +1114,14 @@ setSelectedColor={setSelectedColor}
     onAdd={() => {
       for (let i = 0; i < quantity; i++) {
         addToCart({
-          ...selectedProduct,
-          selectedFlavor,
-        });
+  ...selectedProduct,
+
+  selectedFlavor,
+  selectedResistance,
+  selectedNicotine,
+  selectedStrength,
+  selectedColor,
+});
       }
 
       setSelectedProduct(null);
