@@ -12,10 +12,10 @@ type Product = {
   flavor?: string;
   flavors?: string[];
 
-  color?: string;
-  resistance?: string;
-  nicotine?: string;
-  strength?: string;
+  color?: string[];
+  resistance?: string[];
+  nicotine?: string[];
+  strength?: string[];
   selectedFlavor?: string;
 };
 function App() {
@@ -66,6 +66,17 @@ const [newProductCategory, setNewProductCategory] =
   const [newProductFlavors, setNewProductFlavors] =
   useState("");
   const [selectedFlavor, setSelectedFlavor] =
+  useState("");
+  const [selectedResistance, setSelectedResistance] =
+  useState("");
+
+const [selectedNicotine, setSelectedNicotine] =
+  useState("");
+
+const [selectedStrength, setSelectedStrength] =
+  useState("");
+
+const [selectedColor, setSelectedColor] =
   useState("");
   const [selectedProduct, setSelectedProduct] =
   useState<Product | null>(null);
@@ -263,10 +274,21 @@ const saveProduct = async () => {
     flavors: newProductFlavors
       .split(",")
       .map((f) => f.trim()),
-    color: newProductColor,
-    resistance: newProductResistance,
-    nicotine: newProductNicotine,
-    strength: newProductStrength,
+    color: newProductColor
+  .split(",")
+  .map((c) => c.trim()),
+
+resistance: newProductResistance
+  .split(",")
+  .map((r) => r.trim()),
+
+nicotine: newProductNicotine
+  .split(",")
+  .map((n) => n.trim()),
+
+strength: newProductStrength
+  .split(",")
+  .map((s) => s.trim()),
   };
 
   console.log(product);
@@ -1072,6 +1094,14 @@ console.log(selectedProduct);
     product={selectedProduct}
     selectedFlavor={selectedFlavor}
     setSelectedFlavor={setSelectedFlavor}
+    selectedResistance={selectedResistance}
+    setSelectedResistance={setSelectedResistance}
+selectedNicotine={selectedNicotine}
+setSelectedNicotine={setSelectedNicotine}
+selectedStrength={selectedStrength}
+setSelectedStrength={setSelectedStrength}
+selectedColor={selectedColor}
+setSelectedColor={setSelectedColor}
     quantity={quantity}
     setQuantity={setQuantity}
     onClose={() => setSelectedProduct(null)}

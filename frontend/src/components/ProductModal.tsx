@@ -1,4 +1,4 @@
-
+import OptionSelector from "./OptionSelector";
 type Product = {
   id: number;
   name: string;
@@ -8,29 +8,59 @@ type Product = {
   category: string;
   flavors?: string[];
   selectedFlavor?: string;
-  resistance?: string;
-nicotine?: string;
-strength?: string;
-color?: string;
+  resistance?: string[];
+nicotine?: string[];
+strength?: string[];
+color?: string[];
 draws?: string;
 };
 
 type Props = {
   product: Product;
+
   selectedFlavor: string;
   setSelectedFlavor: (value: string) => void;
+
+  selectedResistance: string;
+  setSelectedResistance: (value: string) => void;
+
+  selectedNicotine: string;
+  setSelectedNicotine: (value: string) => void;
+
+  selectedStrength: string;
+  setSelectedStrength: (value: string) => void;
+
+  selectedColor: string;
+  setSelectedColor: (value: string) => void;
+
   quantity: number;
   setQuantity: (value: number) => void;
+
   onClose: () => void;
   onAdd: () => void;
 };
 
 export default function ProductModal({
   product,
+
   selectedFlavor,
   setSelectedFlavor,
+
+  selectedResistance,
+  setSelectedResistance,
+
+  selectedNicotine,
+  setSelectedNicotine,
+
+  selectedStrength,
+  setSelectedStrength,
+
+  selectedColor,
+  setSelectedColor,
+
   quantity,
   setQuantity,
+
   onClose,
   onAdd,
 }: Props) {
@@ -211,39 +241,39 @@ export default function ProductModal({
     marginTop: "30px",
   }}
 >
-  <h3
-    style={{
-      marginBottom: "18px",
-      color: "#fff",
-    }}
-  >
-    Характеристики
-  </h3>
+  <OptionSelector
+  title="Сопротивление"
+  icon="⚡"
+  options={["Маленькое", "Среднее", "Большое"]}
+  value={selectedResistance}
+  onChange={setSelectedResistance}
+/>
 
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "12px",
-    }}
-  >
-    {product.resistance && (
-      <SpecRow icon="⚡" title="Сопротивление" value={product.resistance} />
-    )}
+<OptionSelector
+  title="Никотин"
+  icon="💧"
+  options={["0%", "2%", "5%"]}
+  value={selectedNicotine}
+  onChange={setSelectedNicotine}
+/>
 
-    {product.nicotine && (
-      <SpecRow icon="💧" title="Никотин" value={product.nicotine} />
-    )}
+<OptionSelector
+  title="Крепость"
+  icon="🔥"
+  options={["20mg", "30mg", "50mg"]}
+  value={selectedStrength}
+  onChange={setSelectedStrength}
+/>
 
-    {product.strength && (
-      <SpecRow icon="🔥" title="Крепость" value={product.strength} />
-    )}
+<OptionSelector
+  title="Цвет"
+  icon="🎨"
+  options={["Черный", "Синий", "Фиолетовый"]}
+  value={selectedColor}
+  onChange={setSelectedColor}
+/>
+</div>
 
-    {product.color && (
-      <SpecRow icon="🎨" title="Цвет" value={product.color} />
-    )}
-  </div>
-  </div>
 <div
   style={{
     marginTop: "28px",
@@ -380,48 +410,4 @@ export default function ProductModal({
 </div>
     </div>
   );
-}function SpecRow({
-  icon,
-  title,
-  value,
-}: {
-  icon: string;
-  title: string;
-  value: string;
-}) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        background: "#1e293b",
-        borderRadius: "16px",
-        padding: "14px 18px",
-        border: "1px solid #334155",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          color: "#cbd5e1",
-        }}
-      >
-        <span style={{ fontSize: "20px" }}>{icon}</span>
-        <span>{title}</span>
-      </div>
-      
-
-      <span
-        style={{
-          color: "#fff",
-          fontWeight: 600,
-        }}
-      >
-        {value}
-      </span>
-    </div>
-  );
-}
+}      
