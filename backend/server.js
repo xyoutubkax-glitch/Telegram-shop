@@ -33,11 +33,29 @@ app.post("/order", async (req, res) => {
     const order = req.body;
 
     const itemsText = order.items
-      .map(
-        (item, index) =>
-          `${index + 1}. ${item.name} — €${item.price}`
-      )
-      .join("\n");
+  .map((item, index) => {
+    let text = `${index + 1}. ${item.name}\n`;
+
+    if (item.selectedFlavor)
+      text += `Вкус: ${item.selectedFlavor}\n`;
+
+    if (item.selectedResistance)
+      text += `Сопротивление: ${item.selectedResistance}\n`;
+
+    if (item.selectedStrength)
+      text += `Крепость: ${item.selectedStrength}\n`;
+
+    if (item.selectedNicotine)
+      text += `Никотин: ${item.selectedNicotine}\n`;
+
+    if (item.selectedColor)
+      text += `Цвет: ${item.selectedColor}\n`;
+
+    text += `Цена: €${item.price}`;
+
+    return text;
+  })
+  .join("\n\n");
 
     const profileUrl = order.telegram?.username
       ? `https://t.me/${order.telegram.username}`

@@ -241,37 +241,45 @@ export default function ProductModal({
     marginTop: "30px",
   }}
 >
+ {product.resistance?.length ? (
   <OptionSelector
-  title="Сопротивление"
-  icon="⚡"
-  options={product.resistance ?? []}
-  value={selectedResistance}
-  onChange={setSelectedResistance}
-/>
+    title="Сопротивление"
+    icon="⚡"
+    options={product.resistance}
+    value={selectedResistance}
+    onChange={setSelectedResistance}
+  />
+) : null}
 
-<OptionSelector
-  title="Никотин"
-  icon="💧"
-  options={product.nicotine ?? []}
-  value={selectedNicotine}
-  onChange={setSelectedNicotine}
-/>
+{product.nicotine?.length ? (
+  <OptionSelector
+    title="Никотин"
+    icon="💧"
+    options={product.nicotine}
+    value={selectedNicotine}
+    onChange={setSelectedNicotine}
+  />
+) : null}
 
-<OptionSelector
-  title="Крепость"
-  icon="🔥"
-  options={product.strength ?? []}
-  value={selectedStrength}
-  onChange={setSelectedStrength}
-/>
+{product.strength?.length ? (
+  <OptionSelector
+    title="Крепость"
+    icon="🔥"
+    options={product.strength}
+    value={selectedStrength}
+    onChange={setSelectedStrength}
+  />
+) : null}
 
-<OptionSelector
-  title="Цвет"
-  icon="🎨"
-  options={product.color ?? []}
-  value={selectedColor}
-  onChange={setSelectedColor}
-/>
+{product.color?.length ? (
+  <OptionSelector
+    title="Цвет"
+    icon="🎨"
+    options={product.color}
+    value={selectedColor}
+    onChange={setSelectedColor}
+  />
+) : null}
 </div>
 
 <div
