@@ -6,13 +6,21 @@ type Product = {
   image: string;
   description: string;
   category: string;
+
   flavors?: string[];
-  selectedFlavor?: string;
+
   resistance?: string[];
-nicotine?: string[];
-strength?: string[];
-color?: string[];
-draws?: string;
+  nicotine?: string[];
+  strength?: string[];
+  color?: string[];
+
+  draws?: string;
+
+  selectedFlavor?: string;
+  selectedResistance?: string;
+  selectedNicotine?: string;
+  selectedStrength?: string;
+  selectedColor?: string;
 };
 
 type Props = {
