@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const TelegramBot = require("node-telegram-bot-api");
+const supabase = require("./supabase");
 
 const app = express();
 
@@ -13,19 +14,33 @@ const ADMIN_CHAT_ID = 7130132807;
 const GROUP_CHAT_ID = -1003788971538;
 
 const bot = new TelegramBot(BOT_TOKEN);
-let products = [];
-app.get("/products", (req, res) => {
-  res.json(products);
+app.get("/products", async (req, res) => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("id", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return res.status(500).json(error);
+  }
+
+  res.json(data);
 });
-app.post("/products", (req, res) => {
+app.post("/products", async (req, res) => {
   const product = req.body;
 
-  products.push(product);
+  const { data, error } = await supabase
+    .from("products")
+    .insert([product])
+    .select();
 
-  res.json({
-    success: true,
-    products,
-  });
+  if (error) {
+    console.error(error);
+    return res.status(500).json(error);
+  }
+
+  res.json(data);
 });
 
 app.post("/order", async (req, res) => {
