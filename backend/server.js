@@ -58,6 +58,23 @@ app.put("/products/:id", async (req, res) => {
 
   res.json(data);
 });
+app.delete("/products/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const { error } = await supabase
+    .from("products")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    return res.status(500).json(error);
+  }
+
+  res.json({
+    success: true,
+  });
+});
 
 app.post("/order", async (req, res) => {
   try {

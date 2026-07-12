@@ -319,7 +319,6 @@ const saveProduct = async () => {
 
     alert("Товар добавлен");
   }
-
   const response = await fetch(
     "https://telegram-shop-4.onrender.com/products"
   );
@@ -330,6 +329,25 @@ const saveProduct = async () => {
   setEditingProduct(null);
 
   setTab("shop");
+};
+const deleteProduct = async (id: number) => {
+  if (!window.confirm("Удалить товар?")) return;
+
+  try {
+    await fetch(
+      `https://telegram-shop-4.onrender.com/products/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    setProducts(products.filter((p) => p.id !== id));
+
+    alert("Товар удалён");
+  } catch (error) {
+    console.error(error);
+    alert("Ошибка удаления");
+  }
 };
 console.log(selectedProduct);
   return (
@@ -784,15 +802,69 @@ fontWeight:"600"
   ✏️ Редактировать товар
 </button>
 
+        {adminMode === "delete" && (
+  <div
+    style={{
+      marginTop: "30px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "14px",
+    }}
+  >
+    <h2 style={{ color: "#fff" }}>
+      Удалить товар
+    </h2>
+
+    {products.map((product) => (
+      <div
+        key={product.id}
+        style={{
+          background: "#1b2432",
+          borderRadius: "18px",
+          padding: "18px",
+          border: "1px solid #2e3a4d",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              color: "#fff",
+              fontWeight: 700,
+            }}
+          >
+            {product.name}
+          </div>
+
+          <div
+            style={{
+              color: "#94a3b8",
+            }}
+          >
+            €{product.price}
+          </div>
+        </div>
+
         <button
+          onClick={() => deleteProduct(product.id)}
           style={{
-            ...adminButton,
+            padding: "10px 18px",
+            border: "none",
+            borderRadius: "14px",
             background:
-              "linear-gradient(135deg,#229ED9,#0088cc)",
+              "linear-gradient(135deg,#ef4444,#dc2626)",
+            color: "#fff",
+            cursor: "pointer",
           }}
         >
-          🗑 Удалить товар
+          🗑 Удалить
         </button>
+      </div>
+    ))}
+  </div>
+)}
 
         <button
           style={{
