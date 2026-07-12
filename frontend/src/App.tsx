@@ -868,12 +868,6 @@ fontWeight:"600"
   <option>Испарители</option>
   <option>Никотиновые паучи(снюс)</option>
 </select>
-
-<input
-  placeholder="Введите вкусы через запятую"
-  value={newProductFlavors}
-  onChange={(e) => setNewProductFlavors(e.target.value)}
-/>
 {newProductImage && (
   <>
     <p>
