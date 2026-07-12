@@ -801,6 +801,16 @@ fontWeight:"600"
 >
   ✏️ Редактировать товар
 </button>
+<button
+  onClick={() => setAdminMode("delete")}
+  style={{
+    ...adminButton,
+    background:
+      "linear-gradient(135deg,#ef4444,#dc2626)",
+  }}
+>
+  🗑 Удалить товар
+</button>
 
         {adminMode === "delete" && (
   <div
