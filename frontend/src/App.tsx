@@ -653,69 +653,7 @@ fontWeight:"600"
       >
         ⚙️ Панель администратора
       </h2>
-
-      <div
-        style={{
-          display: "grid",
-          gap: "12px",
-        }}
-      >
-        <button
-  onClick={() => setTab("add-product")}
-  style={{
-    ...adminButton,
-    background:
-      "linear-gradient(135deg,#229ED9,#0088cc)",
-  }}
->
-  {isEditing ? "💾 Сохранить изменения" : "➕ Добавить товар"}
-</button>
-
-        <button
-  onClick={() => setAdminMode("edit")}
-  style={{
-    ...adminButton,
-    background:
-      "linear-gradient(135deg,#229ED9,#0088cc)",
-  }}
->
-  ✏️ Редактировать товар
-</button>
-
-        <button
-          style={{
-            ...adminButton,
-            background:
-              "linear-gradient(135deg,#229ED9,#0088cc)",
-          }}
-        >
-          🗑 Удалить товар
-        </button>
-
-        <button
-          style={{
-            ...adminButton,
-            background:
-              "linear-gradient(135deg,#229ED9,#0088cc)",
-          }}
-        >
-          📦 Изменить количество
-        </button>
-
-        <button
-          style={{
-            ...adminButton,
-            background:
-              "linear-gradient(135deg,#229ED9,#0088cc)",
-          }}
-        >
-          📑 Заказы
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-{adminMode === "edit" && (
+      {adminMode === "edit" && (
   <div
     style={{
       marginTop: "30px",
@@ -814,6 +752,69 @@ fontWeight:"600"
         </button>
       </div>
     ))}
+  </div>
+)}
+
+      <div
+        style={{
+          display: "grid",
+          gap: "12px",
+        }}
+
+      >
+        <button
+  onClick={() => setTab("add-product")}
+  style={{
+    ...adminButton,
+    background:
+      "linear-gradient(135deg,#229ED9,#0088cc)",
+  }}
+>
+  {isEditing ? "💾 Сохранить изменения" : "➕ Добавить товар"}
+</button>
+
+        <button
+  onClick={() => setAdminMode("edit")}
+  style={{
+    ...adminButton,
+    background:
+      "linear-gradient(135deg,#229ED9,#0088cc)",
+  }}
+>
+  ✏️ Редактировать товар
+</button>
+
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          🗑 Удалить товар
+        </button>
+
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          📦 Изменить количество
+        </button>
+
+        <button
+          style={{
+            ...adminButton,
+            background:
+              "linear-gradient(135deg,#229ED9,#0088cc)",
+          }}
+        >
+          📑 Заказы
+        </button>
+      </div>
+    </div>
   </div>
 )}
 {tab === "add-product" && isAdmin && (
