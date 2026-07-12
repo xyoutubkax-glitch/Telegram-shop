@@ -42,6 +42,22 @@ app.post("/products", async (req, res) => {
 
   res.json(data);
 });
+app.put("/products/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const { data, error } = await supabase
+    .from("products")
+    .update(req.body)
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    console.error(error);
+    return res.status(500).json(error);
+  }
+
+  res.json(data);
+});
 
 app.post("/order", async (req, res) => {
   try {

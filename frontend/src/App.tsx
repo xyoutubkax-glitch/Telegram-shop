@@ -89,6 +89,14 @@ const [selectedColor, setSelectedColor] =
 
 const [quantity, setQuantity] =
   useState(1);
+  const [editingProduct, setEditingProduct] =
+  useState<Product | null>(null);
+
+const [isEditing, setIsEditing] =
+  useState(false);
+  const [adminMode, setAdminMode] = useState<
+  "menu" | "edit" | "delete"
+>("menu");
 
 
 
@@ -664,14 +672,15 @@ fontWeight:"600"
 </button>
 
         <button
-          style={{
-            ...adminButton,
-            background:
-              "linear-gradient(135deg,#229ED9,#0088cc)",
-          }}
-        >
-          ✏️ Редактировать товар
-        </button>
+  onClick={() => setAdminMode("edit")}
+  style={{
+    ...adminButton,
+    background:
+      "linear-gradient(135deg,#229ED9,#0088cc)",
+  }}
+>
+  ✏️ Редактировать товар
+</button>
 
         <button
           style={{
@@ -704,6 +713,79 @@ fontWeight:"600"
         </button>
       </div>
     </div>
+  </div>
+)}
+{adminMode === "edit" && (
+  <div
+    style={{
+      marginTop: "30px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "14px",
+    }}
+  >
+    <h2
+      style={{
+        color: "#fff",
+        marginBottom: "10px",
+      }}
+    >
+      Выберите товар
+    </h2>
+
+    {products.map((product) => (
+      <div
+        key={product.id}
+        style={{
+          background: "#1b2432",
+          borderRadius: "18px",
+          padding: "18px",
+          border: "1px solid #2e3a4d",
+
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              color: "#fff",
+              fontWeight: 700,
+              fontSize: "17px",
+            }}
+          >
+            {product.name}
+          </div>
+
+          <div
+            style={{
+              color: "#94a3b8",
+              marginTop: "6px",
+            }}
+          >
+            €{product.price}
+          </div>
+        </div>
+
+        <button
+          onClick={() => {
+            console.log(product);
+          }}
+          style={{
+            padding: "10px 18px",
+            borderRadius: "14px",
+            border: "none",
+            background:
+              "linear-gradient(135deg,#2563eb,#1d4ed8)",
+            color: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          ✏️ Изменить
+        </button>
+      </div>
+    ))}
   </div>
 )}
 {tab === "add-product" && isAdmin && (
