@@ -134,6 +134,10 @@ useEffect(() => {
 }, []);
  const [products, setProducts] =
   useState<Product[]>([]);
+  const filteredProducts = products.filter((product: Product) => {
+  if (selectedCategory === "Все") return true;
+  return product.category === selectedCategory;
+});
 
   const addToCart = (product: Product) => {
 
@@ -275,61 +279,59 @@ const uploadImage = async (file: File) => {
   return data.secure_url;
 };
 const saveProduct = async () => {
-
-  console.log("SAVE CLICK");
-
-  const product: Product = {
-    id: Date.now(),
+  const product = {
     name: newProductName,
     price: Number(newProductPrice),
     image: newProductImage,
     description: newProductDescription,
     category: newProductCategory,
-    flavors: newProductFlavors
-      .split(",")
-      .map((f) => f.trim()),
-    color: newProductColor
-  .split(",")
-  .map((c) => c.trim()),
 
-resistance: newProductResistance
-  .split(",")
-  .map((r) => r.trim()),
-
-nicotine: newProductNicotine
-  .split(",")
-  .map((n) => n.trim()),
-
-strength: newProductStrength
-  .split(",")
-  .map((s) => s.trim()),
+    flavors: newProductFlavors.split(",").map(f => f.trim()),
+    resistance: newProductResistance.split(",").map(f => f.trim()),
+    nicotine: newProductNicotine.split(",").map(f => f.trim()),
+    strength: newProductStrength.split(",").map(f => f.trim()),
+    color: newProductColor.split(",").map(f => f.trim()),
   };
+  if (isEditing && editingProduct) {
+    await fetch(
+      `https://telegram-shop-4.onrender.com/products/${editingProduct.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    );
 
-  console.log(product);
+    alert("Товар обновлён");
+  } else {
+    await fetch(
+      "https://telegram-shop-4.onrender.com/products",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    );
+
+    alert("Товар добавлен");
+  }
 
   const response = await fetch(
-    "https://telegram-shop-4.onrender.com/products",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    }
+    "https://telegram-shop-4.onrender.com/products"
   );
 
-  console.log(await response.json());
+  setProducts(await response.json());
 
-  alert("Товар добавлен");
+  setIsEditing(false);
+  setEditingProduct(null);
+
+  setTab("shop");
 };
-const filteredProducts =
-  selectedCategory === "Все"
-    ? products
-    : products.filter(
-        (product) =>
-          product.category === selectedCategory
-
-      );  
+console.log(selectedProduct);
   return (
   <div
   style={{
@@ -529,29 +531,27 @@ onTouchEnd={(e) => {
               {product.description}
             </p>
   <div
-style={{
-display:"flex",
-flexWrap:"wrap",
-gap:"8px",
-marginTop:"15px"
-}}
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px",
+    marginTop: "15px",
+  }}
 >
-
-{product.flavors?.map(flavor=>(
-<div
-key={flavor}
-style={{
-padding:"6px 12px",
-background:"#1e293b",
-borderRadius:"20px",
-fontSize:"13px"
-}}
->
- {flavor}
+  {product.flavors?.map((flavor: string) => (
+    <div
+      key={flavor}
+      style={{
+        padding: "6px 12px",
+        background: "#1e293b",
+        borderRadius: "20px",
+        fontSize: "13px",
+      }}
+    >
+      {flavor}
+    </div>
+  ))}
 </div>
-))}
-</div>
-
 {product.color && (
   <p>🎨 Цвет: {product.color}</p>
 )}
@@ -668,7 +668,7 @@ fontWeight:"600"
       "linear-gradient(135deg,#229ED9,#0088cc)",
   }}
 >
-  ➕ Добавить товар
+  {isEditing ? "💾 Сохранить изменения" : "➕ Добавить товар"}
 </button>
 
         <button
@@ -770,9 +770,37 @@ fontWeight:"600"
 
         <button
           onClick={() => {
-            console.log(product);
-          }}
-          style={{
+  setIsEditing(true);
+  setEditingProduct(product);
+  setTab("add-product");
+
+  setNewProductName(product.name);
+  setNewProductPrice(product.price.toString());
+  setNewProductDescription(product.description);
+  setNewProductImage(product.image);
+  setNewProductCategory(product.category);
+
+  setNewProductFlavors(
+    product.flavors?.join(", ") || ""
+  );
+
+  setNewProductResistance(
+    product.resistance?.join(", ") || ""
+  );
+
+  setNewProductNicotine(
+    product.nicotine?.join(", ") || ""
+  );
+
+  setNewProductStrength(
+    product.strength?.join(", ") || ""
+  );
+
+  setNewProductColor(
+    product.color?.join(", ") || ""
+  );
+  }}
+            style={{
             padding: "10px 18px",
             borderRadius: "14px",
             border: "none",
@@ -832,44 +860,20 @@ fontWeight:"600"
 />
 <select
   value={newProductCategory}
-  onChange={(e) =>
-    setNewProductCategory(e.target.value)
-  }
-  style={{
-    width: "100%",
-    padding: "12px",
-    marginTop: "10px",
-    borderRadius: "12px",
-  }}
+  onChange={(e) => setNewProductCategory(e.target.value)}
 >
-  <select
-  value={newProductCategory}
-  onChange={(e) =>
-    setNewProductCategory(e.target.value)
-  }
->
-  ...
-</select>
-
-<input
-  placeholder="Введите вкусы через запятую"
-  value={newProductFlavors}
-  onChange={(e) =>
-    setNewProductFlavors(e.target.value)
-  }
-  style={{
-    width: "100%",
-    padding: "12px",
-    marginTop: "10px",
-    borderRadius: "12px",
-  }}
-/>
   <option>Жидкости</option>
   <option>Одноразки</option>
   <option>Под-системы</option>
   <option>Испарители</option>
   <option>Никотиновые паучи(снюс)</option>
 </select>
+
+<input
+  placeholder="Введите вкусы через запятую"
+  value={newProductFlavors}
+  onChange={(e) => setNewProductFlavors(e.target.value)}
+/>
 {newProductImage && (
   <>
     <p>
@@ -1176,7 +1180,6 @@ fontWeight:"600"
     )}
   </div>
 )}
-console.log(selectedProduct);
 {selectedProduct && (
   <ProductModal
     product={selectedProduct}
