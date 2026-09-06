@@ -364,6 +364,21 @@ console.log(selectedProduct);
     
   }}
 >
+  <style>
+  {`
+    .product-tag {
+      padding: 4px 7px;
+      border-radius: 7px;
+      background: rgba(255,255,255,.06);
+      color: #9ca3af;
+      font-size: 10px;
+    }
+
+    .product-card:active {
+      transform: scale(.98);
+    }
+  `}
+</style> 
       <div
         style={{
           display: "flex",
@@ -488,155 +503,117 @@ style={{
 >
     {filteredProducts.map((product) => (
         <div
-        onClick={() => {
-  setSelectedProduct(product);
-
-  if (product.flavors?.length) {
-    setSelectedFlavor(product.flavors[0]);
-  }
-}}
-        onTouchStart={(e) => {
-  e.currentTarget.style.transform = "scale(0.98)";
-}}
-
-onTouchEnd={(e) => {
-  e.currentTarget.style.transform = "scale(1)";
-}}
   key={product.id}
   className="product-card"
-  style={{
-  background: "linear-gradient(180deg,#1f2937,#111827)",
-  borderRadius: "26px",
-  overflow: "hidden",
-  border: "1px solid rgba(255,255,255,.08)",
-  boxShadow: "0 10px 30px rgba(0,0,0,.35)",
-  marginTop: "22px",
-  transition: ".25s",
-}}
->
-          <img
-            src={product.image}
-            alt={product.name}
-            style={{
-              width: "100%",
-              height: "280px",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-          <div
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "8px",
-    padding: "6px 16px",
-    borderRadius: "999px",
-    background: "linear-gradient(90deg,#ff4d6d,#ff006e)",
-    color: "#fff",
-    fontWeight: 700,
-    fontSize: "13px",
-    boxShadow: "0 0 20px rgba(255,60,120,.45)",
-    marginBottom: "12px",
-    marginTop: "18px",
-  }}
->
-  🔥 HOT
-</div>
+  onClick={() => {
+    setSelectedProduct(product);
 
-          <div style={{ padding: "16px" }}>
-            <h2
+    if (product.flavors?.length) {
+      setSelectedFlavor(product.flavors[0]);
+    }
+  }}
   style={{
-    fontSize: "22px",
-    marginBottom: "8px",
-    fontWeight: 700,
+    background: "linear-gradient(180deg, #1f2937 0%, #111827 100%)",
+    borderRadius: "20px",
+    overflow: "hidden",
+    border: "1px solid rgba(255,255,255,.08)",
+    boxShadow: "0 8px 24px rgba(0,0,0,.28)",
+    transition: "transform .2s ease, box-shadow .2s ease",
+    cursor: "pointer",
   }}
 >
-  {product.name}
-</h2>
+  <img
+    src={product.image}
+    alt={product.name}
+    style={{
+      width: "100%",
+      height: "190px",
+      objectFit: "cover",
+      display: "block",
+    }}
+  />
 
-            <p style={{ color: "#cbd5e1" }}>
-              {product.description}
-            </p>
-  <div
-  style={{
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "8px",
-    marginTop: "15px",
-  }}
->
-  {product.flavors?.map((flavor: string) => (
-    <div
-      key={flavor}
+  <div style={{ padding: "12px" }}>
+    <h2
       style={{
-        padding: "6px 12px",
-        background: "#1e293b",
-        borderRadius: "20px",
-        fontSize: "13px",
+        margin: "0 0 6px",
+        fontSize: "16px",
+        fontWeight: 700,
+        color: "#fff",
+        lineHeight: 1.2,
       }}
     >
-      {flavor}
-    </div>
-  ))}
-</div>
-{product.color && (
-  <p>🎨 Цвет: {product.color}</p>
-)}
+      {product.name}
+    </h2>
 
-{product.resistance && (
-  <p>⚡ Сопротивление: {product.resistance}</p>
-)}
+    <p
+      style={{
+        margin: "0 0 10px",
+        color: "#9ca3af",
+        fontSize: "12px",
+        lineHeight: 1.4,
+      }}
+    >
+      {product.description}
+    </p>
 
-{product.nicotine && (
-  <p>💨 Никотин: {product.nicotine}</p>
-)}
-
-{product.strength && (
-  <p>🔥 Крепость: {product.strength}</p>
-)}
-
-            <div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: "15px",
-  }}
->
-  <div
-    style={{
-      fontSize: "28px",
-      fontWeight: "bold",
-      color: "#38bdf8",
-    }}
-  >
-    €{product.price}
-  </div>
-  <p
-style={{
-color:"#22c55e",
-marginTop:"8px",
-fontWeight:"600"
-}}
->
-В наличии
-</p>
-
-  <div
-    style={{
-      color: "#94a3b8",
-      fontSize: "14px",
-    }}
-  >
-    ⭐ 4.9
-  </div>
-</div>
-          </div>
-        </div>
-      ))}
-      </div>
-      </div>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "5px",
+        marginBottom: "12px",
+      }}
+    >
+      {product.color && (
+        <span className="product-tag">Цвет: {product.color}</span>
       )}
+
+      {product.resistance && (
+        <span className="product-tag">
+          {product.resistance}
+        </span>
+      )}
+
+      {product.strength && (
+        <span className="product-tag">
+          {product.strength}
+        </span>
+      )}
+    </div>
+
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <strong
+        style={{
+          fontSize: "19px",
+          color: "#fff",
+        }}
+      >
+        €{product.price}
+      </strong>
+
+      <span
+        style={{
+          fontSize: "11px",
+          color: "#22c55e",
+          fontWeight: 600,
+        }}
+      >
+        В наличии
+      </span>
+    </div>
+    </div>
+  </div>
+    ))}
+  </div>
+  </div>
+    )}
 
       {tab === "admin" && isAdmin && (
   <div className="page">
