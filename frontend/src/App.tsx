@@ -514,7 +514,7 @@ style={{
     flexDirection: "row",
     alignItems: "stretch",
     minWidth: 0,
-    height: "115px",
+    height: "125px",
     background: "linear-gradient(145deg, #142238, #0d1727)",
     border: "1px solid rgba(70,150,220,.16)",
     borderRadius: "20px",
@@ -527,7 +527,7 @@ style={{
     src={product.image}
     alt={product.name}
     style={{
-      width: "38%",
+      width: "40%",
       height: "100%",
       objectFit: "cover",
       flexShrink: 0,
@@ -538,7 +538,7 @@ style={{
     style={{
       minWidth: 0,
       flex: 1,
-      padding: "10px 11px",
+      padding: "10px",
       display: "flex",
       flexDirection: "column",
     }}
@@ -546,7 +546,7 @@ style={{
     <h2
       style={{
         margin: 0,
-        fontSize: "16px",
+        fontSize: "15px",
         lineHeight: 1.2,
         color: "#fff",
         fontWeight: 700,
@@ -580,7 +580,7 @@ style={{
     <div style={{ marginTop: "auto" }}>
       <strong
         style={{
-          fontSize: "20px",
+          fontSize: "18px",
           color: "#fff",
         }}
       >
