@@ -478,6 +478,14 @@ console.log(selectedProduct);
     </div>
   ))}
 </div>
+<div
+style={{
+  display: "grid",
+  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gap: "12px",
+  width: "100%",
+}}
+>
     {filteredProducts.map((product) => (
         <div
         onClick={() => {
@@ -623,29 +631,10 @@ fontWeight:"600"
     ⭐ 4.9
   </div>
 </div>
-
-            <button
-  onClick={() => setSelectedProduct(product)}
-  style={{
-  width: "100%",
-  marginTop: "18px",
-  padding: "16px 20px",
-  borderRadius: "18px",
-  border: "none",
-  background: "linear-gradient(135deg,#2563eb,#3b82f6)",
-  color: "#fff",
-  fontSize: "17px",
-  fontWeight: 700,
-  cursor: "pointer",
-  transition: "0.25s",
-  boxShadow: "0 8px 24px rgba(37,99,235,.35)",
-}}
->
-  Подробнее
-</button>
           </div>
         </div>
       ))}
+      </div>
       </div>
       )}
 
