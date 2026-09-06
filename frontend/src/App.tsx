@@ -514,7 +514,7 @@ style={{
     flexDirection: "row",
     alignItems: "stretch",
     minWidth: 0,
-    height: "170px",
+    height: "115px",
     background: "linear-gradient(145deg, #142238, #0d1727)",
     border: "1px solid rgba(70,150,220,.16)",
     borderRadius: "20px",
@@ -527,7 +527,7 @@ style={{
     src={product.image}
     alt={product.name}
     style={{
-      width: "42%",
+      width: "38%",
       height: "100%",
       objectFit: "cover",
       flexShrink: 0,
@@ -538,7 +538,7 @@ style={{
     style={{
       minWidth: 0,
       flex: 1,
-      padding: "14px 12px",
+      padding: "10px 11px",
       display: "flex",
       flexDirection: "column",
     }}
