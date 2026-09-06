@@ -497,28 +497,29 @@ console.log(selectedProduct);
 style={{
   display: "grid",
   gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-  gap: "12px",
+  gap: "14px",
   width: "100%",
+  padding: "0 12px",
+  boxSizing:"border-box",
 }}
 >
     {filteredProducts.map((product) => (
         <div
   key={product.id}
   className="product-card"
-  onClick={() => {
-    setSelectedProduct(product);
-
-    if (product.flavors?.length) {
-      setSelectedFlavor(product.flavors[0]);
-    }
-  }}
+  onClick={() => setSelectedProduct(product)}
   style={{
-    background: "linear-gradient(180deg, #1f2937 0%, #111827 100%)",
+    position: "relative",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "stretch",
+    minWidth: 0,
+    height: "170px",
+    background: "linear-gradient(145deg, #142238, #0d1727)",
+    border: "1px solid rgba(70,150,220,.16)",
     borderRadius: "20px",
     overflow: "hidden",
-    border: "1px solid rgba(255,255,255,.08)",
-    boxShadow: "0 8px 24px rgba(0,0,0,.28)",
-    transition: "transform .2s ease, box-shadow .2s ease",
+    boxShadow: "0 8px 24px rgba(0,0,0,.22)",
     cursor: "pointer",
   }}
 >
@@ -526,21 +527,29 @@ style={{
     src={product.image}
     alt={product.name}
     style={{
-      width: "100%",
-      height: "190px",
+      width: "42%",
+      height: "100%",
       objectFit: "cover",
-      display: "block",
+      flexShrink: 0,
     }}
   />
 
-  <div style={{ padding: "12px" }}>
+  <div
+    style={{
+      minWidth: 0,
+      flex: 1,
+      padding: "14px 12px",
+      display: "flex",
+      flexDirection: "column",
+    }}
+  >
     <h2
       style={{
-        margin: "0 0 6px",
+        margin: 0,
         fontSize: "16px",
-        fontWeight: 700,
-        color: "#fff",
         lineHeight: 1.2,
+        color: "#fff",
+        fontWeight: 700,
       }}
     >
       {product.name}
@@ -548,10 +557,10 @@ style={{
 
     <p
       style={{
-        margin: "0 0 10px",
-        color: "#9ca3af",
+        margin: "7px 0 0",
+        color: "#8fa8c4",
         fontSize: "12px",
-        lineHeight: 1.4,
+        lineHeight: 1.35,
       }}
     >
       {product.description}
@@ -559,57 +568,27 @@ style={{
 
     <div
       style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "5px",
-        marginBottom: "12px",
+        marginTop: "8px",
+        color: "#22c55e",
+        fontSize: "12px",
+        fontWeight: 600,
       }}
     >
-      {product.color && (
-        <span className="product-tag">Цвет: {product.color}</span>
-      )}
-
-      {product.resistance && (
-        <span className="product-tag">
-          {product.resistance}
-        </span>
-      )}
-
-      {product.strength && (
-        <span className="product-tag">
-          {product.strength}
-        </span>
-      )}
+      ✓ В наличии
     </div>
 
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
+    <div style={{ marginTop: "auto" }}>
       <strong
         style={{
-          fontSize: "19px",
+          fontSize: "20px",
           color: "#fff",
         }}
       >
         €{product.price}
       </strong>
-
-      <span
-        style={{
-          fontSize: "11px",
-          color: "#22c55e",
-          fontWeight: 600,
-        }}
-      >
-        В наличии
-      </span>
-    </div>
     </div>
   </div>
+</div>
     ))}
   </div>
   </div>
