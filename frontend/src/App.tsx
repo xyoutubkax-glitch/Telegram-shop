@@ -600,7 +600,7 @@ style={{
       color: "#fff",
     }}
   >
-    ${product.price}
+    {product.price} BYN
   </strong>
 </div>
   </div>
