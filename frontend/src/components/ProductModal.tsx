@@ -94,7 +94,7 @@ export default function ProductModal({
     alt={product.name}
     style={{
   width: "100%",
-  height: "380px",
+  height: "300px",
   objectFit: "cover",
   borderRadius: "26px",
   display: "block",
@@ -121,43 +121,6 @@ export default function ProductModal({
   >
     ✕
   </button>
-
-  <div
-    style={{
-      position: "absolute",
-      top: 32,
-      left: 22,
-      padding: "8px 18px",
-      borderRadius: "999px",
-      border: "2px solid #ff4d7a",
-      background: "rgba(255,0,90,.15)",
-      color: "#fff",
-      fontWeight: 700,
-      boxShadow: "0 0 15px rgba(255,70,120,.6)",
-    }}
-  >
-    🔥 HOT
-  </div>
-
-  <button
-    style={{
-  position: "absolute",
-  right: "18px",
-  top: "18px",
-  width: "54px",
-  height: "54px",
-  borderRadius: "50%",
-  background: "rgba(0,0,0,.45)",
-  backdropFilter: "blur(14px)",
-  border: "1px solid rgba(255,255,255,.08)",
-  color: "#fff",
-  fontSize: "24px",
-  cursor: "pointer",
-}}
-  >
-    ♡
-  </button>
-
   <div
     style={{
   position: "absolute",
@@ -249,41 +212,41 @@ export default function ProductModal({
     marginTop: "30px",
   }}
 >
- {product.resistance?.length ? (
+ {product.resistance?.filter(Boolean).length ? (
   <OptionSelector
     title="Сопротивление"
     icon="⚡"
-    options={product.resistance}
+    options={product.resistance.filter(Boolean)}
     value={selectedResistance}
     onChange={setSelectedResistance}
   />
 ) : null}
 
-{product.nicotine?.length ? (
+{product.nicotine?.filter(Boolean).length ? (
   <OptionSelector
     title="Никотин"
     icon="💧"
-    options={product.nicotine}
+    options={product.nicotine.filter(Boolean)}
     value={selectedNicotine}
     onChange={setSelectedNicotine}
   />
 ) : null}
 
-{product.strength?.length ? (
+{product.strength?.filter(Boolean).length ? (
   <OptionSelector
     title="Крепость"
     icon="🔥"
-    options={product.strength}
+    options={product.strength.filter(Boolean)}
     value={selectedStrength}
     onChange={setSelectedStrength}
   />
 ) : null}
 
-{product.color?.length ? (
+{product.color?.filter(Boolean).length ? (
   <OptionSelector
     title="Цвет"
     icon="🎨"
-    options={product.color}
+    options={product.color.filter(Boolean)}
     value={selectedColor}
     onChange={setSelectedColor}
   />
