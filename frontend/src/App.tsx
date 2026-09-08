@@ -527,8 +527,8 @@ style={{
     src={product.image}
     alt={product.name}
     style={{
-  width: "100px",
-  height: "100px",
+  width: "92px",
+  height: "92px",
   objectFit: "cover",
   flexShrink: 0,
   borderRadius: "16px",
@@ -553,6 +553,10 @@ style={{
         lineHeight: 1.2,
         color: "#fff",
         fontWeight: 700,
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden",
       }}
     >
       {product.name}
@@ -580,8 +584,6 @@ style={{
         fontSize: "11px",
         fontWeight: 600,
         whiteSpace: "nowrap",
-        overflow:"hidden",
-        textOverflow: "ellipsis"
       }}
     >
       ✓ В наличии
@@ -598,7 +600,7 @@ style={{
       color: "#fff",
     }}
   >
-    €{product.price}
+    BYN{product.price}
   </strong>
 </div>
   </div>
