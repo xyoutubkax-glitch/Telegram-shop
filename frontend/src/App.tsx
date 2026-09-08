@@ -536,24 +536,18 @@ style={{
 }}
   />
   <div
-    style={{
-      position: "absolute",
-      left: "6px",
-      right: "6px",
-      bottom: "6px",
-      padding: "4px 6px",
-      borderRadius: "8px",
-      background: "rgba(0,0,0,.65)",
-      color: "#22c55e",
-      fontSize: "10px",
-      fontWeight: 600,
-      textAlign: "center",
-      whiteSpace: "nowrap",
-    }}
-  >
-    ✓ В наличии
-
-  </div>
+  style={{
+    position: "absolute",
+    left: "14px",
+    bottom: "5px",
+    color: "#22c55e",
+    fontSize: "11px",
+    fontWeight: 600,
+    whiteSpace: "nowrap",
+  }}
+>
+  ✓ В наличии
+</div>
   <div
     style={{
       minWidth: 0,
