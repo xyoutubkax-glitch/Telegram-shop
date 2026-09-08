@@ -527,11 +527,13 @@ style={{
     src={product.image}
     alt={product.name}
     style={{
-      width: "40%",
-      height: "100%",
-      objectFit: "cover",
-      flexShrink: 0,
-    }}
+  width: "40%",
+  height: "100%",
+  objectFit: "cover",
+  flexShrink: 0,
+  borderRadius: "18px",
+  margin: "6px",
+}}
   />
 
   <div
@@ -556,15 +558,19 @@ style={{
     </h2>
 
     <p
-      style={{
-        margin: "7px 0 0",
-        color: "#8fa8c4",
-        fontSize: "12px",
-        lineHeight: 1.35,
-      }}
-    >
-      {product.description}
-    </p>
+  style={{
+    margin: "7px 0 0",
+    color: "#8fa8c4",
+    fontSize: "12px",
+    lineHeight: 1.35,
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+  }}
+>
+  {product.description}
+</p>
 
     <div
       style={{
@@ -577,16 +583,20 @@ style={{
       ✓ В наличии
     </div>
 
-    <div style={{ marginTop: "auto" }}>
-      <strong
-        style={{
-          fontSize: "18px",
-          color: "#fff",
-        }}
-      >
-        €{product.price}
-      </strong>
-    </div>
+    <div
+  style={{
+    marginTop: "auto",
+  }}
+>
+  <strong
+    style={{
+      fontSize: "18px",
+      color: "#fff",
+    }}
+  >
+    €{product.price}
+  </strong>
+</div>
   </div>
 </div>
     ))}
