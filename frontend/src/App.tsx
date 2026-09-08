@@ -540,7 +540,7 @@ style={{
     style={{
       minWidth: 0,
       flex: 1,
-      padding: "9px 10px 9px 4px",
+      padding: "10px 10px 8px 4px",
       display: "flex",
       flexDirection: "column",
       overflow: "hidden",
@@ -583,6 +583,8 @@ style={{
         color: "#22c55e",
         fontSize: "11px",
         fontWeight: 600,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
         whiteSpace: "nowrap",
       }}
     >
