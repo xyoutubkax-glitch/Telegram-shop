@@ -592,6 +592,10 @@ style={{
     <div
   style={{
     marginTop: "auto",
+    whiteSpace: "nowrap",
+    display: "flex",
+    alignItems: "baseline",
+    gap: "4px",
   }}
 >
   <strong
@@ -600,8 +604,17 @@ style={{
       color: "#fff",
     }}
   >
-    {product.price} BYN
+    {product.price}
   </strong>
+
+  <span
+    style={{
+      fontSize: "12px",
+      color: "#9ca3af",
+    }}
+  >
+    BYN
+  </span>
 </div>
   </div>
 </div>
