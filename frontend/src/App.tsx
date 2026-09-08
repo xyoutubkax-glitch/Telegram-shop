@@ -578,18 +578,43 @@ style={{
 </p>
 
     <div
-      style={{
-        marginTop: "5px",
-        color: "#22c55e",
-        fontSize: "11px",
-        fontWeight: 600,
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap",
-      }}
-    >
-      ✓ В наличии
-    </div>
+  style={{
+    position: "relative",
+    flexShrink: 0,
+    margin: "7px",
+  }}
+>
+  <img
+    src={product.image}
+    alt={product.name}
+    style={{
+      width: "92px",
+      height: "92px",
+      objectFit: "cover",
+      borderRadius: "16px",
+      display: "block",
+    }}
+  />
+
+  <div
+    style={{
+      position: "absolute",
+      left: "6px",
+      right: "6px",
+      bottom: "6px",
+      padding: "4px 6px",
+      borderRadius: "8px",
+      background: "rgba(0,0,0,.65)",
+      color: "#22c55e",
+      fontSize: "10px",
+      fontWeight: 600,
+      textAlign: "center",
+      whiteSpace: "nowrap",
+    }}
+  >
+    ✓ В наличии
+  </div>
+</div>
 
     <div
   style={{
