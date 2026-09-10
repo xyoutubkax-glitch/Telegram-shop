@@ -10,7 +10,7 @@ app.use(express.json());
 
 const BOT_TOKEN = "8818876066:AAGp3ChnPquAMjaUPMb0HEiuLA-jKFxSCuM";
 
-const ADMIN_CHAT_ID = -1004456053400;
+const ADMIN_CHAT_ID = 7130132807;
 const GROUP_CHAT_ID = -1003788971538;
 
 const bot = new TelegramBot(BOT_TOKEN);
