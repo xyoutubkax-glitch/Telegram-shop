@@ -716,7 +716,7 @@ style={{
               marginTop: "6px",
             }}
           >
-            BYN{product.price}
+            {product.price} BYN
           </div>
         </div>
 
@@ -849,7 +849,7 @@ style={{
               color: "#94a3b8",
             }}
           >
-            BYN{product.price}
+            {product.price} BYN
           </div>
         </div>
 
@@ -1155,7 +1155,7 @@ style={{
     fontWeight: "bold",
   }}
 >
-  💰 Сумма корзины: BYN{totalPrice}
+  💰 Сумма корзины: {totalPrice} BYN
 </p>
   </div>
   <button
@@ -1239,7 +1239,7 @@ style={{
 >
     <h3>Заказ #{order.id}</h3>
 
-    <p>💰 Сумма: BYN{order.total}</p>
+    <p>💰 Сумма: {order.total}</p> BYN
     <p>📅 {order.date}</p>
     <p
     style={{
@@ -1373,14 +1373,14 @@ setSelectedColor={setSelectedColor}
           fontSize: "22px",
         }}
       >
-        BYN{item.price}
+        {item.price} BYN
       </div>
     </div>
   </div>
 ))}
           <hr />
 
-          <h3>Итого: BYN{totalPrice}</h3>
+          <h3>Итого: {totalPrice}</h3> BYN
 
           <input
             type="text"
