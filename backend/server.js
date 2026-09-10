@@ -80,34 +80,125 @@ app.post("/order", async (req, res) => {
   try {
     const order = req.body;
 
-    const itemsText = order.items
-  .map((item, index) => {
-    let text = `${index + 1}. ${item.name}\n`;
+    // ==========================================
+    // УМЕНЬШАЕМ ОСТАТОК ВЫБРАННОГО ВАРИАНТА
+    // ==========================================
 
-    if (item.selectedFlavor)
-      text += `Вкус: ${item.selectedFlavor}\n`;
+    const flavorQuantities = {};
 
-    if (item.selectedResistance)
-      text += `Сопротивление: ${item.selectedResistance}\n`;
+    for (const item of order.items) {
+      // Если у товара есть выбранный вариант
+      if (!item.selectedFlavor) {
+        continue;
+      }
 
-    if (item.selectedStrength)
-      text += `Крепость: ${item.selectedStrength}\n`;
+      const key = '${item.id}::${item.selectedFlavor}';
 
-    if (item.selectedNicotine)
-      text += `Никотин: ${item.selectedNicotine}\n`;
+      if (!flavorQuantities[key]) {
+        flavorQuantities[key] = {
+          product_id: item.id,
+          flavor_name: item.selectedFlavor,
+          quantity: 0,
+        };
+      }
 
-    if (item.selectedColor)
-      text += `Цвет: ${item.selectedColor}\n`;
+      flavorQuantities[key].quantity++;
+    }
 
-    text += `Цена: €${item.price}`;
+    const stockItems = Object.values(flavorQuantities);
 
-    return text;
-  })
-  .join("\n\n");
+    // Отправляем данные в Supabase
+    if (stockItems.length > 0) {
+      const { error: stockError } = await supabase.rpc(
+        "decrement_flavor_stocks",
+        {
+          p_items: stockItems,
+        }
+      );
+
+      if (stockError) {
+        console.error("Ошибка изменения остатка:", stockError);
+
+        if (stockError.message.includes("NOT_ENOUGH_STOCK")) {
+          return res.status(409).json({
+            success: false,
+            message: "Недостаточно товара на складе",
+          });
+        }
+
+        if (stockError.message.includes("FLAVOR_NOT_FOUND")) {
+          return res.status(400).json({
+            success: false,
+            message: "Выбранный вариант товара не найден",
+          });
+        }
+
+        throw stockError;
+      }
+    }
+
+    // ==========================================
+    // ФОРМИРУЕМ ТЕКСТ ЗАКАЗА
+    // ==========================================
+
+    const quantities = {};
+
+    for (const item of order.items) {
+      const key = '${item.id}::${item.selectedFlavor || ""}';
+
+      if (!quantities[key]) {
+        quantities[key] = {
+          item,
+          quantity: 0,
+        };
+      }
+
+      quantities[key].quantity++;
+    }
+
+    const itemsText = Object.values(quantities)
+      .map(({ item, quantity }, index) => {
+        let text = '${index + 1}. ${item.name}\n';
+
+        text += 'Количество: ${quantity}\n';
+        text += 'Цена: €${item.price}\n';
+        text += 'Сумма: €${item.price * quantity}';
+
+        if (item.selectedFlavor) {
+          text += '\nВариант: ${item.selectedFlavor}';
+        }
+
+        if (item.selectedResistance) {
+          text += '\nСопротивление: ${item.selectedResistance}';
+        }
+
+        if (item.selectedStrength) {
+          text += '\nКрепость: ${item.selectedStrength}';
+        }
+
+        if (item.selectedNicotine) {
+          text += '\nНикотин: ${item.selectedNicotine}';
+        }
+
+        if (item.selectedColor) {
+          text += '\nЦвет: ${item.selectedColor}';
+        }
+
+        return text;
+      })
+      .join("\n\n");
+
+    // ==========================================
+    // ПРОФИЛЬ ПОКУПАТЕЛЯ
+    // ==========================================
 
     const profileUrl = order.telegram?.username
-      ? `https://t.me/${order.telegram.username}`
+      ? 'https://t.me/${order.telegram.username}'
       : null;
+
+    // ==========================================
+    // СООБЩЕНИЕ
+    // ==========================================
 
     const message = `
 🛒 Новый заказ
@@ -144,21 +235,34 @@ ${order.comment || "-"}
         }
       : {};
 
+    // ==========================================
+    // ОТПРАВЛЯЕМ АДМИНУ
+    // ==========================================
+
     await bot.sendMessage(
       ADMIN_CHAT_ID,
       message,
       options
     );
 
+    // ==========================================
+    // ОТПРАВЛЯЕМ В ГРУППУ
+    // ==========================================
+
     await bot.sendMessage(
-      GROUP_CHAT_ID,
-      message,
+      GROUP_CHAT_ID,message,
       options
     );
+
     res.json({ success: true });
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false });
+
+    res.status(500).json({
+      success: false,
+      message: error.message || "Ошибка оформления заказа",
+    });
   }
 });
 
