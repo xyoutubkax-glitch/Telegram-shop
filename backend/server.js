@@ -161,8 +161,8 @@ app.post("/order", async (req, res) => {
         let text = '${index + 1}. ${item.name}\n';
 
         text += 'Количество: ${quantity}\n';
-        text += 'Цена: ${item.price}\n'; BYN
-        text += 'Сумма: ${item.price * quantity}'; BYN
+        text += 'Цена: BYN${item.price}\n';
+        text += 'Сумма: BYN${item.price * quantity}';
 
         if (item.selectedFlavor) {
           text += '\nВариант: ${item.selectedFlavor}';
