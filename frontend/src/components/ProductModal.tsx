@@ -1,4 +1,8 @@
 import OptionSelector from "./OptionSelector";
+type ProductOption = {
+  name: string;
+  stock: number;
+};
 type Product = {
   id: number;
   name: string;
@@ -7,12 +11,12 @@ type Product = {
   description: string;
   category: string;
 
-  flavors?: string[];
+  flavors?: ProductOption[];
 
-  resistance?: string[];
-  nicotine?: string[];
-  strength?: string[];
-  color?: string[];
+  resistance?: ProductOption[];
+nicotine?: ProductOption[];
+strength?: ProductOption[];
+color?: ProductOption[];
 
   draws?: string;
 
@@ -158,41 +162,59 @@ export default function ProductModal({
         gap: "12px",
       }}
     >
-      {product.flavors.map((flavor) => (
-        <button
-          key={flavor}
-          onClick={() => setSelectedFlavor(flavor)}
-          style={{
-  padding: "12px 18px",
-  borderRadius: "18px",
-  cursor: "pointer",
-  border:
-    selectedFlavor === flavor
-      ? "2px solid #3b82f6"
-      : "1px solid #2e3a4d",
+      {product.flavors.map((flavor) => {
+  const isOutOfStock = flavor.stock <= 0;
 
-  background:
-    selectedFlavor === flavor
-      ? "linear-gradient(135deg,#1d4ed8,#2563eb)"
-      : "#1b2432",
+  return (
+    <button
+      key={flavor.name}
+      onClick={() => {
+        if (!isOutOfStock) {
+          setSelectedFlavor(flavor.name);
+        }
+      }}
+      disabled={isOutOfStock}
+      style={{
+        padding: "12px 18px",
+        borderRadius: "18px",
+        cursor: isOutOfStock ? "not-allowed" : "pointer",
 
-  color: "#fff",
+        border:
+          selectedFlavor === flavor.name
+            ? "2px solid #3b82f6"
+            : "1px solid #2e3a4d",
 
-  fontWeight: 600,
+        background:
+          selectedFlavor === flavor.name
+            ? "linear-gradient(135deg,#1d4ed8,#2563eb)"
+            : "#1b2432",
 
-  transition: "all .25s",
+        color: isOutOfStock ? "#6b7280" : "#fff",
 
-  minWidth: "120px",
+        fontWeight: 600,
+        transition: "all .25s",
+        minWidth: "120px",
 
-  boxShadow:
-    selectedFlavor === flavor
-      ? "0 0 18px rgba(59,130,246,.35)"
-      : "none",
-}}
-        >
-           {flavor}
-        </button>
-      ))}
+        opacity: isOutOfStock ? 0.55 : 1,
+
+        textDecoration: isOutOfStock
+          ? "line-through"
+          : "none",
+
+        boxShadow:
+          selectedFlavor === flavor.name
+            ? "0 0 18px rgba(59,130,246,.35)"
+            : "none",
+      }}
+    >
+      {flavor.name}
+      {" — "}
+      {isOutOfStock
+        ? "нет в наличии"
+        : `${flavor.stock} шт.`}
+    </button>
+  );
+})}
     </div>
     {!selectedFlavor && (
   <p

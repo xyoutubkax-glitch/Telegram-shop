@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import ProductModal from "./components/ProductModal";
 import BottomNav from "./components/BottomNav";
 
+type ProductOption = {
+  name: string;
+  stock: number;
+};
+
 type Product = {
   id: number;
   name: string;
@@ -11,12 +16,12 @@ type Product = {
   category: string;
 
   flavor?: string;
-  flavors?: string[];
+  flavors?: ProductOption[];
 
-  color?: string[];
-  resistance?: string[];
-  nicotine?: string[];
-  strength?: string[];
+  color?: ProductOption[];
+resistance?: ProductOption[];
+nicotine?: ProductOption[];
+strength?: ProductOption[];
 selectedFlavor?: string;
 
 selectedResistance?: string;
@@ -279,6 +284,20 @@ const uploadImage = async (file: File) => {
 
   return data.secure_url;
 };
+const parseOptions = (value: string): ProductOption[] => {
+  return value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => {
+      const [name, stock] = item.split(":");
+
+      return {
+        name: name.trim(),
+        stock: Number(stock) || 0,
+      };
+    });
+};
 const saveProduct = async () => {
   const product = {
     name: newProductName,
@@ -287,11 +306,11 @@ const saveProduct = async () => {
     description: newProductDescription,
     category: newProductCategory,
 
-    flavors: newProductFlavors.split(",").map(f => f.trim()),
-    resistance: newProductResistance.split(",").map(f => f.trim()),
-    nicotine: newProductNicotine.split(",").map(f => f.trim()),
-    strength: newProductStrength.split(",").map(f => f.trim()),
-    color: newProductColor.split(",").map(f => f.trim()),
+    flavors: parseOptions(newProductFlavors),
+resistance: parseOptions(newProductResistance),
+nicotine: parseOptions(newProductNicotine),
+strength: parseOptions(newProductStrength),
+color: parseOptions(newProductColor),
   };
   if (isEditing && editingProduct) {
     await fetch(
@@ -954,7 +973,7 @@ style={{
       }
     />
     <input
-  placeholder="Вкус"
+  placeholder="Вкус: Манго:3, Мята:2, Голубика:0"
   value={newProductFlavors}
   onChange={(e) =>
     setNewProductFlavors(e.target.value)
@@ -962,7 +981,7 @@ style={{
 />
 
 <input
-  placeholder="Цвет"
+  placeholder="Цвет: Красный:3, Синий:2"
   value={newProductColor}
   onChange={(e) =>
     setNewProductColor(e.target.value)
@@ -970,7 +989,7 @@ style={{
 />
 
 <input
-  placeholder="Сопротивление"
+  placeholder="Сопротивление: 0.6:0, 0.4:2"
   value={newProductResistance}
   onChange={(e) =>
     setNewProductResistance(e.target.value)
@@ -978,14 +997,15 @@ style={{
 />
 
 <input
-  placeholder="Никотин"
+  placeholder="Никотин: 0:3, 5:2"
   value={newProductNicotine}
   onChange={(e) =>
     setNewProductNicotine(e.target.value)
   }
 />
+
 <input
-  placeholder="Крепость"
+  placeholder="Крепость: Слабая:3, Средняя:2"
   value={newProductStrength}
   onChange={(e) =>
     setNewProductStrength(e.target.value)

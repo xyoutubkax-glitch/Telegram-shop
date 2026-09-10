@@ -1,7 +1,12 @@
+type ProductOption = {
+  name: string;
+  stock: number;
+};
+
 type Props = {
   title: string;
   icon?: string;
-  options: string[];
+  options: ProductOption[];
   value: string;
   onChange: (value: string) => void;
 };
@@ -33,40 +38,57 @@ export default function OptionSelector({
           gap: "12px",
         }}
       >
-        {options.map((item) => (
-          <button
-            key={item}
-            onClick={() => onChange(item)}
-            style={{
-              padding: "12px 18px",
-              borderRadius: "18px",
-              cursor: "pointer",
+        {options.map((item) => {
+          const isOutOfStock = item.stock <= 0;
 
-              border:
-                value === item
-                  ? "2px solid #3b82f6"
-                  : "1px solid #2e3a4d",
+          return (
+            <button
+              key={item.name}
+              onClick={() => {
+                if (!isOutOfStock) {
+                  onChange(item.name);
+                }
+              }}
+              disabled={isOutOfStock}
+              style={{
+                padding: "12px 18px",
+                borderRadius: "18px",
+                cursor: isOutOfStock ? "not-allowed" : "pointer",
 
-              background:
-                value === item
-                  ? "linear-gradient(135deg,#1d4ed8,#2563eb)"
-                  : "#1b2432",
+                border:
+                  value === item.name
+                    ? "2px solid #3b82f6"
+                    : "1px solid #2e3a4d",
 
-              color: "#fff",
+                background:
+                  value === item.name
+                    ? "linear-gradient(135deg,#1d4ed8,#2563eb)"
+                    : "#1b2432",
 
-              fontWeight: 600,
+                color: isOutOfStock ? "#6b7280" : "#fff",
 
-              transition: ".25s",
+                fontWeight: 600,
+                transition: ".25s",
 
-              boxShadow:
-                value === item
-                  ? "0 0 18px rgba(59,130,246,.35)"
+                opacity: isOutOfStock ? 0.55 : 1,
+
+                textDecoration: isOutOfStock
+                  ? "line-through"
                   : "none",
-            }}
-          >
-            {item}
-          </button>
-        ))}
+
+                boxShadow:
+                  value === item.name
+                    ? "0 0 18px rgba(59,130,246,.35)"
+                    : "none",
+              }}
+            >
+              {item.name} —{" "}
+              {isOutOfStock
+                ? "нет в наличии"
+                : `${item.stock} шт.`}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
