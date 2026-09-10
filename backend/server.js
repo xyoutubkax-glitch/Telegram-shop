@@ -214,7 +214,7 @@ ${order.telegram?.id || "-"}
 ${itemsText}
 
 💰 Сумма:
-€${order.total}
+${order.total} BYN
 
 📝 Комментарий:
 ${order.comment || "-"}
