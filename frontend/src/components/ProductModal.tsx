@@ -379,7 +379,7 @@ export default function ProductModal({
           fontWeight: 700,
         }}
       >
-        €{(product.price * quantity).toFixed(2)}
+        BYN{(product.price * quantity).toFixed(2)}
       </div>
     </div>
   </div>

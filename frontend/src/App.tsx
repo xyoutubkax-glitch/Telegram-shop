@@ -406,7 +406,8 @@ console.log(selectedProduct);
         }}
       >
        <div>
-  <h1 style={{ margin: 0 }}>4enko Shop</h1>
+  <h1 style={{ margin: 0 }}>𝟒𝐞𝐧𝐤𝐨𝐒𝐡𝐨𝐩
+</h1>
   <p style={{ color: "#666", marginTop: "5px" }}>
     Магазин товаров
   </p>
@@ -474,11 +475,11 @@ console.log(selectedProduct);
       marginBottom: "8px",
     }}
   >
-    🛍
+    🏪
   </div>
 
   <div>
-    Все товары
+    Все товары 
   </div>
 </div>
   {categories.map((category) => (
@@ -565,7 +566,7 @@ style={{
     whiteSpace: "nowrap",
   }}
 >
-  ✓ В наличии
+   В наличии ✓
 </div>
   <div
     style={{
@@ -715,7 +716,7 @@ style={{
               marginTop: "6px",
             }}
           >
-            €{product.price}
+            BYN{product.price}
           </div>
         </div>
 
@@ -848,7 +849,7 @@ style={{
               color: "#94a3b8",
             }}
           >
-            €{product.price}
+            BYN{product.price}
           </div>
         </div>
 
@@ -1036,7 +1037,7 @@ style={{
     cursor: "pointer",
   }}
 >
-  ✅ Сохранить товар
+  ✅ Сохранить 
 </button>
 
   </div>
@@ -1154,7 +1155,7 @@ style={{
     fontWeight: "bold",
   }}
 >
-  💰 Сумма корзины: €{totalPrice}
+  💰 Сумма корзины: BYN{totalPrice}
 </p>
   </div>
   <button
@@ -1238,7 +1239,7 @@ style={{
 >
     <h3>Заказ #{order.id}</h3>
 
-    <p>💰 Сумма: €{order.total}</p>
+    <p>💰 Сумма: BYN{order.total}</p>
     <p>📅 {order.date}</p>
     <p
     style={{
@@ -1372,14 +1373,14 @@ setSelectedColor={setSelectedColor}
           fontSize: "22px",
         }}
       >
-        €{item.price}
+        BYN{item.price}
       </div>
     </div>
   </div>
 ))}
           <hr />
 
-          <h3>Итого: €{totalPrice}</h3>
+          <h3>Итого: BYN{totalPrice}</h3>
 
           <input
             type="text"
