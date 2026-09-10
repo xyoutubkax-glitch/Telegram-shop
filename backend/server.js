@@ -213,8 +213,8 @@ ${order.telegram?.id || "-"}
 📦 Товары:
 ${itemsText}
 
-💰 Сумма: BYN
-${order.total}
+💰 Сумма:
+BYN${order.total}
 
 📝 Комментарий:
 ${order.comment || "-"}
