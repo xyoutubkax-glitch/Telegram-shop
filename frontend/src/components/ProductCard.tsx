@@ -51,7 +51,7 @@ export default function ProductCard({
 
         <p>{product.description}</p>
 
-        <h3> {product.price}</h3> BYN
+        <h3>€{product.price}</h3>
 
         <button
           onClick={(e) => {
