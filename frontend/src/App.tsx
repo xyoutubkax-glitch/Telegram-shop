@@ -11,6 +11,7 @@ type Product = {
   id: number;
   name: string;
   price: number;
+  quantity?: number;
   image: string;
   description: string;
   category: string;
@@ -1271,20 +1272,20 @@ setSelectedColor={setSelectedColor}
     setQuantity={setQuantity}
     onClose={() => setSelectedProduct(null)}
     onAdd={() => {
-      for (let i = 0; i < quantity; i++) {
-        addToCart({
-  ...selectedProduct,
+  addToCart({
+    ...selectedProduct,
 
-  selectedFlavor,
-  selectedResistance,
-  selectedNicotine,
-  selectedStrength,
-  selectedColor,
-});
-      }
+    selectedFlavor,
+    selectedResistance,
+    selectedNicotine,
+    selectedStrength,
+    selectedColor,
 
-      setSelectedProduct(null);
-    }}
+    quantity,
+  });
+
+  setSelectedProduct(null);
+}}
   />
 )}
       {tab === "cart" && ( 
