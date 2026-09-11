@@ -160,9 +160,9 @@ useEffect(() => {
     setCart([]);
   };
   const totalPrice = cart.reduce(
-    (sum, item) => sum + item.price,
-    0
-  );
+  (sum, item) => sum + item.price * (item.quantity || 1),
+  0
+);
   const checkout = async () => {
     console.log("Отправляем заказ")
 console.log("TG:", tg);
@@ -1368,14 +1368,27 @@ setSelectedColor={setSelectedColor}
       </div>
 
       <div
-        style={{
-          color: "#38bdf8",
-          fontWeight: 700,
-          fontSize: "22px",
-        }}
-      >
-        {item.price} BYN
-      </div>
+  style={{
+    color: "#38bdf8",
+    fontWeight: 700,
+    fontSize: "22px",
+    textAlign: "right",
+  }}
+>
+  <div>
+    {item.price * (item.quantity || 1)} BYN
+  </div>
+
+  <div
+    style={{
+      color: "#94a3b8",
+      fontSize: "14px",
+      marginTop: "5px",
+    }}
+  >
+    {item.price} BYN × {item.quantity || 1}
+  </div>
+</div>
     </div>
   </div>
 ))}
