@@ -147,7 +147,7 @@ useEffect(() => {
   return product.category === selectedCategory;
 });
 
-  const addToCart = (product: Product) => {
+ const addToCart = (product: Product & { quantity?: number }) => {
   const cartItem: CartItem = {
     ...product,
     image: "",
