@@ -102,7 +102,7 @@ app.post("/order", async (req, res) => {
         };
       }
 
-   flavorQuantities[key].quantity += Number(item.quantity) || 1;
+    flavorQuantities[key].quantity += Number(item.quantity) || 1;
     }
 
     const stockItems = Object.values(flavorQuantities);
@@ -153,7 +153,7 @@ app.post("/order", async (req, res) => {
         };
       }
 
-      flavorQuantities[key].quantity += Number(item.quantity) || 1;
+      quantities[key].quantity += Number(item.quantity) || 1;
     }
 
     const itemsText = Object.values(quantities)
