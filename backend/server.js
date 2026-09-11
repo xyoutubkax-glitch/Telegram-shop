@@ -158,30 +158,30 @@ app.post("/order", async (req, res) => {
 
     const itemsText = Object.values(quantities)
       .map(({ item, quantity }, index) => {
-        let text = '${index + 1}. ${item.name}\n';
+        let text = `${index + 1}. ${item.name}\n`;
 
-        text += 'Количество: ${quantity}\n';
-        text += 'Цена: BYN${item.price}\n';
-        text += 'Сумма: BYN${item.price * quantity}';
+        text += `Количество: ${quantity}\n`;
+        text += `Цена: BYN${item.price}\n`;
+        text += `Сумма: BYN${item.price * quantity}`;
 
         if (item.selectedFlavor) {
-          text += '\nВариант: ${item.selectedFlavor}';
+          text += `\nВариант: ${item.selectedFlavor}`;
         }
 
         if (item.selectedResistance) {
-          text += '\nСопротивление: ${item.selectedResistance}';
+          text += `\nСопротивление: ${item.selectedResistance}`;
         }
 
         if (item.selectedStrength) {
-          text += '\nКрепость: ${item.selectedStrength}';
+          text += `\nКрепость: ${item.selectedStrength}`;
         }
 
         if (item.selectedNicotine) {
-          text += '\nНикотин: ${item.selectedNicotine}';
+          text += `\nНикотин: ${item.selectedNicotine}`;
         }
 
         if (item.selectedColor) {
-          text += '\nЦвет: ${item.selectedColor}';
+          text += `\nЦвет: ${item.selectedColor}`;
         }
 
         return text;
