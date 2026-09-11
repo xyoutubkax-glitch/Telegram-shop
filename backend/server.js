@@ -192,7 +192,7 @@ app.post("/order", async (req, res) => {
     // ==========================================
 
     const profileUrl = order.telegram?.username
-      ? 'https://t.me/${order.telegram.username}'
+      ? `https://t.me/${order.telegram.username}`
       : null;
 
     // ==========================================
