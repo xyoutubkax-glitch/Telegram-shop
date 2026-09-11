@@ -147,13 +147,16 @@ useEffect(() => {
 });
 
   const addToCart = (product: Product) => {
-
   const productWithoutImage = {
     ...product,
     image: "",
+    quantity: product.quantity || 1,
   };
 
-  setCart([...cart, productWithoutImage]);
+  setCart((prevCart) => [
+    ...prevCart,
+    productWithoutImage,
+  ]);
 };
 
   const clearCart = () => {
@@ -528,7 +531,15 @@ style={{
         <div
   key={product.id}
   className="product-card"
-  onClick={() => setSelectedProduct(product)}
+  onClick={() => {
+  setSelectedProduct(product);
+  setQuantity(1);
+  setSelectedFlavor("");
+  setSelectedResistance("");
+  setSelectedNicotine("");
+  setSelectedStrength("");
+  setSelectedColor("");
+}}
   style={{
     position: "relative",
     display: "flex",
