@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const BOT_TOKEN = "хуй те";
+const BOT_TOKEN = "8818876066:AAGp3ChnPquAMjaUPMb0HEiuLA-jKFxSCuM";
 
 const ADMIN_CHAT_ID = 7130132807;
 const GROUP_CHAT_ID = -1004456053400;
