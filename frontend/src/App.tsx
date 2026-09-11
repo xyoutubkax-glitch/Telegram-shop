@@ -11,7 +11,6 @@ type Product = {
   id: number;
   name: string;
   price: number;
-  quantity?: number;
   image: string;
   description: string;
   category: string;
@@ -29,7 +28,9 @@ selectedResistance?: string;
 selectedNicotine?: string;
 selectedStrength?: string;
 selectedColor?: string;
-
+};
+type CartItem = Product & {
+  quantity: number;
 };
 function App() {
 const [selectedCategory, setSelectedCategory] =
@@ -44,7 +45,7 @@ const [tab, setTab] = useState("shop");
 const tg = (window as any).Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
 const isAdmin = user?.id === 7130132807;
-  const [cart, setCart] = useState<Product[]>(() => {
+  const [cart, setCart] = useState<CartItem[]>(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
@@ -147,15 +148,15 @@ useEffect(() => {
 });
 
   const addToCart = (product: Product) => {
-  const productWithoutImage = {
+  const cartItem: CartItem = {
     ...product,
     image: "",
-    quantity: product.quantity || 1,
+    quantity,
   };
 
   setCart((prevCart) => [
     ...prevCart,
-    productWithoutImage,
+    cartItem,
   ]);
 };
 
