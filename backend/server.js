@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const BOT_TOKEN = "8818876066:AAGp3ChnPquAMjaUPMb0HEiuLA-jKFxSCuM";
+const BOT_TOKEN = "";
 
 const ADMIN_CHAT_ID = 7130132807;
 const GROUP_CHAT_ID = -1004456053400;
@@ -92,7 +92,7 @@ app.post("/order", async (req, res) => {
         continue;
       }
 
-      const key = '${item.id}::${item.selectedFlavor}';
+      const key = `${item.id}::${item.selectedFlavor}`;
 
       if (!flavorQuantities[key]) {
         flavorQuantities[key] = {
@@ -144,7 +144,7 @@ app.post("/order", async (req, res) => {
     const quantities = {};
 
     for (const item of order.items) {
-      const key = '${item.id}::${item.selectedFlavor || ""}';
+      const key = `${item.id}::${item.selectedFlavor || ""}`;
 
       if (!quantities[key]) {
         quantities[key] = {
