@@ -76,6 +76,45 @@ export default function ProductModal({
   onClose,
   onAdd,
 }: Props) {
+  const stocks: number[] = [];
+
+  if (selectedFlavor) {
+    const option = product.flavors?.find(
+      (item) => item.name === selectedFlavor
+    );
+    if (option) stocks.push(option.stock);
+  }
+
+  if (selectedResistance) {
+    const option = product.resistance?.find(
+      (item) => item.name === selectedResistance
+    );
+    if (option) stocks.push(option.stock);
+  }
+
+  if (selectedNicotine) {
+    const option = product.nicotine?.find(
+      (item) => item.name === selectedNicotine
+    );
+    if (option) stocks.push(option.stock);
+  }
+
+  if (selectedStrength) {
+    const option = product.strength?.find(
+      (item) => item.name === selectedStrength
+    );
+    if (option) stocks.push(option.stock);
+  }
+
+  if (selectedColor) {
+    const option = product.color?.find(
+      (item) => item.name === selectedColor
+    );
+    if (option) stocks.push(option.stock);
+  }
+
+  const maxStock =
+    stocks.length > 0 ? Math.min(...stocks) : 0;
   return (
     <div
       style={{
@@ -169,9 +208,13 @@ export default function ProductModal({
     <button
       key={flavor.name}
       onClick={() => {
-        if (!isOutOfStock) {
-          setSelectedFlavor(flavor.name);
-        }
+       if (!isOutOfStock) {
+  setSelectedFlavor(flavor.name);
+
+  if (quantity > flavor.stock) {
+    setQuantity(flavor.stock);
+  }
+}
       }}
       disabled={isOutOfStock}
       style={{
@@ -328,10 +371,12 @@ export default function ProductModal({
       {quantity}
     </span>
 
-    <button
-      onClick={() =>
-        setQuantity(quantity + 1)
-      }
+   <button
+  onClick={() => {
+  if (quantity < maxStock) {
+    setQuantity(quantity + 1);
+  }
+}}
       style={{
         width: "42px",
         height: "42px",
