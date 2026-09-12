@@ -198,8 +198,14 @@ const order = {
     console.log(response.status);
 
     if (!response.ok) {
-      throw new Error("Ошибка отправки");
-    }
+  const errorData = await response.json().catch(() => null);
+
+  console.error("Ошибка сервера:", errorData);
+
+  throw new Error(
+    errorData?.message || `Ошибка сервера: ${response.status}`
+  );
+}
 
     alert("Заказ отправлен!");
     const newOrder = {
