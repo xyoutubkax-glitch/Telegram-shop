@@ -148,17 +148,41 @@ useEffect(() => {
 });
 
  const addToCart = (product: Product & { quantity?: number }) => {
-  const cartItem: CartItem = {
-    ...product,
-    image: "",
-    quantity,
-  };
+  const addQuantity = product.quantity ?? 1;
 
-  setCart((prevCart) => [
-    ...prevCart,
-    cartItem,
-  ]);
+  setCart((prevCart) => {
+    const existingIndex = prevCart.findIndex(
+      (item) =>
+        item.id === product.id &&
+        item.selectedFlavor === product.selectedFlavor &&
+        item.selectedResistance === product.selectedResistance &&
+        item.selectedNicotine === product.selectedNicotine &&
+        item.selectedStrength === product.selectedStrength &&
+        item.selectedColor === product.selectedColor
+    );
+
+    if (existingIndex !== -1) {
+      return prevCart.map((item, index) =>
+        index === existingIndex
+          ? {
+              ...item,
+              quantity: item.quantity + addQuantity,
+            }
+          : item
+      );
+    }
+
+    return [
+      ...prevCart,
+      {
+        ...product,
+        image: "",
+        quantity: addQuantity,
+      },
+    ];
+  });
 };
+
 
   const clearCart = () => {
     setCart([]);
