@@ -151,6 +151,25 @@ useEffect(() => {
   console.log("ADD TO CART:", product);
   const addQuantity = Number(product.quantity) || 1;
 
+  useEffect(() => {
+  const handleError = (event: ErrorEvent) => {
+    alert(
+      `ОШИБКА:\n${event.message}\n\nФайл: ${event.filename}\nСтрока: ${event.lineno}`
+    );
+  };
+
+  const handleRejection = (event: PromiseRejectionEvent) => {
+    alert(`PROMISE ОШИБКА:\n${String(event.reason)}`);
+  };
+
+  window.addEventListener("error", handleError);
+  window.addEventListener("unhandledrejection", handleRejection);
+
+  return () => {
+    window.removeEventListener("error", handleError);
+    window.removeEventListener("unhandledrejection", handleRejection);
+  };
+}, []);
   const cartItem: CartItem = {
     id: product.id,
     name: product.name,
