@@ -148,6 +148,7 @@ useEffect(() => {
 });
 
  const addToCart = (product: Product & { quantity?: number }) => {
+  console.log("ADD TO CART:", product);
   const addQuantity = Number(product.quantity) || 1;
 
   const cartItem: CartItem = {
@@ -168,6 +169,8 @@ useEffect(() => {
   };
 
   setCart((prevCart) => {
+    console.log("CART BEFORE:", prevCart);
+    console.log("NEW ITEM:", cartItem);
     const existingIndex = prevCart.findIndex(
       (item) =>
         item.id === cartItem.id &&
