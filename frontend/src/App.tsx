@@ -38,7 +38,7 @@ const [selectedCategory, setSelectedCategory] =
 const [orders, setOrders] = useState<any[]>(() => {
   const saved = localStorage.getItem("orders");
 
-  return saved ? JSON.parse(saved) : [];
+  return []
 });
 
 const [tab, setTab] = useState("shop");
@@ -148,17 +148,34 @@ useEffect(() => {
 });
 
  const addToCart = (product: Product & { quantity?: number }) => {
-  const addQuantity = product.quantity ?? 1;
+  const addQuantity = Number(product.quantity) || 1;
+
+  const cartItem: CartItem = {
+    id: product.id,
+    name: product.name,
+    price: Number(product.price) || 0,
+    image: "",
+    description: product.description || "",
+    category: product.category || "",
+
+    selectedFlavor: product.selectedFlavor || "",
+    selectedResistance: product.selectedResistance || "",
+    selectedNicotine: product.selectedNicotine || "",
+    selectedStrength: product.selectedStrength || "",
+    selectedColor: product.selectedColor || "",
+
+    quantity: addQuantity,
+  };
 
   setCart((prevCart) => {
     const existingIndex = prevCart.findIndex(
       (item) =>
-        item.id === product.id &&
-        item.selectedFlavor === product.selectedFlavor &&
-        item.selectedResistance === product.selectedResistance &&
-        item.selectedNicotine === product.selectedNicotine &&
-        item.selectedStrength === product.selectedStrength &&
-        item.selectedColor === product.selectedColor
+        item.id === cartItem.id &&
+        item.selectedFlavor === cartItem.selectedFlavor &&
+        item.selectedResistance === cartItem.selectedResistance &&
+        item.selectedNicotine === cartItem.selectedNicotine &&
+        item.selectedStrength === cartItem.selectedStrength &&
+        item.selectedColor === cartItem.selectedColor
     );
 
     if (existingIndex !== -1) {
@@ -166,23 +183,15 @@ useEffect(() => {
         index === existingIndex
           ? {
               ...item,
-              quantity: item.quantity + addQuantity,
+              quantity: (Number(item.quantity) || 0) + addQuantity,
             }
           : item
       );
     }
 
-    return [
-      ...prevCart,
-      {
-        ...product,
-        image: "",
-        quantity: addQuantity,
-      },
-    ];
+    return [...prevCart, cartItem];
   });
 };
-
 
   const clearCart = () => {
     setCart([]);
