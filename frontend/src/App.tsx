@@ -1361,179 +1361,298 @@ setSelectedColor={setSelectedColor}
 }}
   />
 )}
-      {tab === "cart" && ( 
-  <div
-  className="page"
-  style={{
-    animation: "fadeIn 0.35s ease",
-  }}
->
-    <div
+      {tab === "cart" && (
+        <div
+          className="page"
           style={{
-            marginTop: "30px",
-           background: "rgba(255,255,255,0.08)",
-          backdropFilter: "blur(18px)",
-          WebkitBackdropFilter: "blur(18px)",
-          border: "1px solid rgba(255,255,255,0.1)",
+            animation: "fadeIn 0.35s ease",
+            paddingBottom: "130px",
           }}
         >
-          <h2>Корзина</h2>
-
-          {cart.map((item, index) => (
-  <div
-    key={index}
-    style={{
-      background: "#1e293b",
-      borderRadius: "18px",
-      padding: "18px",
-      marginBottom: "16px",
-      border: "1px solid #334155",
-    }}
-  >
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
-      }}
-    >
-      <div>
-        <h3
-          style={{
-            color: "#fff",
-            margin: 0,
-            marginBottom: "12px",
-            fontSize: "20px",
-          }}
-        >
-          {item.name}
-        </h3>
-
-        {item.selectedFlavor && (
-          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
-            🍓 Вкус: <b>{item.selectedFlavor}</b>
-          </p>
-        )}
-
-        {item.selectedResistance && (
-          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
-            ⚡ Сопротивление: <b>{item.selectedResistance}</b>
-          </p>
-        )}
-
-        {item.selectedStrength && (
-          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
-            🔥 Крепость: <b>{item.selectedStrength}</b>
-          </p>
-        )}
-
-        {item.selectedNicotine && (
-          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
-            💧 Никотин: <b>{item.selectedNicotine}</b>
-          </p>
-        )}
-
-        {item.selectedColor && (
-          <p style={{ color: "#cbd5e1", margin: "4px 0" }}>
-            🎨 Цвет: <b>{item.selectedColor}</b>
-          </p>
-        )}
-      </div>
-
-      <div
-  style={{
-    color: "#38bdf8",
-    fontWeight: 700,
-    fontSize: "22px",
-    textAlign: "right",
-  }}
->
-  <div>
-    {item.price * (item.quantity || 1)} BYN
-  </div>
-
-  <div
-    style={{
-      color: "#94a3b8",
-      fontSize: "14px",
-      marginTop: "5px",
-    }}
-  >
-    {item.price} BYN × {item.quantity || 1}
-  </div>
-</div>
-    </div>
-  </div>
-))}
-          <hr />
-
-          <h3>Итого: {totalPrice}</h3> BYN
-
-          <input
-            type="text"
-            placeholder="Ваше имя(необязательно)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+          <div
             style={{
-              width: "100%",
-              padding: "10px",
-              marginTop: "15px",
-              marginBottom: "10px",
-            }}
-          />
-
-          <textarea
-            placeholder="Местопположение(Район)"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              minHeight: "100px",
-              marginBottom: "10px",
-            }}
-          />
-
-          <button
-            onClick={checkout}
-            style={{
-              width: "100%",
-              padding: "12px",
-              border: "none",
-              borderRadius: "12px",
-              background: "#28a745",
-              color: "white",
-              fontSize: "16px",
-              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "12px",
+              marginTop: "20px",
+              marginBottom: "20px",
             }}
           >
-            Оформить заказ
-          </button>
+            <div>
+              <h2 style={{ margin: 0, color: "#fff", fontSize: "30px" }}>
+                Корзина
+              </h2>
+              <p style={{ margin: "5px 0 0", color: "#94a3b8" }}>
+                {cart.reduce((sum, item) => sum + (item.quantity || 1), 0)} товара
+              </p>
+            </div>
+            {cart.length > 0 && (
+              <button
+                onClick={clearCart}
+                style={{
+                  padding: "10px 14px",
+                  borderRadius: "14px",
+                  border: "1px solid rgba(248,113,113,0.35)",
+                  background: "rgba(127,29,29,0.2)",
+                  color: "#fca5a5",
+                  cursor: "pointer",
+                }}
+              >
+                🗑 Очистить
+              </button>
+            )}
+          </div>
 
-          <button
-            onClick={clearCart}
-            style={{
-              width: "100%",
-              padding: "12px",
-              border: "none",
-              borderRadius: "12px",
-              background: "#ff4444",
-              color: "white",
-              marginTop: "10px",
-              cursor: "pointer",
-            }}
-          >
-            Очистить корзину
-          </button>
-        </div>
+          {cart.length === 0 ? (
+            <div
+              style={{
+                padding: "28px 18px",
+                textAlign: "center",
+                borderRadius: "22px",
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                color: "#94a3b8",
+              }}
+            >
+              <div style={{ fontSize: "42px", marginBottom: "10px" }}>🛒</div>
+              <h3 style={{ color: "#fff", margin: "0 0 8px" }}>Корзина пуста</h3>
+              <p style={{ margin: 0 }}>Добавь товары из каталога</p>
+              <button
+                onClick={() => setTab("shop")}
+                style={{
+                  marginTop: "16px",
+                  padding: "12px 18px",
+                  border: "none",
+                  borderRadius: "14px",
+                  background: "#0284c7",
+                  color: "#fff",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                }}
+              >
+                Перейти в каталог
+              </button>
+            </div>
+          ) : (
+            <>
+              {cart.map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    gap: "14px",
+                    alignItems: "flex-start",
+                    background: "linear-gradient(145deg, #0f2438, #0b1c2d)",
+                    borderRadius: "22px",
+                    padding: "15px",
+                    marginBottom: "14px",
+                    border: "1px solid rgba(96,165,250,0.18)",
+                    boxShadow: "0 8px 25px rgba(0,0,0,0.18)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "82px",
+                      height: "82px",
+                      minWidth: "82px",
+                      borderRadius: "14px",
+                      overflow: "hidden",
+                      background: "#13283d",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <span style={{ fontSize: "28px" }}>🛍️</span>
+                    )}
+                  </div>
+
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "flex-start",
+                        gap: "8px",
+                      }}
+                    >
+                      <h3 style={{ margin: 0, color: "#fff", fontSize: "17px" }}>
+                        {item.name}
+                      </h3>
+                      <strong style={{ color: "#fff", whiteSpace: "nowrap" }}>
+                        {item.price * (item.quantity || 1)} BYN
+                      </strong>
+                    </div>
+
+                    {item.selectedFlavor && (
+                      <p style={{ color: "#94a3b8", margin: "6px 0 0", fontSize: "13px" }}>
+                        Вкус: {item.selectedFlavor}
+                      </p>
+                    )}
+                    {item.selectedResistance && (
+                      <p style={{ color: "#94a3b8", margin: "4px 0 0", fontSize: "13px" }}>
+                        Сопротивление: {item.selectedResistance}
+                      </p>
+                    )}
+                    {item.selectedStrength && (
+                      <p style={{ color: "#94a3b8", margin: "4px 0 0", fontSize: "13px" }}>
+                        Крепость: {item.selectedStrength}
+                      </p>
+                    )}
+                    {item.selectedNicotine && (
+                      <p style={{ color: "#94a3b8", margin: "4px 0 0", fontSize: "13px" }}>
+                        Никотин: {item.selectedNicotine}
+                      </p>
+                    )}
+                    {item.selectedColor && (
+                      <p style={{ color: "#94a3b8", margin: "4px 0 0", fontSize: "13px" }}>
+                        Цвет: {item.selectedColor}
+                      </p>
+                    )}
+
+                    <p style={{ color: "#64748b", margin: "8px 0 0", fontSize: "13px" }}>
+                      {item.price} BYN × {item.quantity || 1}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+              <div
+                style={{
+                  marginTop: "18px",
+                  padding: "20px",
+                  borderRadius: "22px",
+                  background: "linear-gradient(145deg, #0f2438, #0b1c2d)",
+                  border: "1px solid rgba(96,165,250,0.18)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    color: "#94a3b8",
+                    fontSize: "16px",
+                    marginBottom: "12px",
+                  }}
+                >
+                  <span>Товары</span>
+                  <span style={{ color: "#fff", fontWeight: 700 }}>{totalPrice} BYN</span>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    color: "#94a3b8",
+                    fontSize: "16px",
+                    marginBottom: "15px",
+                  }}
+                >
+                  <span>Доставка</span>
+                  <span style={{ color: "#22c55e", fontWeight: 700 }}>Бесплатно</span>
+                </div>
+
+                <div
+                  style={{
+                    height: "1px",
+                    background: "rgba(148,163,184,0.2)",
+                    marginBottom: "15px",
+                  }}
+                />
+
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ color: "#fff", fontSize: "20px", fontWeight: 800 }}>Итого</span>
+                  <span style={{ color: "#fff", fontSize: "24px", fontWeight: 800 }}>
+                    {totalPrice} BYN
+                  </span>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  marginTop: "16px",
+                  padding: "18px",
+                  borderRadius: "20px",
+                  background: "#0b1c2d",
+                  border: "1px solid rgba(96,165,250,0.15)",
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Ваше имя (необязательно)"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  style={{
+                    width: "100%",
+                    boxSizing: "border-box",
+                    padding: "14px",
+                    borderRadius: "14px",
+                    border: "1px solid rgba(148,163,184,0.2)",
+                    background: "#13283d",
+                    color: "#fff",
+                    fontSize: "15px",
+                    outline: "none",
+                    marginBottom: "10px",
+                  }}
+                />
+
+                <textarea
+                  placeholder="Местоположение (район)"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  style={{
+                    width: "100%",
+                    boxSizing: "border-box",
+                    padding: "14px",
+                    minHeight: "90px",
+                    borderRadius: "14px",
+                    border: "1px solid rgba(148,163,184,0.2)",
+                    background: "#13283d",
+                    color: "#fff",
+                    fontSize: "15px",
+                    outline: "none",
+                    resize: "none",
+                  }}
+                />
+              </div>
+
+              <button
+                onClick={checkout}
+                style={{
+                  width: "100%",
+                  marginTop: "16px",
+                  padding: "17px",
+                  border: "none",
+                  borderRadius: "18px",
+                  background: "linear-gradient(135deg, #0ea5e9, #0284c7)",
+                  color: "#fff",
+                  fontSize: "18px",
+                  fontWeight: 800,
+                  boxShadow: "0 8px 25px rgba(14,165,233,0.25)",
+                  cursor: "pointer",
+                }}
+              >
+                💳 Оформить заказ
+              </button>
+            </>
+          )}
         </div>
       )}
+
       <BottomNav
-  tab={tab}
-  setTab={setTab}
-  cart={cart}
-/>
-</div>
-);
+        tab={tab}
+        setTab={setTab}
+        cart={cart}
+      />
+    </div>
+  );
 }
 export default App;
