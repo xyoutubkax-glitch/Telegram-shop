@@ -36,7 +36,7 @@ function App() {
 const [selectedCategory, setSelectedCategory] =
   useState("Все");
 const [orders, setOrders] = useState<any[]>(() => {
-  const saved = localStorage.getItem("orders");
+
 
   return []
 });
